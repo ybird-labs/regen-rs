@@ -114,8 +114,12 @@ fn main() -> anyhow::Result<()> {
     let temp_dir = tempdir()?;
     repo.download(temp_dir.path())?;
 
+    // GitHub archives extract to a directory named {repo}-{tag} but strip 'v' prefix from tags
+    let tag_without_v = cli.tag.strip_prefix('v').unwrap_or(&cli.tag);
+    let extracted_repo_dir = temp_dir.path().join(format!("{}-{}", cli.repo, tag_without_v));
+    let proto_source_path = extracted_repo_dir.join(proto_dir);
 
-    extract_protos(&temp_dir.path().join(proto_dir), &output_dir)?;
+    extract_protos(&proto_source_path, &output_dir)?;
 
     Ok(())
 }
