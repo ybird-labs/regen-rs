@@ -18,7 +18,37 @@
           extensions = [ "rust-src" "rust-analyzer" ];
         };
 
+        # Regen Network versions for proto downloads
+        regenVersions = {
+          ledger = "v6.0.0";
+          # Add other repos/versions as needed
+        };
+
       in {
+        packages = {
+          download-regen-protos = pkgs.writeShellScriptBin "download-regen-protos" ''
+            echo "🌱 Downloading Regen Network protobuf definitions..."
+            echo "Using regen-ledger version: ${regenVersions.ledger}"
+            
+            # Use the proto-downloader from its own flake
+            PROTO_DOWNLOADER_PATH="crates/regen-types/tools/proto-downloader"
+            OUTPUT_DIR="crates/regen-types/proto/regen"
+            
+            # Create the output directory
+            mkdir -p "$OUTPUT_DIR"
+            
+            # Run proto-downloader using nix
+            cd "$PROTO_DOWNLOADER_PATH" && nix run . -- \
+              --output "../../../../$OUTPUT_DIR" \
+              --owner regen-network \
+              --repo regen-ledger \
+              --tag ${regenVersions.ledger} \
+              --proto-dir proto
+            
+            echo "✅ Regen protos downloaded successfully to $OUTPUT_DIR!"
+          '';
+        };
+        
         devShells.default = pkgs.mkShell {
           buildInputs = with pkgs; [
             # Rust toolchain

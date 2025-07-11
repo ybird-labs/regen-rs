@@ -1,0 +1,71 @@
+syntax = "proto3";
+
+package regen.ecocredit.marketplace.v1;
+
+import "cosmos/base/v1beta1/coin.proto";
+
+option go_package = "github.com/regen-network/regen-ledger/x/ecocredit/marketplace/types/v1";
+
+// EventSell is an event emitted when a sell order is created.
+message EventSell {
+
+  // sell_order_id is the unique identifier of the sell order that was created.
+  uint64 sell_order_id = 1;
+}
+
+// EventBuyDirect is an event emitted when a direct buy order is processed.
+message EventBuyDirect {
+
+  // sell_order_id is the unique identifier of the sell order that credits were
+  // purchased from.
+  uint64 sell_order_id = 1;
+
+  // seller is the address of the account that sold the credits.
+  string seller = 2;
+
+  // seller_fee_paid is the amount of coins paid by the seller
+  // to the marketplace as a fee for facilitating the sale.
+  cosmos.base.v1beta1.Coin seller_fee_paid = 3;
+
+  // buyer is the address of the account that purchased the credits.
+  string buyer = 4;
+
+  // buyer_fee_paid is the amount of coins paid by the buyer
+  // to the marketplace as a fee for facilitating the sale.
+  cosmos.base.v1beta1.Coin buyer_fee_paid = 5;
+}
+
+// EventUpdateSellOrder is an event emitted when a sell order is updated.
+message EventUpdateSellOrder {
+
+  //  sell_order_id is the unique identifier of the sell order that was updated.
+  uint64 sell_order_id = 1;
+}
+
+// EventCancelSellOrder is an event emitted when a sell order is cancelled.
+message EventCancelSellOrder {
+
+  // sell_order_id is the unique identifier of the sell order that was
+  // cancelled.
+  uint64 sell_order_id = 1;
+}
+
+// EventAllowDenom is an event emitted when a new denom is added for use in the
+// marketplace.
+message EventAllowDenom {
+
+  // denom is the bank denom (e.g. ibc/GLKHDSG423SGS) added to the list of
+  // allowed denoms for use in the marketplace.
+  string denom = 1;
+}
+
+// EventRemoveAllowedDenom is an event emitted when a denom is removed from use
+// in the marketplace.
+//
+// Since Revision 1
+message EventRemoveAllowedDenom {
+
+  // denom is the bank denom (e.g. ibc/GLKHDSG423SGS) removed from the list of
+  // allowed denoms for use in the marketplace.
+  string denom = 1;
+}
