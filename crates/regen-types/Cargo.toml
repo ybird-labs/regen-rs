@@ -17,7 +17,7 @@ walkdir = { workspace = true }
 # Generated protobuf types
 prost = { workspace = true }
 prost-types = { workspace = true }
-tonic = { workspace = true, optional = true }
+tonic = { workspace = true }
 
 # Cosmos SDK types (pre-generated)
 cosmos-sdk-proto = "0.21"
@@ -28,6 +28,12 @@ serde = { workspace = true }
 # Error handling  
 thiserror = { workspace = true }
 
+# Signer functionality
+cosmrs = "0.18"                         
+bip32 = "0.5"                            
+bip39 = "2.1"                            
+rand = "0.9"                            
+
 [features]
 default = []
-client = ["tonic"]
+client = []
