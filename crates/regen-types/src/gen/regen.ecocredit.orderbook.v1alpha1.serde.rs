@@ -15,9 +15,11 @@ impl serde::Serialize for BuyOrderBatchSelector {
         }
         let mut struct_ser = serializer.serialize_struct("regen.ecocredit.orderbook.v1alpha1.BuyOrderBatchSelector", len)?;
         if self.buy_order_id != 0 {
+            #[allow(clippy::needless_borrow)]
             struct_ser.serialize_field("buyOrderId", ToString::to_string(&self.buy_order_id).as_str())?;
         }
         if self.batch_id != 0 {
+            #[allow(clippy::needless_borrow)]
             struct_ser.serialize_field("batchId", ToString::to_string(&self.batch_id).as_str())?;
         }
         struct_ser.end()
@@ -78,20 +80,20 @@ impl<'de> serde::Deserialize<'de> for BuyOrderBatchSelector {
                 formatter.write_str("struct regen.ecocredit.orderbook.v1alpha1.BuyOrderBatchSelector")
             }
 
-            fn visit_map<V>(self, mut map: V) -> std::result::Result<BuyOrderBatchSelector, V::Error>
+            fn visit_map<V>(self, mut map_: V) -> std::result::Result<BuyOrderBatchSelector, V::Error>
                 where
                     V: serde::de::MapAccess<'de>,
             {
                 let mut buy_order_id__ = None;
                 let mut batch_id__ = None;
-                while let Some(k) = map.next_key()? {
+                while let Some(k) = map_.next_key()? {
                     match k {
                         GeneratedField::BuyOrderId => {
                             if buy_order_id__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("buyOrderId"));
                             }
                             buy_order_id__ = 
-                                Some(map.next_value::<::pbjson::private::NumberDeserialize<_>>()?.0)
+                                Some(map_.next_value::<::pbjson::private::NumberDeserialize<_>>()?.0)
                             ;
                         }
                         GeneratedField::BatchId => {
@@ -99,7 +101,7 @@ impl<'de> serde::Deserialize<'de> for BuyOrderBatchSelector {
                                 return Err(serde::de::Error::duplicate_field("batchId"));
                             }
                             batch_id__ = 
-                                Some(map.next_value::<::pbjson::private::NumberDeserialize<_>>()?.0)
+                                Some(map_.next_value::<::pbjson::private::NumberDeserialize<_>>()?.0)
                             ;
                         }
                     }
@@ -138,9 +140,11 @@ impl serde::Serialize for BuyOrderClassSelector {
         }
         let mut struct_ser = serializer.serialize_struct("regen.ecocredit.orderbook.v1alpha1.BuyOrderClassSelector", len)?;
         if self.buy_order_id != 0 {
+            #[allow(clippy::needless_borrow)]
             struct_ser.serialize_field("buyOrderId", ToString::to_string(&self.buy_order_id).as_str())?;
         }
         if self.class_id != 0 {
+            #[allow(clippy::needless_borrow)]
             struct_ser.serialize_field("classId", ToString::to_string(&self.class_id).as_str())?;
         }
         if !self.project_location.is_empty() {
@@ -222,7 +226,7 @@ impl<'de> serde::Deserialize<'de> for BuyOrderClassSelector {
                 formatter.write_str("struct regen.ecocredit.orderbook.v1alpha1.BuyOrderClassSelector")
             }
 
-            fn visit_map<V>(self, mut map: V) -> std::result::Result<BuyOrderClassSelector, V::Error>
+            fn visit_map<V>(self, mut map_: V) -> std::result::Result<BuyOrderClassSelector, V::Error>
                 where
                     V: serde::de::MapAccess<'de>,
             {
@@ -231,14 +235,14 @@ impl<'de> serde::Deserialize<'de> for BuyOrderClassSelector {
                 let mut project_location__ = None;
                 let mut min_start_date__ = None;
                 let mut max_end_date__ = None;
-                while let Some(k) = map.next_key()? {
+                while let Some(k) = map_.next_key()? {
                     match k {
                         GeneratedField::BuyOrderId => {
                             if buy_order_id__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("buyOrderId"));
                             }
                             buy_order_id__ = 
-                                Some(map.next_value::<::pbjson::private::NumberDeserialize<_>>()?.0)
+                                Some(map_.next_value::<::pbjson::private::NumberDeserialize<_>>()?.0)
                             ;
                         }
                         GeneratedField::ClassId => {
@@ -246,26 +250,26 @@ impl<'de> serde::Deserialize<'de> for BuyOrderClassSelector {
                                 return Err(serde::de::Error::duplicate_field("classId"));
                             }
                             class_id__ = 
-                                Some(map.next_value::<::pbjson::private::NumberDeserialize<_>>()?.0)
+                                Some(map_.next_value::<::pbjson::private::NumberDeserialize<_>>()?.0)
                             ;
                         }
                         GeneratedField::ProjectLocation => {
                             if project_location__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("projectLocation"));
                             }
-                            project_location__ = Some(map.next_value()?);
+                            project_location__ = Some(map_.next_value()?);
                         }
                         GeneratedField::MinStartDate => {
                             if min_start_date__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("minStartDate"));
                             }
-                            min_start_date__ = map.next_value()?;
+                            min_start_date__ = map_.next_value()?;
                         }
                         GeneratedField::MaxEndDate => {
                             if max_end_date__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("maxEndDate"));
                             }
-                            max_end_date__ = map.next_value()?;
+                            max_end_date__ = map_.next_value()?;
                         }
                     }
                 }
@@ -303,9 +307,11 @@ impl serde::Serialize for BuyOrderProjectSelector {
         }
         let mut struct_ser = serializer.serialize_struct("regen.ecocredit.orderbook.v1alpha1.BuyOrderProjectSelector", len)?;
         if self.buy_order_id != 0 {
+            #[allow(clippy::needless_borrow)]
             struct_ser.serialize_field("buyOrderId", ToString::to_string(&self.buy_order_id).as_str())?;
         }
         if self.project_id != 0 {
+            #[allow(clippy::needless_borrow)]
             struct_ser.serialize_field("projectId", ToString::to_string(&self.project_id).as_str())?;
         }
         if let Some(v) = self.min_start_date.as_ref() {
@@ -380,7 +386,7 @@ impl<'de> serde::Deserialize<'de> for BuyOrderProjectSelector {
                 formatter.write_str("struct regen.ecocredit.orderbook.v1alpha1.BuyOrderProjectSelector")
             }
 
-            fn visit_map<V>(self, mut map: V) -> std::result::Result<BuyOrderProjectSelector, V::Error>
+            fn visit_map<V>(self, mut map_: V) -> std::result::Result<BuyOrderProjectSelector, V::Error>
                 where
                     V: serde::de::MapAccess<'de>,
             {
@@ -388,14 +394,14 @@ impl<'de> serde::Deserialize<'de> for BuyOrderProjectSelector {
                 let mut project_id__ = None;
                 let mut min_start_date__ = None;
                 let mut max_end_date__ = None;
-                while let Some(k) = map.next_key()? {
+                while let Some(k) = map_.next_key()? {
                     match k {
                         GeneratedField::BuyOrderId => {
                             if buy_order_id__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("buyOrderId"));
                             }
                             buy_order_id__ = 
-                                Some(map.next_value::<::pbjson::private::NumberDeserialize<_>>()?.0)
+                                Some(map_.next_value::<::pbjson::private::NumberDeserialize<_>>()?.0)
                             ;
                         }
                         GeneratedField::ProjectId => {
@@ -403,20 +409,20 @@ impl<'de> serde::Deserialize<'de> for BuyOrderProjectSelector {
                                 return Err(serde::de::Error::duplicate_field("projectId"));
                             }
                             project_id__ = 
-                                Some(map.next_value::<::pbjson::private::NumberDeserialize<_>>()?.0)
+                                Some(map_.next_value::<::pbjson::private::NumberDeserialize<_>>()?.0)
                             ;
                         }
                         GeneratedField::MinStartDate => {
                             if min_start_date__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("minStartDate"));
                             }
-                            min_start_date__ = map.next_value()?;
+                            min_start_date__ = map_.next_value()?;
                         }
                         GeneratedField::MaxEndDate => {
                             if max_end_date__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("maxEndDate"));
                             }
-                            max_end_date__ = map.next_value()?;
+                            max_end_date__ = map_.next_value()?;
                         }
                     }
                 }
@@ -456,12 +462,15 @@ impl serde::Serialize for BuyOrderSellOrderMatch {
         }
         let mut struct_ser = serializer.serialize_struct("regen.ecocredit.orderbook.v1alpha1.BuyOrderSellOrderMatch", len)?;
         if self.market_id != 0 {
+            #[allow(clippy::needless_borrow)]
             struct_ser.serialize_field("marketId", ToString::to_string(&self.market_id).as_str())?;
         }
         if self.buy_order_id != 0 {
+            #[allow(clippy::needless_borrow)]
             struct_ser.serialize_field("buyOrderId", ToString::to_string(&self.buy_order_id).as_str())?;
         }
         if self.sell_order_id != 0 {
+            #[allow(clippy::needless_borrow)]
             struct_ser.serialize_field("sellOrderId", ToString::to_string(&self.sell_order_id).as_str())?;
         }
         if self.bid_price_complement != 0 {
@@ -540,7 +549,7 @@ impl<'de> serde::Deserialize<'de> for BuyOrderSellOrderMatch {
                 formatter.write_str("struct regen.ecocredit.orderbook.v1alpha1.BuyOrderSellOrderMatch")
             }
 
-            fn visit_map<V>(self, mut map: V) -> std::result::Result<BuyOrderSellOrderMatch, V::Error>
+            fn visit_map<V>(self, mut map_: V) -> std::result::Result<BuyOrderSellOrderMatch, V::Error>
                 where
                     V: serde::de::MapAccess<'de>,
             {
@@ -549,14 +558,14 @@ impl<'de> serde::Deserialize<'de> for BuyOrderSellOrderMatch {
                 let mut sell_order_id__ = None;
                 let mut bid_price_complement__ = None;
                 let mut ask_price__ = None;
-                while let Some(k) = map.next_key()? {
+                while let Some(k) = map_.next_key()? {
                     match k {
                         GeneratedField::MarketId => {
                             if market_id__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("marketId"));
                             }
                             market_id__ = 
-                                Some(map.next_value::<::pbjson::private::NumberDeserialize<_>>()?.0)
+                                Some(map_.next_value::<::pbjson::private::NumberDeserialize<_>>()?.0)
                             ;
                         }
                         GeneratedField::BuyOrderId => {
@@ -564,7 +573,7 @@ impl<'de> serde::Deserialize<'de> for BuyOrderSellOrderMatch {
                                 return Err(serde::de::Error::duplicate_field("buyOrderId"));
                             }
                             buy_order_id__ = 
-                                Some(map.next_value::<::pbjson::private::NumberDeserialize<_>>()?.0)
+                                Some(map_.next_value::<::pbjson::private::NumberDeserialize<_>>()?.0)
                             ;
                         }
                         GeneratedField::SellOrderId => {
@@ -572,7 +581,7 @@ impl<'de> serde::Deserialize<'de> for BuyOrderSellOrderMatch {
                                 return Err(serde::de::Error::duplicate_field("sellOrderId"));
                             }
                             sell_order_id__ = 
-                                Some(map.next_value::<::pbjson::private::NumberDeserialize<_>>()?.0)
+                                Some(map_.next_value::<::pbjson::private::NumberDeserialize<_>>()?.0)
                             ;
                         }
                         GeneratedField::BidPriceComplement => {
@@ -580,7 +589,7 @@ impl<'de> serde::Deserialize<'de> for BuyOrderSellOrderMatch {
                                 return Err(serde::de::Error::duplicate_field("bidPriceComplement"));
                             }
                             bid_price_complement__ = 
-                                Some(map.next_value::<::pbjson::private::NumberDeserialize<_>>()?.0)
+                                Some(map_.next_value::<::pbjson::private::NumberDeserialize<_>>()?.0)
                             ;
                         }
                         GeneratedField::AskPrice => {
@@ -588,7 +597,7 @@ impl<'de> serde::Deserialize<'de> for BuyOrderSellOrderMatch {
                                 return Err(serde::de::Error::duplicate_field("askPrice"));
                             }
                             ask_price__ = 
-                                Some(map.next_value::<::pbjson::private::NumberDeserialize<_>>()?.0)
+                                Some(map_.next_value::<::pbjson::private::NumberDeserialize<_>>()?.0)
                             ;
                         }
                     }

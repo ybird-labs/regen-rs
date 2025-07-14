@@ -68,18 +68,18 @@ impl<'de> serde::Deserialize<'de> for AllowedBridgeChain {
                 formatter.write_str("struct regen.ecocredit.v1.AllowedBridgeChain")
             }
 
-            fn visit_map<V>(self, mut map: V) -> std::result::Result<AllowedBridgeChain, V::Error>
+            fn visit_map<V>(self, mut map_: V) -> std::result::Result<AllowedBridgeChain, V::Error>
                 where
                     V: serde::de::MapAccess<'de>,
             {
                 let mut chain_name__ = None;
-                while let Some(k) = map.next_key()? {
+                while let Some(k) = map_.next_key()? {
                     match k {
                         GeneratedField::ChainName => {
                             if chain_name__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("chainName"));
                             }
-                            chain_name__ = Some(map.next_value()?);
+                            chain_name__ = Some(map_.next_value()?);
                         }
                     }
                 }
@@ -104,6 +104,7 @@ impl serde::Serialize for AllowedClassCreator {
         }
         let mut struct_ser = serializer.serialize_struct("regen.ecocredit.v1.AllowedClassCreator", len)?;
         if !self.address.is_empty() {
+            #[allow(clippy::needless_borrow)]
             struct_ser.serialize_field("address", pbjson::private::base64::encode(&self.address).as_str())?;
         }
         struct_ser.end()
@@ -159,19 +160,19 @@ impl<'de> serde::Deserialize<'de> for AllowedClassCreator {
                 formatter.write_str("struct regen.ecocredit.v1.AllowedClassCreator")
             }
 
-            fn visit_map<V>(self, mut map: V) -> std::result::Result<AllowedClassCreator, V::Error>
+            fn visit_map<V>(self, mut map_: V) -> std::result::Result<AllowedClassCreator, V::Error>
                 where
                     V: serde::de::MapAccess<'de>,
             {
                 let mut address__ = None;
-                while let Some(k) = map.next_key()? {
+                while let Some(k) = map_.next_key()? {
                     match k {
                         GeneratedField::Address => {
                             if address__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("address"));
                             }
                             address__ = 
-                                Some(map.next_value::<::pbjson::private::BytesDeserialize<_>>()?.0)
+                                Some(map_.next_value::<::pbjson::private::BytesDeserialize<_>>()?.0)
                             ;
                         }
                     }
@@ -272,33 +273,33 @@ impl<'de> serde::Deserialize<'de> for AllowedDenom {
                 formatter.write_str("struct regen.ecocredit.v1.AllowedDenom")
             }
 
-            fn visit_map<V>(self, mut map: V) -> std::result::Result<AllowedDenom, V::Error>
+            fn visit_map<V>(self, mut map_: V) -> std::result::Result<AllowedDenom, V::Error>
                 where
                     V: serde::de::MapAccess<'de>,
             {
                 let mut bank_denom__ = None;
                 let mut display_denom__ = None;
                 let mut exponent__ = None;
-                while let Some(k) = map.next_key()? {
+                while let Some(k) = map_.next_key()? {
                     match k {
                         GeneratedField::BankDenom => {
                             if bank_denom__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("bankDenom"));
                             }
-                            bank_denom__ = Some(map.next_value()?);
+                            bank_denom__ = Some(map_.next_value()?);
                         }
                         GeneratedField::DisplayDenom => {
                             if display_denom__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("displayDenom"));
                             }
-                            display_denom__ = Some(map.next_value()?);
+                            display_denom__ = Some(map_.next_value()?);
                         }
                         GeneratedField::Exponent => {
                             if exponent__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("exponent"));
                             }
                             exponent__ = 
-                                Some(map.next_value::<::pbjson::private::NumberDeserialize<_>>()?.0)
+                                Some(map_.next_value::<::pbjson::private::NumberDeserialize<_>>()?.0)
                             ;
                         }
                     }
@@ -353,12 +354,15 @@ impl serde::Serialize for Batch {
         }
         let mut struct_ser = serializer.serialize_struct("regen.ecocredit.v1.Batch", len)?;
         if self.key != 0 {
+            #[allow(clippy::needless_borrow)]
             struct_ser.serialize_field("key", ToString::to_string(&self.key).as_str())?;
         }
         if !self.issuer.is_empty() {
+            #[allow(clippy::needless_borrow)]
             struct_ser.serialize_field("issuer", pbjson::private::base64::encode(&self.issuer).as_str())?;
         }
         if self.project_key != 0 {
+            #[allow(clippy::needless_borrow)]
             struct_ser.serialize_field("projectKey", ToString::to_string(&self.project_key).as_str())?;
         }
         if !self.denom.is_empty() {
@@ -380,6 +384,7 @@ impl serde::Serialize for Batch {
             struct_ser.serialize_field("open", &self.open)?;
         }
         if self.class_key != 0 {
+            #[allow(clippy::needless_borrow)]
             struct_ser.serialize_field("classKey", ToString::to_string(&self.class_key).as_str())?;
         }
         struct_ser.end()
@@ -467,7 +472,7 @@ impl<'de> serde::Deserialize<'de> for Batch {
                 formatter.write_str("struct regen.ecocredit.v1.Batch")
             }
 
-            fn visit_map<V>(self, mut map: V) -> std::result::Result<Batch, V::Error>
+            fn visit_map<V>(self, mut map_: V) -> std::result::Result<Batch, V::Error>
                 where
                     V: serde::de::MapAccess<'de>,
             {
@@ -481,14 +486,14 @@ impl<'de> serde::Deserialize<'de> for Batch {
                 let mut issuance_date__ = None;
                 let mut open__ = None;
                 let mut class_key__ = None;
-                while let Some(k) = map.next_key()? {
+                while let Some(k) = map_.next_key()? {
                     match k {
                         GeneratedField::Key => {
                             if key__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("key"));
                             }
                             key__ = 
-                                Some(map.next_value::<::pbjson::private::NumberDeserialize<_>>()?.0)
+                                Some(map_.next_value::<::pbjson::private::NumberDeserialize<_>>()?.0)
                             ;
                         }
                         GeneratedField::Issuer => {
@@ -496,7 +501,7 @@ impl<'de> serde::Deserialize<'de> for Batch {
                                 return Err(serde::de::Error::duplicate_field("issuer"));
                             }
                             issuer__ = 
-                                Some(map.next_value::<::pbjson::private::BytesDeserialize<_>>()?.0)
+                                Some(map_.next_value::<::pbjson::private::BytesDeserialize<_>>()?.0)
                             ;
                         }
                         GeneratedField::ProjectKey => {
@@ -504,51 +509,51 @@ impl<'de> serde::Deserialize<'de> for Batch {
                                 return Err(serde::de::Error::duplicate_field("projectKey"));
                             }
                             project_key__ = 
-                                Some(map.next_value::<::pbjson::private::NumberDeserialize<_>>()?.0)
+                                Some(map_.next_value::<::pbjson::private::NumberDeserialize<_>>()?.0)
                             ;
                         }
                         GeneratedField::Denom => {
                             if denom__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("denom"));
                             }
-                            denom__ = Some(map.next_value()?);
+                            denom__ = Some(map_.next_value()?);
                         }
                         GeneratedField::Metadata => {
                             if metadata__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("metadata"));
                             }
-                            metadata__ = Some(map.next_value()?);
+                            metadata__ = Some(map_.next_value()?);
                         }
                         GeneratedField::StartDate => {
                             if start_date__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("startDate"));
                             }
-                            start_date__ = map.next_value()?;
+                            start_date__ = map_.next_value()?;
                         }
                         GeneratedField::EndDate => {
                             if end_date__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("endDate"));
                             }
-                            end_date__ = map.next_value()?;
+                            end_date__ = map_.next_value()?;
                         }
                         GeneratedField::IssuanceDate => {
                             if issuance_date__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("issuanceDate"));
                             }
-                            issuance_date__ = map.next_value()?;
+                            issuance_date__ = map_.next_value()?;
                         }
                         GeneratedField::Open => {
                             if open__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("open"));
                             }
-                            open__ = Some(map.next_value()?);
+                            open__ = Some(map_.next_value()?);
                         }
                         GeneratedField::ClassKey => {
                             if class_key__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("classKey"));
                             }
                             class_key__ = 
-                                Some(map.next_value::<::pbjson::private::NumberDeserialize<_>>()?.0)
+                                Some(map_.next_value::<::pbjson::private::NumberDeserialize<_>>()?.0)
                             ;
                         }
                     }
@@ -595,9 +600,11 @@ impl serde::Serialize for BatchBalance {
         }
         let mut struct_ser = serializer.serialize_struct("regen.ecocredit.v1.BatchBalance", len)?;
         if self.batch_key != 0 {
+            #[allow(clippy::needless_borrow)]
             struct_ser.serialize_field("batchKey", ToString::to_string(&self.batch_key).as_str())?;
         }
         if !self.address.is_empty() {
+            #[allow(clippy::needless_borrow)]
             struct_ser.serialize_field("address", pbjson::private::base64::encode(&self.address).as_str())?;
         }
         if !self.tradable_amount.is_empty() {
@@ -678,7 +685,7 @@ impl<'de> serde::Deserialize<'de> for BatchBalance {
                 formatter.write_str("struct regen.ecocredit.v1.BatchBalance")
             }
 
-            fn visit_map<V>(self, mut map: V) -> std::result::Result<BatchBalance, V::Error>
+            fn visit_map<V>(self, mut map_: V) -> std::result::Result<BatchBalance, V::Error>
                 where
                     V: serde::de::MapAccess<'de>,
             {
@@ -687,14 +694,14 @@ impl<'de> serde::Deserialize<'de> for BatchBalance {
                 let mut tradable_amount__ = None;
                 let mut retired_amount__ = None;
                 let mut escrowed_amount__ = None;
-                while let Some(k) = map.next_key()? {
+                while let Some(k) = map_.next_key()? {
                     match k {
                         GeneratedField::BatchKey => {
                             if batch_key__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("batchKey"));
                             }
                             batch_key__ = 
-                                Some(map.next_value::<::pbjson::private::NumberDeserialize<_>>()?.0)
+                                Some(map_.next_value::<::pbjson::private::NumberDeserialize<_>>()?.0)
                             ;
                         }
                         GeneratedField::Address => {
@@ -702,26 +709,26 @@ impl<'de> serde::Deserialize<'de> for BatchBalance {
                                 return Err(serde::de::Error::duplicate_field("address"));
                             }
                             address__ = 
-                                Some(map.next_value::<::pbjson::private::BytesDeserialize<_>>()?.0)
+                                Some(map_.next_value::<::pbjson::private::BytesDeserialize<_>>()?.0)
                             ;
                         }
                         GeneratedField::TradableAmount => {
                             if tradable_amount__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("tradableAmount"));
                             }
-                            tradable_amount__ = Some(map.next_value()?);
+                            tradable_amount__ = Some(map_.next_value()?);
                         }
                         GeneratedField::RetiredAmount => {
                             if retired_amount__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("retiredAmount"));
                             }
-                            retired_amount__ = Some(map.next_value()?);
+                            retired_amount__ = Some(map_.next_value()?);
                         }
                         GeneratedField::EscrowedAmount => {
                             if escrowed_amount__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("escrowedAmount"));
                             }
-                            escrowed_amount__ = Some(map.next_value()?);
+                            escrowed_amount__ = Some(map_.next_value()?);
                         }
                     }
                 }
@@ -845,7 +852,7 @@ impl<'de> serde::Deserialize<'de> for BatchBalanceInfo {
                 formatter.write_str("struct regen.ecocredit.v1.BatchBalanceInfo")
             }
 
-            fn visit_map<V>(self, mut map: V) -> std::result::Result<BatchBalanceInfo, V::Error>
+            fn visit_map<V>(self, mut map_: V) -> std::result::Result<BatchBalanceInfo, V::Error>
                 where
                     V: serde::de::MapAccess<'de>,
             {
@@ -854,37 +861,37 @@ impl<'de> serde::Deserialize<'de> for BatchBalanceInfo {
                 let mut tradable_amount__ = None;
                 let mut retired_amount__ = None;
                 let mut escrowed_amount__ = None;
-                while let Some(k) = map.next_key()? {
+                while let Some(k) = map_.next_key()? {
                     match k {
                         GeneratedField::Address => {
                             if address__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("address"));
                             }
-                            address__ = Some(map.next_value()?);
+                            address__ = Some(map_.next_value()?);
                         }
                         GeneratedField::BatchDenom => {
                             if batch_denom__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("batchDenom"));
                             }
-                            batch_denom__ = Some(map.next_value()?);
+                            batch_denom__ = Some(map_.next_value()?);
                         }
                         GeneratedField::TradableAmount => {
                             if tradable_amount__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("tradableAmount"));
                             }
-                            tradable_amount__ = Some(map.next_value()?);
+                            tradable_amount__ = Some(map_.next_value()?);
                         }
                         GeneratedField::RetiredAmount => {
                             if retired_amount__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("retiredAmount"));
                             }
-                            retired_amount__ = Some(map.next_value()?);
+                            retired_amount__ = Some(map_.next_value()?);
                         }
                         GeneratedField::EscrowedAmount => {
                             if escrowed_amount__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("escrowedAmount"));
                             }
-                            escrowed_amount__ = Some(map.next_value()?);
+                            escrowed_amount__ = Some(map_.next_value()?);
                         }
                     }
                 }
@@ -919,9 +926,11 @@ impl serde::Serialize for BatchContract {
         }
         let mut struct_ser = serializer.serialize_struct("regen.ecocredit.v1.BatchContract", len)?;
         if self.batch_key != 0 {
+            #[allow(clippy::needless_borrow)]
             struct_ser.serialize_field("batchKey", ToString::to_string(&self.batch_key).as_str())?;
         }
         if self.class_key != 0 {
+            #[allow(clippy::needless_borrow)]
             struct_ser.serialize_field("classKey", ToString::to_string(&self.class_key).as_str())?;
         }
         if !self.contract.is_empty() {
@@ -988,21 +997,21 @@ impl<'de> serde::Deserialize<'de> for BatchContract {
                 formatter.write_str("struct regen.ecocredit.v1.BatchContract")
             }
 
-            fn visit_map<V>(self, mut map: V) -> std::result::Result<BatchContract, V::Error>
+            fn visit_map<V>(self, mut map_: V) -> std::result::Result<BatchContract, V::Error>
                 where
                     V: serde::de::MapAccess<'de>,
             {
                 let mut batch_key__ = None;
                 let mut class_key__ = None;
                 let mut contract__ = None;
-                while let Some(k) = map.next_key()? {
+                while let Some(k) = map_.next_key()? {
                     match k {
                         GeneratedField::BatchKey => {
                             if batch_key__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("batchKey"));
                             }
                             batch_key__ = 
-                                Some(map.next_value::<::pbjson::private::NumberDeserialize<_>>()?.0)
+                                Some(map_.next_value::<::pbjson::private::NumberDeserialize<_>>()?.0)
                             ;
                         }
                         GeneratedField::ClassKey => {
@@ -1010,14 +1019,14 @@ impl<'de> serde::Deserialize<'de> for BatchContract {
                                 return Err(serde::de::Error::duplicate_field("classKey"));
                             }
                             class_key__ = 
-                                Some(map.next_value::<::pbjson::private::NumberDeserialize<_>>()?.0)
+                                Some(map_.next_value::<::pbjson::private::NumberDeserialize<_>>()?.0)
                             ;
                         }
                         GeneratedField::Contract => {
                             if contract__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("contract"));
                             }
-                            contract__ = Some(map.next_value()?);
+                            contract__ = Some(map_.next_value()?);
                         }
                     }
                 }
@@ -1166,7 +1175,7 @@ impl<'de> serde::Deserialize<'de> for BatchInfo {
                 formatter.write_str("struct regen.ecocredit.v1.BatchInfo")
             }
 
-            fn visit_map<V>(self, mut map: V) -> std::result::Result<BatchInfo, V::Error>
+            fn visit_map<V>(self, mut map_: V) -> std::result::Result<BatchInfo, V::Error>
                 where
                     V: serde::de::MapAccess<'de>,
             {
@@ -1178,55 +1187,55 @@ impl<'de> serde::Deserialize<'de> for BatchInfo {
                 let mut end_date__ = None;
                 let mut issuance_date__ = None;
                 let mut open__ = None;
-                while let Some(k) = map.next_key()? {
+                while let Some(k) = map_.next_key()? {
                     match k {
                         GeneratedField::Issuer => {
                             if issuer__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("issuer"));
                             }
-                            issuer__ = Some(map.next_value()?);
+                            issuer__ = Some(map_.next_value()?);
                         }
                         GeneratedField::ProjectId => {
                             if project_id__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("projectId"));
                             }
-                            project_id__ = Some(map.next_value()?);
+                            project_id__ = Some(map_.next_value()?);
                         }
                         GeneratedField::Denom => {
                             if denom__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("denom"));
                             }
-                            denom__ = Some(map.next_value()?);
+                            denom__ = Some(map_.next_value()?);
                         }
                         GeneratedField::Metadata => {
                             if metadata__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("metadata"));
                             }
-                            metadata__ = Some(map.next_value()?);
+                            metadata__ = Some(map_.next_value()?);
                         }
                         GeneratedField::StartDate => {
                             if start_date__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("startDate"));
                             }
-                            start_date__ = map.next_value()?;
+                            start_date__ = map_.next_value()?;
                         }
                         GeneratedField::EndDate => {
                             if end_date__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("endDate"));
                             }
-                            end_date__ = map.next_value()?;
+                            end_date__ = map_.next_value()?;
                         }
                         GeneratedField::IssuanceDate => {
                             if issuance_date__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("issuanceDate"));
                             }
-                            issuance_date__ = map.next_value()?;
+                            issuance_date__ = map_.next_value()?;
                         }
                         GeneratedField::Open => {
                             if open__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("open"));
                             }
-                            open__ = Some(map.next_value()?);
+                            open__ = Some(map_.next_value()?);
                         }
                     }
                 }
@@ -1353,7 +1362,7 @@ impl<'de> serde::Deserialize<'de> for BatchIssuance {
                 formatter.write_str("struct regen.ecocredit.v1.BatchIssuance")
             }
 
-            fn visit_map<V>(self, mut map: V) -> std::result::Result<BatchIssuance, V::Error>
+            fn visit_map<V>(self, mut map_: V) -> std::result::Result<BatchIssuance, V::Error>
                 where
                     V: serde::de::MapAccess<'de>,
             {
@@ -1362,37 +1371,37 @@ impl<'de> serde::Deserialize<'de> for BatchIssuance {
                 let mut retired_amount__ = None;
                 let mut retirement_jurisdiction__ = None;
                 let mut retirement_reason__ = None;
-                while let Some(k) = map.next_key()? {
+                while let Some(k) = map_.next_key()? {
                     match k {
                         GeneratedField::Recipient => {
                             if recipient__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("recipient"));
                             }
-                            recipient__ = Some(map.next_value()?);
+                            recipient__ = Some(map_.next_value()?);
                         }
                         GeneratedField::TradableAmount => {
                             if tradable_amount__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("tradableAmount"));
                             }
-                            tradable_amount__ = Some(map.next_value()?);
+                            tradable_amount__ = Some(map_.next_value()?);
                         }
                         GeneratedField::RetiredAmount => {
                             if retired_amount__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("retiredAmount"));
                             }
-                            retired_amount__ = Some(map.next_value()?);
+                            retired_amount__ = Some(map_.next_value()?);
                         }
                         GeneratedField::RetirementJurisdiction => {
                             if retirement_jurisdiction__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("retirementJurisdiction"));
                             }
-                            retirement_jurisdiction__ = Some(map.next_value()?);
+                            retirement_jurisdiction__ = Some(map_.next_value()?);
                         }
                         GeneratedField::RetirementReason => {
                             if retirement_reason__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("retirementReason"));
                             }
-                            retirement_reason__ = Some(map.next_value()?);
+                            retirement_reason__ = Some(map_.next_value()?);
                         }
                     }
                 }
@@ -1424,9 +1433,11 @@ impl serde::Serialize for BatchSequence {
         }
         let mut struct_ser = serializer.serialize_struct("regen.ecocredit.v1.BatchSequence", len)?;
         if self.project_key != 0 {
+            #[allow(clippy::needless_borrow)]
             struct_ser.serialize_field("projectKey", ToString::to_string(&self.project_key).as_str())?;
         }
         if self.next_sequence != 0 {
+            #[allow(clippy::needless_borrow)]
             struct_ser.serialize_field("nextSequence", ToString::to_string(&self.next_sequence).as_str())?;
         }
         struct_ser.end()
@@ -1487,20 +1498,20 @@ impl<'de> serde::Deserialize<'de> for BatchSequence {
                 formatter.write_str("struct regen.ecocredit.v1.BatchSequence")
             }
 
-            fn visit_map<V>(self, mut map: V) -> std::result::Result<BatchSequence, V::Error>
+            fn visit_map<V>(self, mut map_: V) -> std::result::Result<BatchSequence, V::Error>
                 where
                     V: serde::de::MapAccess<'de>,
             {
                 let mut project_key__ = None;
                 let mut next_sequence__ = None;
-                while let Some(k) = map.next_key()? {
+                while let Some(k) = map_.next_key()? {
                     match k {
                         GeneratedField::ProjectKey => {
                             if project_key__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("projectKey"));
                             }
                             project_key__ = 
-                                Some(map.next_value::<::pbjson::private::NumberDeserialize<_>>()?.0)
+                                Some(map_.next_value::<::pbjson::private::NumberDeserialize<_>>()?.0)
                             ;
                         }
                         GeneratedField::NextSequence => {
@@ -1508,7 +1519,7 @@ impl<'de> serde::Deserialize<'de> for BatchSequence {
                                 return Err(serde::de::Error::duplicate_field("nextSequence"));
                             }
                             next_sequence__ = 
-                                Some(map.next_value::<::pbjson::private::NumberDeserialize<_>>()?.0)
+                                Some(map_.next_value::<::pbjson::private::NumberDeserialize<_>>()?.0)
                             ;
                         }
                     }
@@ -1544,6 +1555,7 @@ impl serde::Serialize for BatchSupply {
         }
         let mut struct_ser = serializer.serialize_struct("regen.ecocredit.v1.BatchSupply", len)?;
         if self.batch_key != 0 {
+            #[allow(clippy::needless_borrow)]
             struct_ser.serialize_field("batchKey", ToString::to_string(&self.batch_key).as_str())?;
         }
         if !self.tradable_amount.is_empty() {
@@ -1621,7 +1633,7 @@ impl<'de> serde::Deserialize<'de> for BatchSupply {
                 formatter.write_str("struct regen.ecocredit.v1.BatchSupply")
             }
 
-            fn visit_map<V>(self, mut map: V) -> std::result::Result<BatchSupply, V::Error>
+            fn visit_map<V>(self, mut map_: V) -> std::result::Result<BatchSupply, V::Error>
                 where
                     V: serde::de::MapAccess<'de>,
             {
@@ -1629,33 +1641,33 @@ impl<'de> serde::Deserialize<'de> for BatchSupply {
                 let mut tradable_amount__ = None;
                 let mut retired_amount__ = None;
                 let mut cancelled_amount__ = None;
-                while let Some(k) = map.next_key()? {
+                while let Some(k) = map_.next_key()? {
                     match k {
                         GeneratedField::BatchKey => {
                             if batch_key__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("batchKey"));
                             }
                             batch_key__ = 
-                                Some(map.next_value::<::pbjson::private::NumberDeserialize<_>>()?.0)
+                                Some(map_.next_value::<::pbjson::private::NumberDeserialize<_>>()?.0)
                             ;
                         }
                         GeneratedField::TradableAmount => {
                             if tradable_amount__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("tradableAmount"));
                             }
-                            tradable_amount__ = Some(map.next_value()?);
+                            tradable_amount__ = Some(map_.next_value()?);
                         }
                         GeneratedField::RetiredAmount => {
                             if retired_amount__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("retiredAmount"));
                             }
-                            retired_amount__ = Some(map.next_value()?);
+                            retired_amount__ = Some(map_.next_value()?);
                         }
                         GeneratedField::CancelledAmount => {
                             if cancelled_amount__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("cancelledAmount"));
                             }
-                            cancelled_amount__ = Some(map.next_value()?);
+                            cancelled_amount__ = Some(map_.next_value()?);
                         }
                     }
                 }
@@ -1695,12 +1707,14 @@ impl serde::Serialize for Class {
         }
         let mut struct_ser = serializer.serialize_struct("regen.ecocredit.v1.Class", len)?;
         if self.key != 0 {
+            #[allow(clippy::needless_borrow)]
             struct_ser.serialize_field("key", ToString::to_string(&self.key).as_str())?;
         }
         if !self.id.is_empty() {
             struct_ser.serialize_field("id", &self.id)?;
         }
         if !self.admin.is_empty() {
+            #[allow(clippy::needless_borrow)]
             struct_ser.serialize_field("admin", pbjson::private::base64::encode(&self.admin).as_str())?;
         }
         if !self.metadata.is_empty() {
@@ -1775,7 +1789,7 @@ impl<'de> serde::Deserialize<'de> for Class {
                 formatter.write_str("struct regen.ecocredit.v1.Class")
             }
 
-            fn visit_map<V>(self, mut map: V) -> std::result::Result<Class, V::Error>
+            fn visit_map<V>(self, mut map_: V) -> std::result::Result<Class, V::Error>
                 where
                     V: serde::de::MapAccess<'de>,
             {
@@ -1784,41 +1798,41 @@ impl<'de> serde::Deserialize<'de> for Class {
                 let mut admin__ = None;
                 let mut metadata__ = None;
                 let mut credit_type_abbrev__ = None;
-                while let Some(k) = map.next_key()? {
+                while let Some(k) = map_.next_key()? {
                     match k {
                         GeneratedField::Key => {
                             if key__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("key"));
                             }
                             key__ = 
-                                Some(map.next_value::<::pbjson::private::NumberDeserialize<_>>()?.0)
+                                Some(map_.next_value::<::pbjson::private::NumberDeserialize<_>>()?.0)
                             ;
                         }
                         GeneratedField::Id => {
                             if id__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("id"));
                             }
-                            id__ = Some(map.next_value()?);
+                            id__ = Some(map_.next_value()?);
                         }
                         GeneratedField::Admin => {
                             if admin__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("admin"));
                             }
                             admin__ = 
-                                Some(map.next_value::<::pbjson::private::BytesDeserialize<_>>()?.0)
+                                Some(map_.next_value::<::pbjson::private::BytesDeserialize<_>>()?.0)
                             ;
                         }
                         GeneratedField::Metadata => {
                             if metadata__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("metadata"));
                             }
-                            metadata__ = Some(map.next_value()?);
+                            metadata__ = Some(map_.next_value()?);
                         }
                         GeneratedField::CreditTypeAbbrev => {
                             if credit_type_abbrev__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("creditTypeAbbrev"));
                             }
-                            credit_type_abbrev__ = Some(map.next_value()?);
+                            credit_type_abbrev__ = Some(map_.next_value()?);
                         }
                     }
                 }
@@ -1902,18 +1916,18 @@ impl<'de> serde::Deserialize<'de> for ClassCreatorAllowlist {
                 formatter.write_str("struct regen.ecocredit.v1.ClassCreatorAllowlist")
             }
 
-            fn visit_map<V>(self, mut map: V) -> std::result::Result<ClassCreatorAllowlist, V::Error>
+            fn visit_map<V>(self, mut map_: V) -> std::result::Result<ClassCreatorAllowlist, V::Error>
                 where
                     V: serde::de::MapAccess<'de>,
             {
                 let mut enabled__ = None;
-                while let Some(k) = map.next_key()? {
+                while let Some(k) = map_.next_key()? {
                     match k {
                         GeneratedField::Enabled => {
                             if enabled__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("enabled"));
                             }
-                            enabled__ = Some(map.next_value()?);
+                            enabled__ = Some(map_.next_value()?);
                         }
                     }
                 }
@@ -1993,18 +2007,18 @@ impl<'de> serde::Deserialize<'de> for ClassFee {
                 formatter.write_str("struct regen.ecocredit.v1.ClassFee")
             }
 
-            fn visit_map<V>(self, mut map: V) -> std::result::Result<ClassFee, V::Error>
+            fn visit_map<V>(self, mut map_: V) -> std::result::Result<ClassFee, V::Error>
                 where
                     V: serde::de::MapAccess<'de>,
             {
                 let mut fee__ = None;
-                while let Some(k) = map.next_key()? {
+                while let Some(k) = map_.next_key()? {
                     match k {
                         GeneratedField::Fee => {
                             if fee__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("fee"));
                             }
-                            fee__ = map.next_value()?;
+                            fee__ = map_.next_value()?;
                         }
                     }
                 }
@@ -2112,7 +2126,7 @@ impl<'de> serde::Deserialize<'de> for ClassInfo {
                 formatter.write_str("struct regen.ecocredit.v1.ClassInfo")
             }
 
-            fn visit_map<V>(self, mut map: V) -> std::result::Result<ClassInfo, V::Error>
+            fn visit_map<V>(self, mut map_: V) -> std::result::Result<ClassInfo, V::Error>
                 where
                     V: serde::de::MapAccess<'de>,
             {
@@ -2120,31 +2134,31 @@ impl<'de> serde::Deserialize<'de> for ClassInfo {
                 let mut admin__ = None;
                 let mut metadata__ = None;
                 let mut credit_type_abbrev__ = None;
-                while let Some(k) = map.next_key()? {
+                while let Some(k) = map_.next_key()? {
                     match k {
                         GeneratedField::Id => {
                             if id__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("id"));
                             }
-                            id__ = Some(map.next_value()?);
+                            id__ = Some(map_.next_value()?);
                         }
                         GeneratedField::Admin => {
                             if admin__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("admin"));
                             }
-                            admin__ = Some(map.next_value()?);
+                            admin__ = Some(map_.next_value()?);
                         }
                         GeneratedField::Metadata => {
                             if metadata__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("metadata"));
                             }
-                            metadata__ = Some(map.next_value()?);
+                            metadata__ = Some(map_.next_value()?);
                         }
                         GeneratedField::CreditTypeAbbrev => {
                             if credit_type_abbrev__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("creditTypeAbbrev"));
                             }
-                            credit_type_abbrev__ = Some(map.next_value()?);
+                            credit_type_abbrev__ = Some(map_.next_value()?);
                         }
                     }
                 }
@@ -2175,9 +2189,11 @@ impl serde::Serialize for ClassIssuer {
         }
         let mut struct_ser = serializer.serialize_struct("regen.ecocredit.v1.ClassIssuer", len)?;
         if self.class_key != 0 {
+            #[allow(clippy::needless_borrow)]
             struct_ser.serialize_field("classKey", ToString::to_string(&self.class_key).as_str())?;
         }
         if !self.issuer.is_empty() {
+            #[allow(clippy::needless_borrow)]
             struct_ser.serialize_field("issuer", pbjson::private::base64::encode(&self.issuer).as_str())?;
         }
         struct_ser.end()
@@ -2237,20 +2253,20 @@ impl<'de> serde::Deserialize<'de> for ClassIssuer {
                 formatter.write_str("struct regen.ecocredit.v1.ClassIssuer")
             }
 
-            fn visit_map<V>(self, mut map: V) -> std::result::Result<ClassIssuer, V::Error>
+            fn visit_map<V>(self, mut map_: V) -> std::result::Result<ClassIssuer, V::Error>
                 where
                     V: serde::de::MapAccess<'de>,
             {
                 let mut class_key__ = None;
                 let mut issuer__ = None;
-                while let Some(k) = map.next_key()? {
+                while let Some(k) = map_.next_key()? {
                     match k {
                         GeneratedField::ClassKey => {
                             if class_key__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("classKey"));
                             }
                             class_key__ = 
-                                Some(map.next_value::<::pbjson::private::NumberDeserialize<_>>()?.0)
+                                Some(map_.next_value::<::pbjson::private::NumberDeserialize<_>>()?.0)
                             ;
                         }
                         GeneratedField::Issuer => {
@@ -2258,7 +2274,7 @@ impl<'de> serde::Deserialize<'de> for ClassIssuer {
                                 return Err(serde::de::Error::duplicate_field("issuer"));
                             }
                             issuer__ = 
-                                Some(map.next_value::<::pbjson::private::BytesDeserialize<_>>()?.0)
+                                Some(map_.next_value::<::pbjson::private::BytesDeserialize<_>>()?.0)
                             ;
                         }
                     }
@@ -2291,6 +2307,7 @@ impl serde::Serialize for ClassSequence {
             struct_ser.serialize_field("creditTypeAbbrev", &self.credit_type_abbrev)?;
         }
         if self.next_sequence != 0 {
+            #[allow(clippy::needless_borrow)]
             struct_ser.serialize_field("nextSequence", ToString::to_string(&self.next_sequence).as_str())?;
         }
         struct_ser.end()
@@ -2351,26 +2368,26 @@ impl<'de> serde::Deserialize<'de> for ClassSequence {
                 formatter.write_str("struct regen.ecocredit.v1.ClassSequence")
             }
 
-            fn visit_map<V>(self, mut map: V) -> std::result::Result<ClassSequence, V::Error>
+            fn visit_map<V>(self, mut map_: V) -> std::result::Result<ClassSequence, V::Error>
                 where
                     V: serde::de::MapAccess<'de>,
             {
                 let mut credit_type_abbrev__ = None;
                 let mut next_sequence__ = None;
-                while let Some(k) = map.next_key()? {
+                while let Some(k) = map_.next_key()? {
                     match k {
                         GeneratedField::CreditTypeAbbrev => {
                             if credit_type_abbrev__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("creditTypeAbbrev"));
                             }
-                            credit_type_abbrev__ = Some(map.next_value()?);
+                            credit_type_abbrev__ = Some(map_.next_value()?);
                         }
                         GeneratedField::NextSequence => {
                             if next_sequence__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("nextSequence"));
                             }
                             next_sequence__ = 
-                                Some(map.next_value::<::pbjson::private::NumberDeserialize<_>>()?.0)
+                                Some(map_.next_value::<::pbjson::private::NumberDeserialize<_>>()?.0)
                             ;
                         }
                     }
@@ -2479,7 +2496,7 @@ impl<'de> serde::Deserialize<'de> for CreditType {
                 formatter.write_str("struct regen.ecocredit.v1.CreditType")
             }
 
-            fn visit_map<V>(self, mut map: V) -> std::result::Result<CreditType, V::Error>
+            fn visit_map<V>(self, mut map_: V) -> std::result::Result<CreditType, V::Error>
                 where
                     V: serde::de::MapAccess<'de>,
             {
@@ -2487,32 +2504,32 @@ impl<'de> serde::Deserialize<'de> for CreditType {
                 let mut name__ = None;
                 let mut unit__ = None;
                 let mut precision__ = None;
-                while let Some(k) = map.next_key()? {
+                while let Some(k) = map_.next_key()? {
                     match k {
                         GeneratedField::Abbreviation => {
                             if abbreviation__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("abbreviation"));
                             }
-                            abbreviation__ = Some(map.next_value()?);
+                            abbreviation__ = Some(map_.next_value()?);
                         }
                         GeneratedField::Name => {
                             if name__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("name"));
                             }
-                            name__ = Some(map.next_value()?);
+                            name__ = Some(map_.next_value()?);
                         }
                         GeneratedField::Unit => {
                             if unit__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("unit"));
                             }
-                            unit__ = Some(map.next_value()?);
+                            unit__ = Some(map_.next_value()?);
                         }
                         GeneratedField::Precision => {
                             if precision__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("precision"));
                             }
                             precision__ = 
-                                Some(map.next_value::<::pbjson::private::NumberDeserialize<_>>()?.0)
+                                Some(map_.next_value::<::pbjson::private::NumberDeserialize<_>>()?.0)
                             ;
                         }
                     }
@@ -2615,32 +2632,32 @@ impl<'de> serde::Deserialize<'de> for CreditTypeProposal {
                 formatter.write_str("struct regen.ecocredit.v1.CreditTypeProposal")
             }
 
-            fn visit_map<V>(self, mut map: V) -> std::result::Result<CreditTypeProposal, V::Error>
+            fn visit_map<V>(self, mut map_: V) -> std::result::Result<CreditTypeProposal, V::Error>
                 where
                     V: serde::de::MapAccess<'de>,
             {
                 let mut title__ = None;
                 let mut description__ = None;
                 let mut credit_type__ = None;
-                while let Some(k) = map.next_key()? {
+                while let Some(k) = map_.next_key()? {
                     match k {
                         GeneratedField::Title => {
                             if title__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("title"));
                             }
-                            title__ = Some(map.next_value()?);
+                            title__ = Some(map_.next_value()?);
                         }
                         GeneratedField::Description => {
                             if description__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("description"));
                             }
-                            description__ = Some(map.next_value()?);
+                            description__ = Some(map_.next_value()?);
                         }
                         GeneratedField::CreditType => {
                             if credit_type__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("creditType"));
                             }
-                            credit_type__ = map.next_value()?;
+                            credit_type__ = map_.next_value()?;
                         }
                     }
                 }
@@ -2732,25 +2749,25 @@ impl<'de> serde::Deserialize<'de> for Credits {
                 formatter.write_str("struct regen.ecocredit.v1.Credits")
             }
 
-            fn visit_map<V>(self, mut map: V) -> std::result::Result<Credits, V::Error>
+            fn visit_map<V>(self, mut map_: V) -> std::result::Result<Credits, V::Error>
                 where
                     V: serde::de::MapAccess<'de>,
             {
                 let mut batch_denom__ = None;
                 let mut amount__ = None;
-                while let Some(k) = map.next_key()? {
+                while let Some(k) = map_.next_key()? {
                     match k {
                         GeneratedField::BatchDenom => {
                             if batch_denom__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("batchDenom"));
                             }
-                            batch_denom__ = Some(map.next_value()?);
+                            batch_denom__ = Some(map_.next_value()?);
                         }
                         GeneratedField::Amount => {
                             if amount__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("amount"));
                             }
-                            amount__ = Some(map.next_value()?);
+                            amount__ = Some(map_.next_value()?);
                         }
                     }
                 }
@@ -2831,18 +2848,18 @@ impl<'de> serde::Deserialize<'de> for EventAddCreditType {
                 formatter.write_str("struct regen.ecocredit.v1.EventAddCreditType")
             }
 
-            fn visit_map<V>(self, mut map: V) -> std::result::Result<EventAddCreditType, V::Error>
+            fn visit_map<V>(self, mut map_: V) -> std::result::Result<EventAddCreditType, V::Error>
                 where
                     V: serde::de::MapAccess<'de>,
             {
                 let mut abbreviation__ = None;
-                while let Some(k) = map.next_key()? {
+                while let Some(k) = map_.next_key()? {
                     match k {
                         GeneratedField::Abbreviation => {
                             if abbreviation__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("abbreviation"));
                             }
-                            abbreviation__ = Some(map.next_value()?);
+                            abbreviation__ = Some(map_.next_value()?);
                         }
                     }
                 }
@@ -2968,7 +2985,7 @@ impl<'de> serde::Deserialize<'de> for EventBridge {
                 formatter.write_str("struct regen.ecocredit.v1.EventBridge")
             }
 
-            fn visit_map<V>(self, mut map: V) -> std::result::Result<EventBridge, V::Error>
+            fn visit_map<V>(self, mut map_: V) -> std::result::Result<EventBridge, V::Error>
                 where
                     V: serde::de::MapAccess<'de>,
             {
@@ -2978,43 +2995,43 @@ impl<'de> serde::Deserialize<'de> for EventBridge {
                 let mut amount__ = None;
                 let mut owner__ = None;
                 let mut batch_denom__ = None;
-                while let Some(k) = map.next_key()? {
+                while let Some(k) = map_.next_key()? {
                     match k {
                         GeneratedField::Target => {
                             if target__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("target"));
                             }
-                            target__ = Some(map.next_value()?);
+                            target__ = Some(map_.next_value()?);
                         }
                         GeneratedField::Recipient => {
                             if recipient__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("recipient"));
                             }
-                            recipient__ = Some(map.next_value()?);
+                            recipient__ = Some(map_.next_value()?);
                         }
                         GeneratedField::Contract => {
                             if contract__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("contract"));
                             }
-                            contract__ = Some(map.next_value()?);
+                            contract__ = Some(map_.next_value()?);
                         }
                         GeneratedField::Amount => {
                             if amount__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("amount"));
                             }
-                            amount__ = Some(map.next_value()?);
+                            amount__ = Some(map_.next_value()?);
                         }
                         GeneratedField::Owner => {
                             if owner__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("owner"));
                             }
-                            owner__ = Some(map.next_value()?);
+                            owner__ = Some(map_.next_value()?);
                         }
                         GeneratedField::BatchDenom => {
                             if batch_denom__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("batchDenom"));
                             }
-                            batch_denom__ = Some(map.next_value()?);
+                            batch_denom__ = Some(map_.next_value()?);
                         }
                     }
                 }
@@ -3129,7 +3146,7 @@ impl<'de> serde::Deserialize<'de> for EventBridgeReceive {
                 formatter.write_str("struct regen.ecocredit.v1.EventBridgeReceive")
             }
 
-            fn visit_map<V>(self, mut map: V) -> std::result::Result<EventBridgeReceive, V::Error>
+            fn visit_map<V>(self, mut map_: V) -> std::result::Result<EventBridgeReceive, V::Error>
                 where
                     V: serde::de::MapAccess<'de>,
             {
@@ -3137,31 +3154,31 @@ impl<'de> serde::Deserialize<'de> for EventBridgeReceive {
                 let mut batch_denom__ = None;
                 let mut amount__ = None;
                 let mut origin_tx__ = None;
-                while let Some(k) = map.next_key()? {
+                while let Some(k) = map_.next_key()? {
                     match k {
                         GeneratedField::ProjectId => {
                             if project_id__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("projectId"));
                             }
-                            project_id__ = Some(map.next_value()?);
+                            project_id__ = Some(map_.next_value()?);
                         }
                         GeneratedField::BatchDenom => {
                             if batch_denom__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("batchDenom"));
                             }
-                            batch_denom__ = Some(map.next_value()?);
+                            batch_denom__ = Some(map_.next_value()?);
                         }
                         GeneratedField::Amount => {
                             if amount__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("amount"));
                             }
-                            amount__ = Some(map.next_value()?);
+                            amount__ = Some(map_.next_value()?);
                         }
                         GeneratedField::OriginTx => {
                             if origin_tx__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("originTx"));
                             }
-                            origin_tx__ = map.next_value()?;
+                            origin_tx__ = map_.next_value()?;
                         }
                     }
                 }
@@ -3262,32 +3279,32 @@ impl<'de> serde::Deserialize<'de> for EventBurnRegen {
                 formatter.write_str("struct regen.ecocredit.v1.EventBurnRegen")
             }
 
-            fn visit_map<V>(self, mut map: V) -> std::result::Result<EventBurnRegen, V::Error>
+            fn visit_map<V>(self, mut map_: V) -> std::result::Result<EventBurnRegen, V::Error>
                 where
                     V: serde::de::MapAccess<'de>,
             {
                 let mut burner__ = None;
                 let mut amount__ = None;
                 let mut reason__ = None;
-                while let Some(k) = map.next_key()? {
+                while let Some(k) = map_.next_key()? {
                     match k {
                         GeneratedField::Burner => {
                             if burner__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("burner"));
                             }
-                            burner__ = Some(map.next_value()?);
+                            burner__ = Some(map_.next_value()?);
                         }
                         GeneratedField::Amount => {
                             if amount__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("amount"));
                             }
-                            amount__ = Some(map.next_value()?);
+                            amount__ = Some(map_.next_value()?);
                         }
                         GeneratedField::Reason => {
                             if reason__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("reason"));
                             }
-                            reason__ = Some(map.next_value()?);
+                            reason__ = Some(map_.next_value()?);
                         }
                     }
                 }
@@ -3397,7 +3414,7 @@ impl<'de> serde::Deserialize<'de> for EventCancel {
                 formatter.write_str("struct regen.ecocredit.v1.EventCancel")
             }
 
-            fn visit_map<V>(self, mut map: V) -> std::result::Result<EventCancel, V::Error>
+            fn visit_map<V>(self, mut map_: V) -> std::result::Result<EventCancel, V::Error>
                 where
                     V: serde::de::MapAccess<'de>,
             {
@@ -3405,31 +3422,31 @@ impl<'de> serde::Deserialize<'de> for EventCancel {
                 let mut batch_denom__ = None;
                 let mut amount__ = None;
                 let mut reason__ = None;
-                while let Some(k) = map.next_key()? {
+                while let Some(k) = map_.next_key()? {
                     match k {
                         GeneratedField::Owner => {
                             if owner__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("owner"));
                             }
-                            owner__ = Some(map.next_value()?);
+                            owner__ = Some(map_.next_value()?);
                         }
                         GeneratedField::BatchDenom => {
                             if batch_denom__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("batchDenom"));
                             }
-                            batch_denom__ = Some(map.next_value()?);
+                            batch_denom__ = Some(map_.next_value()?);
                         }
                         GeneratedField::Amount => {
                             if amount__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("amount"));
                             }
-                            amount__ = Some(map.next_value()?);
+                            amount__ = Some(map_.next_value()?);
                         }
                         GeneratedField::Reason => {
                             if reason__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("reason"));
                             }
-                            reason__ = Some(map.next_value()?);
+                            reason__ = Some(map_.next_value()?);
                         }
                     }
                 }
@@ -3523,25 +3540,25 @@ impl<'de> serde::Deserialize<'de> for EventCreateBatch {
                 formatter.write_str("struct regen.ecocredit.v1.EventCreateBatch")
             }
 
-            fn visit_map<V>(self, mut map: V) -> std::result::Result<EventCreateBatch, V::Error>
+            fn visit_map<V>(self, mut map_: V) -> std::result::Result<EventCreateBatch, V::Error>
                 where
                     V: serde::de::MapAccess<'de>,
             {
                 let mut batch_denom__ = None;
                 let mut origin_tx__ = None;
-                while let Some(k) = map.next_key()? {
+                while let Some(k) = map_.next_key()? {
                     match k {
                         GeneratedField::BatchDenom => {
                             if batch_denom__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("batchDenom"));
                             }
-                            batch_denom__ = Some(map.next_value()?);
+                            batch_denom__ = Some(map_.next_value()?);
                         }
                         GeneratedField::OriginTx => {
                             if origin_tx__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("originTx"));
                             }
-                            origin_tx__ = map.next_value()?;
+                            origin_tx__ = map_.next_value()?;
                         }
                     }
                 }
@@ -3623,18 +3640,18 @@ impl<'de> serde::Deserialize<'de> for EventCreateClass {
                 formatter.write_str("struct regen.ecocredit.v1.EventCreateClass")
             }
 
-            fn visit_map<V>(self, mut map: V) -> std::result::Result<EventCreateClass, V::Error>
+            fn visit_map<V>(self, mut map_: V) -> std::result::Result<EventCreateClass, V::Error>
                 where
                     V: serde::de::MapAccess<'de>,
             {
                 let mut class_id__ = None;
-                while let Some(k) = map.next_key()? {
+                while let Some(k) = map_.next_key()? {
                     match k {
                         GeneratedField::ClassId => {
                             if class_id__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("classId"));
                             }
-                            class_id__ = Some(map.next_value()?);
+                            class_id__ = Some(map_.next_value()?);
                         }
                     }
                 }
@@ -3715,18 +3732,18 @@ impl<'de> serde::Deserialize<'de> for EventCreateProject {
                 formatter.write_str("struct regen.ecocredit.v1.EventCreateProject")
             }
 
-            fn visit_map<V>(self, mut map: V) -> std::result::Result<EventCreateProject, V::Error>
+            fn visit_map<V>(self, mut map_: V) -> std::result::Result<EventCreateProject, V::Error>
                 where
                     V: serde::de::MapAccess<'de>,
             {
                 let mut project_id__ = None;
-                while let Some(k) = map.next_key()? {
+                while let Some(k) = map_.next_key()? {
                     match k {
                         GeneratedField::ProjectId => {
                             if project_id__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("projectId"));
                             }
-                            project_id__ = Some(map.next_value()?);
+                            project_id__ = Some(map_.next_value()?);
                         }
                     }
                 }
@@ -3827,32 +3844,32 @@ impl<'de> serde::Deserialize<'de> for EventMint {
                 formatter.write_str("struct regen.ecocredit.v1.EventMint")
             }
 
-            fn visit_map<V>(self, mut map: V) -> std::result::Result<EventMint, V::Error>
+            fn visit_map<V>(self, mut map_: V) -> std::result::Result<EventMint, V::Error>
                 where
                     V: serde::de::MapAccess<'de>,
             {
                 let mut batch_denom__ = None;
                 let mut tradable_amount__ = None;
                 let mut retired_amount__ = None;
-                while let Some(k) = map.next_key()? {
+                while let Some(k) = map_.next_key()? {
                     match k {
                         GeneratedField::BatchDenom => {
                             if batch_denom__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("batchDenom"));
                             }
-                            batch_denom__ = Some(map.next_value()?);
+                            batch_denom__ = Some(map_.next_value()?);
                         }
                         GeneratedField::TradableAmount => {
                             if tradable_amount__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("tradableAmount"));
                             }
-                            tradable_amount__ = Some(map.next_value()?);
+                            tradable_amount__ = Some(map_.next_value()?);
                         }
                         GeneratedField::RetiredAmount => {
                             if retired_amount__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("retiredAmount"));
                             }
-                            retired_amount__ = Some(map.next_value()?);
+                            retired_amount__ = Some(map_.next_value()?);
                         }
                     }
                 }
@@ -3945,25 +3962,25 @@ impl<'de> serde::Deserialize<'de> for EventMintBatchCredits {
                 formatter.write_str("struct regen.ecocredit.v1.EventMintBatchCredits")
             }
 
-            fn visit_map<V>(self, mut map: V) -> std::result::Result<EventMintBatchCredits, V::Error>
+            fn visit_map<V>(self, mut map_: V) -> std::result::Result<EventMintBatchCredits, V::Error>
                 where
                     V: serde::de::MapAccess<'de>,
             {
                 let mut batch_denom__ = None;
                 let mut origin_tx__ = None;
-                while let Some(k) = map.next_key()? {
+                while let Some(k) = map_.next_key()? {
                     match k {
                         GeneratedField::BatchDenom => {
                             if batch_denom__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("batchDenom"));
                             }
-                            batch_denom__ = Some(map.next_value()?);
+                            batch_denom__ = Some(map_.next_value()?);
                         }
                         GeneratedField::OriginTx => {
                             if origin_tx__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("originTx"));
                             }
-                            origin_tx__ = map.next_value()?;
+                            origin_tx__ = map_.next_value()?;
                         }
                     }
                 }
@@ -4081,7 +4098,7 @@ impl<'de> serde::Deserialize<'de> for EventRetire {
                 formatter.write_str("struct regen.ecocredit.v1.EventRetire")
             }
 
-            fn visit_map<V>(self, mut map: V) -> std::result::Result<EventRetire, V::Error>
+            fn visit_map<V>(self, mut map_: V) -> std::result::Result<EventRetire, V::Error>
                 where
                     V: serde::de::MapAccess<'de>,
             {
@@ -4090,37 +4107,37 @@ impl<'de> serde::Deserialize<'de> for EventRetire {
                 let mut amount__ = None;
                 let mut jurisdiction__ = None;
                 let mut reason__ = None;
-                while let Some(k) = map.next_key()? {
+                while let Some(k) = map_.next_key()? {
                     match k {
                         GeneratedField::Owner => {
                             if owner__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("owner"));
                             }
-                            owner__ = Some(map.next_value()?);
+                            owner__ = Some(map_.next_value()?);
                         }
                         GeneratedField::BatchDenom => {
                             if batch_denom__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("batchDenom"));
                             }
-                            batch_denom__ = Some(map.next_value()?);
+                            batch_denom__ = Some(map_.next_value()?);
                         }
                         GeneratedField::Amount => {
                             if amount__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("amount"));
                             }
-                            amount__ = Some(map.next_value()?);
+                            amount__ = Some(map_.next_value()?);
                         }
                         GeneratedField::Jurisdiction => {
                             if jurisdiction__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("jurisdiction"));
                             }
-                            jurisdiction__ = Some(map.next_value()?);
+                            jurisdiction__ = Some(map_.next_value()?);
                         }
                         GeneratedField::Reason => {
                             if reason__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("reason"));
                             }
-                            reason__ = Some(map.next_value()?);
+                            reason__ = Some(map_.next_value()?);
                         }
                     }
                 }
@@ -4205,18 +4222,18 @@ impl<'de> serde::Deserialize<'de> for EventSealBatch {
                 formatter.write_str("struct regen.ecocredit.v1.EventSealBatch")
             }
 
-            fn visit_map<V>(self, mut map: V) -> std::result::Result<EventSealBatch, V::Error>
+            fn visit_map<V>(self, mut map_: V) -> std::result::Result<EventSealBatch, V::Error>
                 where
                     V: serde::de::MapAccess<'de>,
             {
                 let mut batch_denom__ = None;
-                while let Some(k) = map.next_key()? {
+                while let Some(k) = map_.next_key()? {
                     match k {
                         GeneratedField::BatchDenom => {
                             if batch_denom__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("batchDenom"));
                             }
-                            batch_denom__ = Some(map.next_value()?);
+                            batch_denom__ = Some(map_.next_value()?);
                         }
                     }
                 }
@@ -4335,7 +4352,7 @@ impl<'de> serde::Deserialize<'de> for EventTransfer {
                 formatter.write_str("struct regen.ecocredit.v1.EventTransfer")
             }
 
-            fn visit_map<V>(self, mut map: V) -> std::result::Result<EventTransfer, V::Error>
+            fn visit_map<V>(self, mut map_: V) -> std::result::Result<EventTransfer, V::Error>
                 where
                     V: serde::de::MapAccess<'de>,
             {
@@ -4344,37 +4361,37 @@ impl<'de> serde::Deserialize<'de> for EventTransfer {
                 let mut batch_denom__ = None;
                 let mut tradable_amount__ = None;
                 let mut retired_amount__ = None;
-                while let Some(k) = map.next_key()? {
+                while let Some(k) = map_.next_key()? {
                     match k {
                         GeneratedField::Sender => {
                             if sender__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("sender"));
                             }
-                            sender__ = Some(map.next_value()?);
+                            sender__ = Some(map_.next_value()?);
                         }
                         GeneratedField::Recipient => {
                             if recipient__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("recipient"));
                             }
-                            recipient__ = Some(map.next_value()?);
+                            recipient__ = Some(map_.next_value()?);
                         }
                         GeneratedField::BatchDenom => {
                             if batch_denom__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("batchDenom"));
                             }
-                            batch_denom__ = Some(map.next_value()?);
+                            batch_denom__ = Some(map_.next_value()?);
                         }
                         GeneratedField::TradableAmount => {
                             if tradable_amount__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("tradableAmount"));
                             }
-                            tradable_amount__ = Some(map.next_value()?);
+                            tradable_amount__ = Some(map_.next_value()?);
                         }
                         GeneratedField::RetiredAmount => {
                             if retired_amount__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("retiredAmount"));
                             }
-                            retired_amount__ = Some(map.next_value()?);
+                            retired_amount__ = Some(map_.next_value()?);
                         }
                     }
                 }
@@ -4418,8 +4435,8 @@ impl serde::Serialize for EventUpdateApplication {
             struct_ser.serialize_field("classId", &self.class_id)?;
         }
         if self.action != 0 {
-            let v = event_update_application::Action::from_i32(self.action)
-                .ok_or_else(|| serde::ser::Error::custom(format!("Invalid variant {}", self.action)))?;
+            let v = event_update_application::Action::try_from(self.action)
+                .map_err(|_| serde::ser::Error::custom(format!("Invalid variant {}", self.action)))?;
             struct_ser.serialize_field("action", &v)?;
         }
         if !self.new_application_metadata.is_empty() {
@@ -4490,7 +4507,7 @@ impl<'de> serde::Deserialize<'de> for EventUpdateApplication {
                 formatter.write_str("struct regen.ecocredit.v1.EventUpdateApplication")
             }
 
-            fn visit_map<V>(self, mut map: V) -> std::result::Result<EventUpdateApplication, V::Error>
+            fn visit_map<V>(self, mut map_: V) -> std::result::Result<EventUpdateApplication, V::Error>
                 where
                     V: serde::de::MapAccess<'de>,
             {
@@ -4498,31 +4515,31 @@ impl<'de> serde::Deserialize<'de> for EventUpdateApplication {
                 let mut class_id__ = None;
                 let mut action__ = None;
                 let mut new_application_metadata__ = None;
-                while let Some(k) = map.next_key()? {
+                while let Some(k) = map_.next_key()? {
                     match k {
                         GeneratedField::ProjectId => {
                             if project_id__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("projectId"));
                             }
-                            project_id__ = Some(map.next_value()?);
+                            project_id__ = Some(map_.next_value()?);
                         }
                         GeneratedField::ClassId => {
                             if class_id__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("classId"));
                             }
-                            class_id__ = Some(map.next_value()?);
+                            class_id__ = Some(map_.next_value()?);
                         }
                         GeneratedField::Action => {
                             if action__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("action"));
                             }
-                            action__ = Some(map.next_value::<event_update_application::Action>()? as i32);
+                            action__ = Some(map_.next_value::<event_update_application::Action>()? as i32);
                         }
                         GeneratedField::NewApplicationMetadata => {
                             if new_application_metadata__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("newApplicationMetadata"));
                             }
-                            new_application_metadata__ = Some(map.next_value()?);
+                            new_application_metadata__ = Some(map_.next_value()?);
                         }
                     }
                 }
@@ -4578,10 +4595,9 @@ impl<'de> serde::Deserialize<'de> for event_update_application::Action {
             where
                 E: serde::de::Error,
             {
-                use std::convert::TryFrom;
                 i32::try_from(v)
                     .ok()
-                    .and_then(event_update_application::Action::from_i32)
+                    .and_then(|x| x.try_into().ok())
                     .ok_or_else(|| {
                         serde::de::Error::invalid_value(serde::de::Unexpected::Signed(v), &self)
                     })
@@ -4591,10 +4607,9 @@ impl<'de> serde::Deserialize<'de> for event_update_application::Action {
             where
                 E: serde::de::Error,
             {
-                use std::convert::TryFrom;
                 i32::try_from(v)
                     .ok()
-                    .and_then(event_update_application::Action::from_i32)
+                    .and_then(|x| x.try_into().ok())
                     .ok_or_else(|| {
                         serde::de::Error::invalid_value(serde::de::Unexpected::Unsigned(v), &self)
                     })
@@ -4685,18 +4700,18 @@ impl<'de> serde::Deserialize<'de> for EventUpdateBatchMetadata {
                 formatter.write_str("struct regen.ecocredit.v1.EventUpdateBatchMetadata")
             }
 
-            fn visit_map<V>(self, mut map: V) -> std::result::Result<EventUpdateBatchMetadata, V::Error>
+            fn visit_map<V>(self, mut map_: V) -> std::result::Result<EventUpdateBatchMetadata, V::Error>
                 where
                     V: serde::de::MapAccess<'de>,
             {
                 let mut batch_denom__ = None;
-                while let Some(k) = map.next_key()? {
+                while let Some(k) = map_.next_key()? {
                     match k {
                         GeneratedField::BatchDenom => {
                             if batch_denom__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("batchDenom"));
                             }
-                            batch_denom__ = Some(map.next_value()?);
+                            batch_denom__ = Some(map_.next_value()?);
                         }
                     }
                 }
@@ -4777,18 +4792,18 @@ impl<'de> serde::Deserialize<'de> for EventUpdateClassAdmin {
                 formatter.write_str("struct regen.ecocredit.v1.EventUpdateClassAdmin")
             }
 
-            fn visit_map<V>(self, mut map: V) -> std::result::Result<EventUpdateClassAdmin, V::Error>
+            fn visit_map<V>(self, mut map_: V) -> std::result::Result<EventUpdateClassAdmin, V::Error>
                 where
                     V: serde::de::MapAccess<'de>,
             {
                 let mut class_id__ = None;
-                while let Some(k) = map.next_key()? {
+                while let Some(k) = map_.next_key()? {
                     match k {
                         GeneratedField::ClassId => {
                             if class_id__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("classId"));
                             }
-                            class_id__ = Some(map.next_value()?);
+                            class_id__ = Some(map_.next_value()?);
                         }
                     }
                 }
@@ -4869,18 +4884,18 @@ impl<'de> serde::Deserialize<'de> for EventUpdateClassIssuers {
                 formatter.write_str("struct regen.ecocredit.v1.EventUpdateClassIssuers")
             }
 
-            fn visit_map<V>(self, mut map: V) -> std::result::Result<EventUpdateClassIssuers, V::Error>
+            fn visit_map<V>(self, mut map_: V) -> std::result::Result<EventUpdateClassIssuers, V::Error>
                 where
                     V: serde::de::MapAccess<'de>,
             {
                 let mut class_id__ = None;
-                while let Some(k) = map.next_key()? {
+                while let Some(k) = map_.next_key()? {
                     match k {
                         GeneratedField::ClassId => {
                             if class_id__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("classId"));
                             }
-                            class_id__ = Some(map.next_value()?);
+                            class_id__ = Some(map_.next_value()?);
                         }
                     }
                 }
@@ -4961,18 +4976,18 @@ impl<'de> serde::Deserialize<'de> for EventUpdateClassMetadata {
                 formatter.write_str("struct regen.ecocredit.v1.EventUpdateClassMetadata")
             }
 
-            fn visit_map<V>(self, mut map: V) -> std::result::Result<EventUpdateClassMetadata, V::Error>
+            fn visit_map<V>(self, mut map_: V) -> std::result::Result<EventUpdateClassMetadata, V::Error>
                 where
                     V: serde::de::MapAccess<'de>,
             {
                 let mut class_id__ = None;
-                while let Some(k) = map.next_key()? {
+                while let Some(k) = map_.next_key()? {
                     match k {
                         GeneratedField::ClassId => {
                             if class_id__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("classId"));
                             }
-                            class_id__ = Some(map.next_value()?);
+                            class_id__ = Some(map_.next_value()?);
                         }
                     }
                 }
@@ -5053,18 +5068,18 @@ impl<'de> serde::Deserialize<'de> for EventUpdateProjectAdmin {
                 formatter.write_str("struct regen.ecocredit.v1.EventUpdateProjectAdmin")
             }
 
-            fn visit_map<V>(self, mut map: V) -> std::result::Result<EventUpdateProjectAdmin, V::Error>
+            fn visit_map<V>(self, mut map_: V) -> std::result::Result<EventUpdateProjectAdmin, V::Error>
                 where
                     V: serde::de::MapAccess<'de>,
             {
                 let mut project_id__ = None;
-                while let Some(k) = map.next_key()? {
+                while let Some(k) = map_.next_key()? {
                     match k {
                         GeneratedField::ProjectId => {
                             if project_id__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("projectId"));
                             }
-                            project_id__ = Some(map.next_value()?);
+                            project_id__ = Some(map_.next_value()?);
                         }
                     }
                 }
@@ -5113,13 +5128,13 @@ impl serde::Serialize for EventUpdateProjectEnrollment {
             struct_ser.serialize_field("classId", &self.class_id)?;
         }
         if self.old_status != 0 {
-            let v = ProjectEnrollmentStatus::from_i32(self.old_status)
-                .ok_or_else(|| serde::ser::Error::custom(format!("Invalid variant {}", self.old_status)))?;
+            let v = ProjectEnrollmentStatus::try_from(self.old_status)
+                .map_err(|_| serde::ser::Error::custom(format!("Invalid variant {}", self.old_status)))?;
             struct_ser.serialize_field("oldStatus", &v)?;
         }
         if self.new_status != 0 {
-            let v = ProjectEnrollmentStatus::from_i32(self.new_status)
-                .ok_or_else(|| serde::ser::Error::custom(format!("Invalid variant {}", self.new_status)))?;
+            let v = ProjectEnrollmentStatus::try_from(self.new_status)
+                .map_err(|_| serde::ser::Error::custom(format!("Invalid variant {}", self.new_status)))?;
             struct_ser.serialize_field("newStatus", &v)?;
         }
         if !self.new_enrollment_metadata.is_empty() {
@@ -5198,7 +5213,7 @@ impl<'de> serde::Deserialize<'de> for EventUpdateProjectEnrollment {
                 formatter.write_str("struct regen.ecocredit.v1.EventUpdateProjectEnrollment")
             }
 
-            fn visit_map<V>(self, mut map: V) -> std::result::Result<EventUpdateProjectEnrollment, V::Error>
+            fn visit_map<V>(self, mut map_: V) -> std::result::Result<EventUpdateProjectEnrollment, V::Error>
                 where
                     V: serde::de::MapAccess<'de>,
             {
@@ -5208,43 +5223,43 @@ impl<'de> serde::Deserialize<'de> for EventUpdateProjectEnrollment {
                 let mut old_status__ = None;
                 let mut new_status__ = None;
                 let mut new_enrollment_metadata__ = None;
-                while let Some(k) = map.next_key()? {
+                while let Some(k) = map_.next_key()? {
                     match k {
                         GeneratedField::Issuer => {
                             if issuer__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("issuer"));
                             }
-                            issuer__ = Some(map.next_value()?);
+                            issuer__ = Some(map_.next_value()?);
                         }
                         GeneratedField::ProjectId => {
                             if project_id__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("projectId"));
                             }
-                            project_id__ = Some(map.next_value()?);
+                            project_id__ = Some(map_.next_value()?);
                         }
                         GeneratedField::ClassId => {
                             if class_id__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("classId"));
                             }
-                            class_id__ = Some(map.next_value()?);
+                            class_id__ = Some(map_.next_value()?);
                         }
                         GeneratedField::OldStatus => {
                             if old_status__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("oldStatus"));
                             }
-                            old_status__ = Some(map.next_value::<ProjectEnrollmentStatus>()? as i32);
+                            old_status__ = Some(map_.next_value::<ProjectEnrollmentStatus>()? as i32);
                         }
                         GeneratedField::NewStatus => {
                             if new_status__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("newStatus"));
                             }
-                            new_status__ = Some(map.next_value::<ProjectEnrollmentStatus>()? as i32);
+                            new_status__ = Some(map_.next_value::<ProjectEnrollmentStatus>()? as i32);
                         }
                         GeneratedField::NewEnrollmentMetadata => {
                             if new_enrollment_metadata__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("newEnrollmentMetadata"));
                             }
-                            new_enrollment_metadata__ = Some(map.next_value()?);
+                            new_enrollment_metadata__ = Some(map_.next_value()?);
                         }
                     }
                 }
@@ -5330,18 +5345,18 @@ impl<'de> serde::Deserialize<'de> for EventUpdateProjectMetadata {
                 formatter.write_str("struct regen.ecocredit.v1.EventUpdateProjectMetadata")
             }
 
-            fn visit_map<V>(self, mut map: V) -> std::result::Result<EventUpdateProjectMetadata, V::Error>
+            fn visit_map<V>(self, mut map_: V) -> std::result::Result<EventUpdateProjectMetadata, V::Error>
                 where
                     V: serde::de::MapAccess<'de>,
             {
                 let mut project_id__ = None;
-                while let Some(k) = map.next_key()? {
+                while let Some(k) = map_.next_key()? {
                     match k {
                         GeneratedField::ProjectId => {
                             if project_id__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("projectId"));
                             }
-                            project_id__ = Some(map.next_value()?);
+                            project_id__ = Some(map_.next_value()?);
                         }
                     }
                 }
@@ -5431,25 +5446,25 @@ impl<'de> serde::Deserialize<'de> for MsgAddAllowedBridgeChain {
                 formatter.write_str("struct regen.ecocredit.v1.MsgAddAllowedBridgeChain")
             }
 
-            fn visit_map<V>(self, mut map: V) -> std::result::Result<MsgAddAllowedBridgeChain, V::Error>
+            fn visit_map<V>(self, mut map_: V) -> std::result::Result<MsgAddAllowedBridgeChain, V::Error>
                 where
                     V: serde::de::MapAccess<'de>,
             {
                 let mut authority__ = None;
                 let mut chain_name__ = None;
-                while let Some(k) = map.next_key()? {
+                while let Some(k) = map_.next_key()? {
                     match k {
                         GeneratedField::Authority => {
                             if authority__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("authority"));
                             }
-                            authority__ = Some(map.next_value()?);
+                            authority__ = Some(map_.next_value()?);
                         }
                         GeneratedField::ChainName => {
                             if chain_name__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("chainName"));
                             }
-                            chain_name__ = Some(map.next_value()?);
+                            chain_name__ = Some(map_.next_value()?);
                         }
                     }
                 }
@@ -5519,12 +5534,12 @@ impl<'de> serde::Deserialize<'de> for MsgAddAllowedBridgeChainResponse {
                 formatter.write_str("struct regen.ecocredit.v1.MsgAddAllowedBridgeChainResponse")
             }
 
-            fn visit_map<V>(self, mut map: V) -> std::result::Result<MsgAddAllowedBridgeChainResponse, V::Error>
+            fn visit_map<V>(self, mut map_: V) -> std::result::Result<MsgAddAllowedBridgeChainResponse, V::Error>
                 where
                     V: serde::de::MapAccess<'de>,
             {
-                while map.next_key::<GeneratedField>()?.is_some() {
-                    let _ = map.next_value::<serde::de::IgnoredAny>()?;
+                while map_.next_key::<GeneratedField>()?.is_some() {
+                    let _ = map_.next_value::<serde::de::IgnoredAny>()?;
                 }
                 Ok(MsgAddAllowedBridgeChainResponse {
                 })
@@ -5610,25 +5625,25 @@ impl<'de> serde::Deserialize<'de> for MsgAddClassCreator {
                 formatter.write_str("struct regen.ecocredit.v1.MsgAddClassCreator")
             }
 
-            fn visit_map<V>(self, mut map: V) -> std::result::Result<MsgAddClassCreator, V::Error>
+            fn visit_map<V>(self, mut map_: V) -> std::result::Result<MsgAddClassCreator, V::Error>
                 where
                     V: serde::de::MapAccess<'de>,
             {
                 let mut authority__ = None;
                 let mut creator__ = None;
-                while let Some(k) = map.next_key()? {
+                while let Some(k) = map_.next_key()? {
                     match k {
                         GeneratedField::Authority => {
                             if authority__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("authority"));
                             }
-                            authority__ = Some(map.next_value()?);
+                            authority__ = Some(map_.next_value()?);
                         }
                         GeneratedField::Creator => {
                             if creator__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("creator"));
                             }
-                            creator__ = Some(map.next_value()?);
+                            creator__ = Some(map_.next_value()?);
                         }
                     }
                 }
@@ -5698,12 +5713,12 @@ impl<'de> serde::Deserialize<'de> for MsgAddClassCreatorResponse {
                 formatter.write_str("struct regen.ecocredit.v1.MsgAddClassCreatorResponse")
             }
 
-            fn visit_map<V>(self, mut map: V) -> std::result::Result<MsgAddClassCreatorResponse, V::Error>
+            fn visit_map<V>(self, mut map_: V) -> std::result::Result<MsgAddClassCreatorResponse, V::Error>
                 where
                     V: serde::de::MapAccess<'de>,
             {
-                while map.next_key::<GeneratedField>()?.is_some() {
-                    let _ = map.next_value::<serde::de::IgnoredAny>()?;
+                while map_.next_key::<GeneratedField>()?.is_some() {
+                    let _ = map_.next_value::<serde::de::IgnoredAny>()?;
                 }
                 Ok(MsgAddClassCreatorResponse {
                 })
@@ -5790,25 +5805,25 @@ impl<'de> serde::Deserialize<'de> for MsgAddCreditType {
                 formatter.write_str("struct regen.ecocredit.v1.MsgAddCreditType")
             }
 
-            fn visit_map<V>(self, mut map: V) -> std::result::Result<MsgAddCreditType, V::Error>
+            fn visit_map<V>(self, mut map_: V) -> std::result::Result<MsgAddCreditType, V::Error>
                 where
                     V: serde::de::MapAccess<'de>,
             {
                 let mut authority__ = None;
                 let mut credit_type__ = None;
-                while let Some(k) = map.next_key()? {
+                while let Some(k) = map_.next_key()? {
                     match k {
                         GeneratedField::Authority => {
                             if authority__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("authority"));
                             }
-                            authority__ = Some(map.next_value()?);
+                            authority__ = Some(map_.next_value()?);
                         }
                         GeneratedField::CreditType => {
                             if credit_type__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("creditType"));
                             }
-                            credit_type__ = map.next_value()?;
+                            credit_type__ = map_.next_value()?;
                         }
                     }
                 }
@@ -5878,12 +5893,12 @@ impl<'de> serde::Deserialize<'de> for MsgAddCreditTypeResponse {
                 formatter.write_str("struct regen.ecocredit.v1.MsgAddCreditTypeResponse")
             }
 
-            fn visit_map<V>(self, mut map: V) -> std::result::Result<MsgAddCreditTypeResponse, V::Error>
+            fn visit_map<V>(self, mut map_: V) -> std::result::Result<MsgAddCreditTypeResponse, V::Error>
                 where
                     V: serde::de::MapAccess<'de>,
             {
-                while map.next_key::<GeneratedField>()?.is_some() {
-                    let _ = map.next_value::<serde::de::IgnoredAny>()?;
+                while map_.next_key::<GeneratedField>()?.is_some() {
+                    let _ = map_.next_value::<serde::de::IgnoredAny>()?;
                 }
                 Ok(MsgAddCreditTypeResponse {
                 })
@@ -5987,7 +6002,7 @@ impl<'de> serde::Deserialize<'de> for MsgBridge {
                 formatter.write_str("struct regen.ecocredit.v1.MsgBridge")
             }
 
-            fn visit_map<V>(self, mut map: V) -> std::result::Result<MsgBridge, V::Error>
+            fn visit_map<V>(self, mut map_: V) -> std::result::Result<MsgBridge, V::Error>
                 where
                     V: serde::de::MapAccess<'de>,
             {
@@ -5995,31 +6010,31 @@ impl<'de> serde::Deserialize<'de> for MsgBridge {
                 let mut target__ = None;
                 let mut recipient__ = None;
                 let mut credits__ = None;
-                while let Some(k) = map.next_key()? {
+                while let Some(k) = map_.next_key()? {
                     match k {
                         GeneratedField::Owner => {
                             if owner__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("owner"));
                             }
-                            owner__ = Some(map.next_value()?);
+                            owner__ = Some(map_.next_value()?);
                         }
                         GeneratedField::Target => {
                             if target__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("target"));
                             }
-                            target__ = Some(map.next_value()?);
+                            target__ = Some(map_.next_value()?);
                         }
                         GeneratedField::Recipient => {
                             if recipient__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("recipient"));
                             }
-                            recipient__ = Some(map.next_value()?);
+                            recipient__ = Some(map_.next_value()?);
                         }
                         GeneratedField::Credits => {
                             if credits__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("credits"));
                             }
-                            credits__ = Some(map.next_value()?);
+                            credits__ = Some(map_.next_value()?);
                         }
                     }
                 }
@@ -6140,7 +6155,7 @@ impl<'de> serde::Deserialize<'de> for MsgBridgeReceive {
                 formatter.write_str("struct regen.ecocredit.v1.MsgBridgeReceive")
             }
 
-            fn visit_map<V>(self, mut map: V) -> std::result::Result<MsgBridgeReceive, V::Error>
+            fn visit_map<V>(self, mut map_: V) -> std::result::Result<MsgBridgeReceive, V::Error>
                 where
                     V: serde::de::MapAccess<'de>,
             {
@@ -6149,37 +6164,37 @@ impl<'de> serde::Deserialize<'de> for MsgBridgeReceive {
                 let mut project__ = None;
                 let mut batch__ = None;
                 let mut origin_tx__ = None;
-                while let Some(k) = map.next_key()? {
+                while let Some(k) = map_.next_key()? {
                     match k {
                         GeneratedField::Issuer => {
                             if issuer__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("issuer"));
                             }
-                            issuer__ = Some(map.next_value()?);
+                            issuer__ = Some(map_.next_value()?);
                         }
                         GeneratedField::ClassId => {
                             if class_id__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("classId"));
                             }
-                            class_id__ = Some(map.next_value()?);
+                            class_id__ = Some(map_.next_value()?);
                         }
                         GeneratedField::Project => {
                             if project__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("project"));
                             }
-                            project__ = map.next_value()?;
+                            project__ = map_.next_value()?;
                         }
                         GeneratedField::Batch => {
                             if batch__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("batch"));
                             }
-                            batch__ = map.next_value()?;
+                            batch__ = map_.next_value()?;
                         }
                         GeneratedField::OriginTx => {
                             if origin_tx__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("originTx"));
                             }
-                            origin_tx__ = map.next_value()?;
+                            origin_tx__ = map_.next_value()?;
                         }
                     }
                 }
@@ -6301,7 +6316,7 @@ impl<'de> serde::Deserialize<'de> for msg_bridge_receive::Batch {
                 formatter.write_str("struct regen.ecocredit.v1.MsgBridgeReceive.Batch")
             }
 
-            fn visit_map<V>(self, mut map: V) -> std::result::Result<msg_bridge_receive::Batch, V::Error>
+            fn visit_map<V>(self, mut map_: V) -> std::result::Result<msg_bridge_receive::Batch, V::Error>
                 where
                     V: serde::de::MapAccess<'de>,
             {
@@ -6310,37 +6325,37 @@ impl<'de> serde::Deserialize<'de> for msg_bridge_receive::Batch {
                 let mut start_date__ = None;
                 let mut end_date__ = None;
                 let mut metadata__ = None;
-                while let Some(k) = map.next_key()? {
+                while let Some(k) = map_.next_key()? {
                     match k {
                         GeneratedField::Recipient => {
                             if recipient__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("recipient"));
                             }
-                            recipient__ = Some(map.next_value()?);
+                            recipient__ = Some(map_.next_value()?);
                         }
                         GeneratedField::Amount => {
                             if amount__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("amount"));
                             }
-                            amount__ = Some(map.next_value()?);
+                            amount__ = Some(map_.next_value()?);
                         }
                         GeneratedField::StartDate => {
                             if start_date__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("startDate"));
                             }
-                            start_date__ = map.next_value()?;
+                            start_date__ = map_.next_value()?;
                         }
                         GeneratedField::EndDate => {
                             if end_date__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("endDate"));
                             }
-                            end_date__ = map.next_value()?;
+                            end_date__ = map_.next_value()?;
                         }
                         GeneratedField::Metadata => {
                             if metadata__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("metadata"));
                             }
-                            metadata__ = Some(map.next_value()?);
+                            metadata__ = Some(map_.next_value()?);
                         }
                     }
                 }
@@ -6443,32 +6458,32 @@ impl<'de> serde::Deserialize<'de> for msg_bridge_receive::Project {
                 formatter.write_str("struct regen.ecocredit.v1.MsgBridgeReceive.Project")
             }
 
-            fn visit_map<V>(self, mut map: V) -> std::result::Result<msg_bridge_receive::Project, V::Error>
+            fn visit_map<V>(self, mut map_: V) -> std::result::Result<msg_bridge_receive::Project, V::Error>
                 where
                     V: serde::de::MapAccess<'de>,
             {
                 let mut reference_id__ = None;
                 let mut jurisdiction__ = None;
                 let mut metadata__ = None;
-                while let Some(k) = map.next_key()? {
+                while let Some(k) = map_.next_key()? {
                     match k {
                         GeneratedField::ReferenceId => {
                             if reference_id__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("referenceId"));
                             }
-                            reference_id__ = Some(map.next_value()?);
+                            reference_id__ = Some(map_.next_value()?);
                         }
                         GeneratedField::Jurisdiction => {
                             if jurisdiction__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("jurisdiction"));
                             }
-                            jurisdiction__ = Some(map.next_value()?);
+                            jurisdiction__ = Some(map_.next_value()?);
                         }
                         GeneratedField::Metadata => {
                             if metadata__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("metadata"));
                             }
-                            metadata__ = Some(map.next_value()?);
+                            metadata__ = Some(map_.next_value()?);
                         }
                     }
                 }
@@ -6561,25 +6576,25 @@ impl<'de> serde::Deserialize<'de> for MsgBridgeReceiveResponse {
                 formatter.write_str("struct regen.ecocredit.v1.MsgBridgeReceiveResponse")
             }
 
-            fn visit_map<V>(self, mut map: V) -> std::result::Result<MsgBridgeReceiveResponse, V::Error>
+            fn visit_map<V>(self, mut map_: V) -> std::result::Result<MsgBridgeReceiveResponse, V::Error>
                 where
                     V: serde::de::MapAccess<'de>,
             {
                 let mut batch_denom__ = None;
                 let mut project_id__ = None;
-                while let Some(k) = map.next_key()? {
+                while let Some(k) = map_.next_key()? {
                     match k {
                         GeneratedField::BatchDenom => {
                             if batch_denom__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("batchDenom"));
                             }
-                            batch_denom__ = Some(map.next_value()?);
+                            batch_denom__ = Some(map_.next_value()?);
                         }
                         GeneratedField::ProjectId => {
                             if project_id__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("projectId"));
                             }
-                            project_id__ = Some(map.next_value()?);
+                            project_id__ = Some(map_.next_value()?);
                         }
                     }
                 }
@@ -6649,12 +6664,12 @@ impl<'de> serde::Deserialize<'de> for MsgBridgeResponse {
                 formatter.write_str("struct regen.ecocredit.v1.MsgBridgeResponse")
             }
 
-            fn visit_map<V>(self, mut map: V) -> std::result::Result<MsgBridgeResponse, V::Error>
+            fn visit_map<V>(self, mut map_: V) -> std::result::Result<MsgBridgeResponse, V::Error>
                 where
                     V: serde::de::MapAccess<'de>,
             {
-                while map.next_key::<GeneratedField>()?.is_some() {
-                    let _ = map.next_value::<serde::de::IgnoredAny>()?;
+                while map_.next_key::<GeneratedField>()?.is_some() {
+                    let _ = map_.next_value::<serde::de::IgnoredAny>()?;
                 }
                 Ok(MsgBridgeResponse {
                 })
@@ -6749,32 +6764,32 @@ impl<'de> serde::Deserialize<'de> for MsgBurnRegen {
                 formatter.write_str("struct regen.ecocredit.v1.MsgBurnRegen")
             }
 
-            fn visit_map<V>(self, mut map: V) -> std::result::Result<MsgBurnRegen, V::Error>
+            fn visit_map<V>(self, mut map_: V) -> std::result::Result<MsgBurnRegen, V::Error>
                 where
                     V: serde::de::MapAccess<'de>,
             {
                 let mut burner__ = None;
                 let mut amount__ = None;
                 let mut reason__ = None;
-                while let Some(k) = map.next_key()? {
+                while let Some(k) = map_.next_key()? {
                     match k {
                         GeneratedField::Burner => {
                             if burner__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("burner"));
                             }
-                            burner__ = Some(map.next_value()?);
+                            burner__ = Some(map_.next_value()?);
                         }
                         GeneratedField::Amount => {
                             if amount__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("amount"));
                             }
-                            amount__ = Some(map.next_value()?);
+                            amount__ = Some(map_.next_value()?);
                         }
                         GeneratedField::Reason => {
                             if reason__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("reason"));
                             }
-                            reason__ = Some(map.next_value()?);
+                            reason__ = Some(map_.next_value()?);
                         }
                     }
                 }
@@ -6845,12 +6860,12 @@ impl<'de> serde::Deserialize<'de> for MsgBurnRegenResponse {
                 formatter.write_str("struct regen.ecocredit.v1.MsgBurnRegenResponse")
             }
 
-            fn visit_map<V>(self, mut map: V) -> std::result::Result<MsgBurnRegenResponse, V::Error>
+            fn visit_map<V>(self, mut map_: V) -> std::result::Result<MsgBurnRegenResponse, V::Error>
                 where
                     V: serde::de::MapAccess<'de>,
             {
-                while map.next_key::<GeneratedField>()?.is_some() {
-                    let _ = map.next_value::<serde::de::IgnoredAny>()?;
+                while map_.next_key::<GeneratedField>()?.is_some() {
+                    let _ = map_.next_value::<serde::de::IgnoredAny>()?;
                 }
                 Ok(MsgBurnRegenResponse {
                 })
@@ -6945,32 +6960,32 @@ impl<'de> serde::Deserialize<'de> for MsgCancel {
                 formatter.write_str("struct regen.ecocredit.v1.MsgCancel")
             }
 
-            fn visit_map<V>(self, mut map: V) -> std::result::Result<MsgCancel, V::Error>
+            fn visit_map<V>(self, mut map_: V) -> std::result::Result<MsgCancel, V::Error>
                 where
                     V: serde::de::MapAccess<'de>,
             {
                 let mut owner__ = None;
                 let mut credits__ = None;
                 let mut reason__ = None;
-                while let Some(k) = map.next_key()? {
+                while let Some(k) = map_.next_key()? {
                     match k {
                         GeneratedField::Owner => {
                             if owner__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("owner"));
                             }
-                            owner__ = Some(map.next_value()?);
+                            owner__ = Some(map_.next_value()?);
                         }
                         GeneratedField::Credits => {
                             if credits__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("credits"));
                             }
-                            credits__ = Some(map.next_value()?);
+                            credits__ = Some(map_.next_value()?);
                         }
                         GeneratedField::Reason => {
                             if reason__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("reason"));
                             }
-                            reason__ = Some(map.next_value()?);
+                            reason__ = Some(map_.next_value()?);
                         }
                     }
                 }
@@ -7041,12 +7056,12 @@ impl<'de> serde::Deserialize<'de> for MsgCancelResponse {
                 formatter.write_str("struct regen.ecocredit.v1.MsgCancelResponse")
             }
 
-            fn visit_map<V>(self, mut map: V) -> std::result::Result<MsgCancelResponse, V::Error>
+            fn visit_map<V>(self, mut map_: V) -> std::result::Result<MsgCancelResponse, V::Error>
                 where
                     V: serde::de::MapAccess<'de>,
             {
-                while map.next_key::<GeneratedField>()?.is_some() {
-                    let _ = map.next_value::<serde::de::IgnoredAny>()?;
+                while map_.next_key::<GeneratedField>()?.is_some() {
+                    let _ = map_.next_value::<serde::de::IgnoredAny>()?;
                 }
                 Ok(MsgCancelResponse {
                 })
@@ -7200,7 +7215,7 @@ impl<'de> serde::Deserialize<'de> for MsgCreateBatch {
                 formatter.write_str("struct regen.ecocredit.v1.MsgCreateBatch")
             }
 
-            fn visit_map<V>(self, mut map: V) -> std::result::Result<MsgCreateBatch, V::Error>
+            fn visit_map<V>(self, mut map_: V) -> std::result::Result<MsgCreateBatch, V::Error>
                 where
                     V: serde::de::MapAccess<'de>,
             {
@@ -7213,61 +7228,61 @@ impl<'de> serde::Deserialize<'de> for MsgCreateBatch {
                 let mut open__ = None;
                 let mut origin_tx__ = None;
                 let mut class_id__ = None;
-                while let Some(k) = map.next_key()? {
+                while let Some(k) = map_.next_key()? {
                     match k {
                         GeneratedField::Issuer => {
                             if issuer__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("issuer"));
                             }
-                            issuer__ = Some(map.next_value()?);
+                            issuer__ = Some(map_.next_value()?);
                         }
                         GeneratedField::ProjectId => {
                             if project_id__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("projectId"));
                             }
-                            project_id__ = Some(map.next_value()?);
+                            project_id__ = Some(map_.next_value()?);
                         }
                         GeneratedField::Issuance => {
                             if issuance__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("issuance"));
                             }
-                            issuance__ = Some(map.next_value()?);
+                            issuance__ = Some(map_.next_value()?);
                         }
                         GeneratedField::Metadata => {
                             if metadata__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("metadata"));
                             }
-                            metadata__ = Some(map.next_value()?);
+                            metadata__ = Some(map_.next_value()?);
                         }
                         GeneratedField::StartDate => {
                             if start_date__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("startDate"));
                             }
-                            start_date__ = map.next_value()?;
+                            start_date__ = map_.next_value()?;
                         }
                         GeneratedField::EndDate => {
                             if end_date__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("endDate"));
                             }
-                            end_date__ = map.next_value()?;
+                            end_date__ = map_.next_value()?;
                         }
                         GeneratedField::Open => {
                             if open__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("open"));
                             }
-                            open__ = Some(map.next_value()?);
+                            open__ = Some(map_.next_value()?);
                         }
                         GeneratedField::OriginTx => {
                             if origin_tx__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("originTx"));
                             }
-                            origin_tx__ = map.next_value()?;
+                            origin_tx__ = map_.next_value()?;
                         }
                         GeneratedField::ClassId => {
                             if class_id__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("classId"));
                             }
-                            class_id__ = Some(map.next_value()?);
+                            class_id__ = Some(map_.next_value()?);
                         }
                     }
                 }
@@ -7356,18 +7371,18 @@ impl<'de> serde::Deserialize<'de> for MsgCreateBatchResponse {
                 formatter.write_str("struct regen.ecocredit.v1.MsgCreateBatchResponse")
             }
 
-            fn visit_map<V>(self, mut map: V) -> std::result::Result<MsgCreateBatchResponse, V::Error>
+            fn visit_map<V>(self, mut map_: V) -> std::result::Result<MsgCreateBatchResponse, V::Error>
                 where
                     V: serde::de::MapAccess<'de>,
             {
                 let mut batch_denom__ = None;
-                while let Some(k) = map.next_key()? {
+                while let Some(k) = map_.next_key()? {
                     match k {
                         GeneratedField::BatchDenom => {
                             if batch_denom__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("batchDenom"));
                             }
-                            batch_denom__ = Some(map.next_value()?);
+                            batch_denom__ = Some(map_.next_value()?);
                         }
                     }
                 }
@@ -7484,7 +7499,7 @@ impl<'de> serde::Deserialize<'de> for MsgCreateClass {
                 formatter.write_str("struct regen.ecocredit.v1.MsgCreateClass")
             }
 
-            fn visit_map<V>(self, mut map: V) -> std::result::Result<MsgCreateClass, V::Error>
+            fn visit_map<V>(self, mut map_: V) -> std::result::Result<MsgCreateClass, V::Error>
                 where
                     V: serde::de::MapAccess<'de>,
             {
@@ -7493,37 +7508,37 @@ impl<'de> serde::Deserialize<'de> for MsgCreateClass {
                 let mut metadata__ = None;
                 let mut credit_type_abbrev__ = None;
                 let mut fee__ = None;
-                while let Some(k) = map.next_key()? {
+                while let Some(k) = map_.next_key()? {
                     match k {
                         GeneratedField::Admin => {
                             if admin__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("admin"));
                             }
-                            admin__ = Some(map.next_value()?);
+                            admin__ = Some(map_.next_value()?);
                         }
                         GeneratedField::Issuers => {
                             if issuers__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("issuers"));
                             }
-                            issuers__ = Some(map.next_value()?);
+                            issuers__ = Some(map_.next_value()?);
                         }
                         GeneratedField::Metadata => {
                             if metadata__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("metadata"));
                             }
-                            metadata__ = Some(map.next_value()?);
+                            metadata__ = Some(map_.next_value()?);
                         }
                         GeneratedField::CreditTypeAbbrev => {
                             if credit_type_abbrev__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("creditTypeAbbrev"));
                             }
-                            credit_type_abbrev__ = Some(map.next_value()?);
+                            credit_type_abbrev__ = Some(map_.next_value()?);
                         }
                         GeneratedField::Fee => {
                             if fee__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("fee"));
                             }
-                            fee__ = map.next_value()?;
+                            fee__ = map_.next_value()?;
                         }
                     }
                 }
@@ -7608,18 +7623,18 @@ impl<'de> serde::Deserialize<'de> for MsgCreateClassResponse {
                 formatter.write_str("struct regen.ecocredit.v1.MsgCreateClassResponse")
             }
 
-            fn visit_map<V>(self, mut map: V) -> std::result::Result<MsgCreateClassResponse, V::Error>
+            fn visit_map<V>(self, mut map_: V) -> std::result::Result<MsgCreateClassResponse, V::Error>
                 where
                     V: serde::de::MapAccess<'de>,
             {
                 let mut class_id__ = None;
-                while let Some(k) = map.next_key()? {
+                while let Some(k) = map_.next_key()? {
                     match k {
                         GeneratedField::ClassId => {
                             if class_id__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("classId"));
                             }
-                            class_id__ = Some(map.next_value()?);
+                            class_id__ = Some(map_.next_value()?);
                         }
                     }
                 }
@@ -7738,7 +7753,7 @@ impl<'de> serde::Deserialize<'de> for MsgCreateOrUpdateApplication {
                 formatter.write_str("struct regen.ecocredit.v1.MsgCreateOrUpdateApplication")
             }
 
-            fn visit_map<V>(self, mut map: V) -> std::result::Result<MsgCreateOrUpdateApplication, V::Error>
+            fn visit_map<V>(self, mut map_: V) -> std::result::Result<MsgCreateOrUpdateApplication, V::Error>
                 where
                     V: serde::de::MapAccess<'de>,
             {
@@ -7747,37 +7762,37 @@ impl<'de> serde::Deserialize<'de> for MsgCreateOrUpdateApplication {
                 let mut class_id__ = None;
                 let mut metadata__ = None;
                 let mut withdraw__ = None;
-                while let Some(k) = map.next_key()? {
+                while let Some(k) = map_.next_key()? {
                     match k {
                         GeneratedField::ProjectAdmin => {
                             if project_admin__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("projectAdmin"));
                             }
-                            project_admin__ = Some(map.next_value()?);
+                            project_admin__ = Some(map_.next_value()?);
                         }
                         GeneratedField::ProjectId => {
                             if project_id__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("projectId"));
                             }
-                            project_id__ = Some(map.next_value()?);
+                            project_id__ = Some(map_.next_value()?);
                         }
                         GeneratedField::ClassId => {
                             if class_id__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("classId"));
                             }
-                            class_id__ = Some(map.next_value()?);
+                            class_id__ = Some(map_.next_value()?);
                         }
                         GeneratedField::Metadata => {
                             if metadata__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("metadata"));
                             }
-                            metadata__ = Some(map.next_value()?);
+                            metadata__ = Some(map_.next_value()?);
                         }
                         GeneratedField::Withdraw => {
                             if withdraw__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("withdraw"));
                             }
-                            withdraw__ = Some(map.next_value()?);
+                            withdraw__ = Some(map_.next_value()?);
                         }
                     }
                 }
@@ -7850,12 +7865,12 @@ impl<'de> serde::Deserialize<'de> for MsgCreateOrUpdateApplicationResponse {
                 formatter.write_str("struct regen.ecocredit.v1.MsgCreateOrUpdateApplicationResponse")
             }
 
-            fn visit_map<V>(self, mut map: V) -> std::result::Result<MsgCreateOrUpdateApplicationResponse, V::Error>
+            fn visit_map<V>(self, mut map_: V) -> std::result::Result<MsgCreateOrUpdateApplicationResponse, V::Error>
                 where
                     V: serde::de::MapAccess<'de>,
             {
-                while map.next_key::<GeneratedField>()?.is_some() {
-                    let _ = map.next_value::<serde::de::IgnoredAny>()?;
+                while map_.next_key::<GeneratedField>()?.is_some() {
+                    let _ = map_.next_value::<serde::de::IgnoredAny>()?;
                 }
                 Ok(MsgCreateOrUpdateApplicationResponse {
                 })
@@ -7979,7 +7994,7 @@ impl<'de> serde::Deserialize<'de> for MsgCreateProject {
                 formatter.write_str("struct regen.ecocredit.v1.MsgCreateProject")
             }
 
-            fn visit_map<V>(self, mut map: V) -> std::result::Result<MsgCreateProject, V::Error>
+            fn visit_map<V>(self, mut map_: V) -> std::result::Result<MsgCreateProject, V::Error>
                 where
                     V: serde::de::MapAccess<'de>,
             {
@@ -7989,43 +8004,43 @@ impl<'de> serde::Deserialize<'de> for MsgCreateProject {
                 let mut jurisdiction__ = None;
                 let mut reference_id__ = None;
                 let mut fee__ = None;
-                while let Some(k) = map.next_key()? {
+                while let Some(k) = map_.next_key()? {
                     match k {
                         GeneratedField::Admin => {
                             if admin__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("admin"));
                             }
-                            admin__ = Some(map.next_value()?);
+                            admin__ = Some(map_.next_value()?);
                         }
                         GeneratedField::ClassId => {
                             if class_id__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("classId"));
                             }
-                            class_id__ = Some(map.next_value()?);
+                            class_id__ = Some(map_.next_value()?);
                         }
                         GeneratedField::Metadata => {
                             if metadata__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("metadata"));
                             }
-                            metadata__ = Some(map.next_value()?);
+                            metadata__ = Some(map_.next_value()?);
                         }
                         GeneratedField::Jurisdiction => {
                             if jurisdiction__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("jurisdiction"));
                             }
-                            jurisdiction__ = Some(map.next_value()?);
+                            jurisdiction__ = Some(map_.next_value()?);
                         }
                         GeneratedField::ReferenceId => {
                             if reference_id__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("referenceId"));
                             }
-                            reference_id__ = Some(map.next_value()?);
+                            reference_id__ = Some(map_.next_value()?);
                         }
                         GeneratedField::Fee => {
                             if fee__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("fee"));
                             }
-                            fee__ = map.next_value()?;
+                            fee__ = map_.next_value()?;
                         }
                     }
                 }
@@ -8111,18 +8126,18 @@ impl<'de> serde::Deserialize<'de> for MsgCreateProjectResponse {
                 formatter.write_str("struct regen.ecocredit.v1.MsgCreateProjectResponse")
             }
 
-            fn visit_map<V>(self, mut map: V) -> std::result::Result<MsgCreateProjectResponse, V::Error>
+            fn visit_map<V>(self, mut map_: V) -> std::result::Result<MsgCreateProjectResponse, V::Error>
                 where
                     V: serde::de::MapAccess<'de>,
             {
                 let mut project_id__ = None;
-                while let Some(k) = map.next_key()? {
+                while let Some(k) = map_.next_key()? {
                     match k {
                         GeneratedField::ProjectId => {
                             if project_id__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("projectId"));
                             }
-                            project_id__ = Some(map.next_value()?);
+                            project_id__ = Some(map_.next_value()?);
                         }
                     }
                 }
@@ -8239,7 +8254,7 @@ impl<'de> serde::Deserialize<'de> for MsgCreateUnregisteredProject {
                 formatter.write_str("struct regen.ecocredit.v1.MsgCreateUnregisteredProject")
             }
 
-            fn visit_map<V>(self, mut map: V) -> std::result::Result<MsgCreateUnregisteredProject, V::Error>
+            fn visit_map<V>(self, mut map_: V) -> std::result::Result<MsgCreateUnregisteredProject, V::Error>
                 where
                     V: serde::de::MapAccess<'de>,
             {
@@ -8248,37 +8263,37 @@ impl<'de> serde::Deserialize<'de> for MsgCreateUnregisteredProject {
                 let mut jurisdiction__ = None;
                 let mut reference_id__ = None;
                 let mut fee__ = None;
-                while let Some(k) = map.next_key()? {
+                while let Some(k) = map_.next_key()? {
                     match k {
                         GeneratedField::Admin => {
                             if admin__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("admin"));
                             }
-                            admin__ = Some(map.next_value()?);
+                            admin__ = Some(map_.next_value()?);
                         }
                         GeneratedField::Metadata => {
                             if metadata__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("metadata"));
                             }
-                            metadata__ = Some(map.next_value()?);
+                            metadata__ = Some(map_.next_value()?);
                         }
                         GeneratedField::Jurisdiction => {
                             if jurisdiction__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("jurisdiction"));
                             }
-                            jurisdiction__ = Some(map.next_value()?);
+                            jurisdiction__ = Some(map_.next_value()?);
                         }
                         GeneratedField::ReferenceId => {
                             if reference_id__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("referenceId"));
                             }
-                            reference_id__ = Some(map.next_value()?);
+                            reference_id__ = Some(map_.next_value()?);
                         }
                         GeneratedField::Fee => {
                             if fee__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("fee"));
                             }
-                            fee__ = map.next_value()?;
+                            fee__ = map_.next_value()?;
                         }
                     }
                 }
@@ -8363,18 +8378,18 @@ impl<'de> serde::Deserialize<'de> for MsgCreateUnregisteredProjectResponse {
                 formatter.write_str("struct regen.ecocredit.v1.MsgCreateUnregisteredProjectResponse")
             }
 
-            fn visit_map<V>(self, mut map: V) -> std::result::Result<MsgCreateUnregisteredProjectResponse, V::Error>
+            fn visit_map<V>(self, mut map_: V) -> std::result::Result<MsgCreateUnregisteredProjectResponse, V::Error>
                 where
                     V: serde::de::MapAccess<'de>,
             {
                 let mut project_id__ = None;
-                while let Some(k) = map.next_key()? {
+                while let Some(k) = map_.next_key()? {
                     match k {
                         GeneratedField::ProjectId => {
                             if project_id__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("projectId"));
                             }
-                            project_id__ = Some(map.next_value()?);
+                            project_id__ = Some(map_.next_value()?);
                         }
                     }
                 }
@@ -8483,7 +8498,7 @@ impl<'de> serde::Deserialize<'de> for MsgMintBatchCredits {
                 formatter.write_str("struct regen.ecocredit.v1.MsgMintBatchCredits")
             }
 
-            fn visit_map<V>(self, mut map: V) -> std::result::Result<MsgMintBatchCredits, V::Error>
+            fn visit_map<V>(self, mut map_: V) -> std::result::Result<MsgMintBatchCredits, V::Error>
                 where
                     V: serde::de::MapAccess<'de>,
             {
@@ -8491,31 +8506,31 @@ impl<'de> serde::Deserialize<'de> for MsgMintBatchCredits {
                 let mut batch_denom__ = None;
                 let mut issuance__ = None;
                 let mut origin_tx__ = None;
-                while let Some(k) = map.next_key()? {
+                while let Some(k) = map_.next_key()? {
                     match k {
                         GeneratedField::Issuer => {
                             if issuer__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("issuer"));
                             }
-                            issuer__ = Some(map.next_value()?);
+                            issuer__ = Some(map_.next_value()?);
                         }
                         GeneratedField::BatchDenom => {
                             if batch_denom__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("batchDenom"));
                             }
-                            batch_denom__ = Some(map.next_value()?);
+                            batch_denom__ = Some(map_.next_value()?);
                         }
                         GeneratedField::Issuance => {
                             if issuance__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("issuance"));
                             }
-                            issuance__ = Some(map.next_value()?);
+                            issuance__ = Some(map_.next_value()?);
                         }
                         GeneratedField::OriginTx => {
                             if origin_tx__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("originTx"));
                             }
-                            origin_tx__ = map.next_value()?;
+                            origin_tx__ = map_.next_value()?;
                         }
                     }
                 }
@@ -8587,12 +8602,12 @@ impl<'de> serde::Deserialize<'de> for MsgMintBatchCreditsResponse {
                 formatter.write_str("struct regen.ecocredit.v1.MsgMintBatchCreditsResponse")
             }
 
-            fn visit_map<V>(self, mut map: V) -> std::result::Result<MsgMintBatchCreditsResponse, V::Error>
+            fn visit_map<V>(self, mut map_: V) -> std::result::Result<MsgMintBatchCreditsResponse, V::Error>
                 where
                     V: serde::de::MapAccess<'de>,
             {
-                while map.next_key::<GeneratedField>()?.is_some() {
-                    let _ = map.next_value::<serde::de::IgnoredAny>()?;
+                while map_.next_key::<GeneratedField>()?.is_some() {
+                    let _ = map_.next_value::<serde::de::IgnoredAny>()?;
                 }
                 Ok(MsgMintBatchCreditsResponse {
                 })
@@ -8679,25 +8694,25 @@ impl<'de> serde::Deserialize<'de> for MsgRemoveAllowedBridgeChain {
                 formatter.write_str("struct regen.ecocredit.v1.MsgRemoveAllowedBridgeChain")
             }
 
-            fn visit_map<V>(self, mut map: V) -> std::result::Result<MsgRemoveAllowedBridgeChain, V::Error>
+            fn visit_map<V>(self, mut map_: V) -> std::result::Result<MsgRemoveAllowedBridgeChain, V::Error>
                 where
                     V: serde::de::MapAccess<'de>,
             {
                 let mut authority__ = None;
                 let mut chain_name__ = None;
-                while let Some(k) = map.next_key()? {
+                while let Some(k) = map_.next_key()? {
                     match k {
                         GeneratedField::Authority => {
                             if authority__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("authority"));
                             }
-                            authority__ = Some(map.next_value()?);
+                            authority__ = Some(map_.next_value()?);
                         }
                         GeneratedField::ChainName => {
                             if chain_name__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("chainName"));
                             }
-                            chain_name__ = Some(map.next_value()?);
+                            chain_name__ = Some(map_.next_value()?);
                         }
                     }
                 }
@@ -8767,12 +8782,12 @@ impl<'de> serde::Deserialize<'de> for MsgRemoveAllowedBridgeChainResponse {
                 formatter.write_str("struct regen.ecocredit.v1.MsgRemoveAllowedBridgeChainResponse")
             }
 
-            fn visit_map<V>(self, mut map: V) -> std::result::Result<MsgRemoveAllowedBridgeChainResponse, V::Error>
+            fn visit_map<V>(self, mut map_: V) -> std::result::Result<MsgRemoveAllowedBridgeChainResponse, V::Error>
                 where
                     V: serde::de::MapAccess<'de>,
             {
-                while map.next_key::<GeneratedField>()?.is_some() {
-                    let _ = map.next_value::<serde::de::IgnoredAny>()?;
+                while map_.next_key::<GeneratedField>()?.is_some() {
+                    let _ = map_.next_value::<serde::de::IgnoredAny>()?;
                 }
                 Ok(MsgRemoveAllowedBridgeChainResponse {
                 })
@@ -8858,25 +8873,25 @@ impl<'de> serde::Deserialize<'de> for MsgRemoveClassCreator {
                 formatter.write_str("struct regen.ecocredit.v1.MsgRemoveClassCreator")
             }
 
-            fn visit_map<V>(self, mut map: V) -> std::result::Result<MsgRemoveClassCreator, V::Error>
+            fn visit_map<V>(self, mut map_: V) -> std::result::Result<MsgRemoveClassCreator, V::Error>
                 where
                     V: serde::de::MapAccess<'de>,
             {
                 let mut authority__ = None;
                 let mut creator__ = None;
-                while let Some(k) = map.next_key()? {
+                while let Some(k) = map_.next_key()? {
                     match k {
                         GeneratedField::Authority => {
                             if authority__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("authority"));
                             }
-                            authority__ = Some(map.next_value()?);
+                            authority__ = Some(map_.next_value()?);
                         }
                         GeneratedField::Creator => {
                             if creator__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("creator"));
                             }
-                            creator__ = Some(map.next_value()?);
+                            creator__ = Some(map_.next_value()?);
                         }
                     }
                 }
@@ -8946,12 +8961,12 @@ impl<'de> serde::Deserialize<'de> for MsgRemoveClassCreatorResponse {
                 formatter.write_str("struct regen.ecocredit.v1.MsgRemoveClassCreatorResponse")
             }
 
-            fn visit_map<V>(self, mut map: V) -> std::result::Result<MsgRemoveClassCreatorResponse, V::Error>
+            fn visit_map<V>(self, mut map_: V) -> std::result::Result<MsgRemoveClassCreatorResponse, V::Error>
                 where
                     V: serde::de::MapAccess<'de>,
             {
-                while map.next_key::<GeneratedField>()?.is_some() {
-                    let _ = map.next_value::<serde::de::IgnoredAny>()?;
+                while map_.next_key::<GeneratedField>()?.is_some() {
+                    let _ = map_.next_value::<serde::de::IgnoredAny>()?;
                 }
                 Ok(MsgRemoveClassCreatorResponse {
                 })
@@ -9055,7 +9070,7 @@ impl<'de> serde::Deserialize<'de> for MsgRetire {
                 formatter.write_str("struct regen.ecocredit.v1.MsgRetire")
             }
 
-            fn visit_map<V>(self, mut map: V) -> std::result::Result<MsgRetire, V::Error>
+            fn visit_map<V>(self, mut map_: V) -> std::result::Result<MsgRetire, V::Error>
                 where
                     V: serde::de::MapAccess<'de>,
             {
@@ -9063,31 +9078,31 @@ impl<'de> serde::Deserialize<'de> for MsgRetire {
                 let mut credits__ = None;
                 let mut jurisdiction__ = None;
                 let mut reason__ = None;
-                while let Some(k) = map.next_key()? {
+                while let Some(k) = map_.next_key()? {
                     match k {
                         GeneratedField::Owner => {
                             if owner__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("owner"));
                             }
-                            owner__ = Some(map.next_value()?);
+                            owner__ = Some(map_.next_value()?);
                         }
                         GeneratedField::Credits => {
                             if credits__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("credits"));
                             }
-                            credits__ = Some(map.next_value()?);
+                            credits__ = Some(map_.next_value()?);
                         }
                         GeneratedField::Jurisdiction => {
                             if jurisdiction__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("jurisdiction"));
                             }
-                            jurisdiction__ = Some(map.next_value()?);
+                            jurisdiction__ = Some(map_.next_value()?);
                         }
                         GeneratedField::Reason => {
                             if reason__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("reason"));
                             }
-                            reason__ = Some(map.next_value()?);
+                            reason__ = Some(map_.next_value()?);
                         }
                     }
                 }
@@ -9159,12 +9174,12 @@ impl<'de> serde::Deserialize<'de> for MsgRetireResponse {
                 formatter.write_str("struct regen.ecocredit.v1.MsgRetireResponse")
             }
 
-            fn visit_map<V>(self, mut map: V) -> std::result::Result<MsgRetireResponse, V::Error>
+            fn visit_map<V>(self, mut map_: V) -> std::result::Result<MsgRetireResponse, V::Error>
                 where
                     V: serde::de::MapAccess<'de>,
             {
-                while map.next_key::<GeneratedField>()?.is_some() {
-                    let _ = map.next_value::<serde::de::IgnoredAny>()?;
+                while map_.next_key::<GeneratedField>()?.is_some() {
+                    let _ = map_.next_value::<serde::de::IgnoredAny>()?;
                 }
                 Ok(MsgRetireResponse {
                 })
@@ -9251,25 +9266,25 @@ impl<'de> serde::Deserialize<'de> for MsgSealBatch {
                 formatter.write_str("struct regen.ecocredit.v1.MsgSealBatch")
             }
 
-            fn visit_map<V>(self, mut map: V) -> std::result::Result<MsgSealBatch, V::Error>
+            fn visit_map<V>(self, mut map_: V) -> std::result::Result<MsgSealBatch, V::Error>
                 where
                     V: serde::de::MapAccess<'de>,
             {
                 let mut issuer__ = None;
                 let mut batch_denom__ = None;
-                while let Some(k) = map.next_key()? {
+                while let Some(k) = map_.next_key()? {
                     match k {
                         GeneratedField::Issuer => {
                             if issuer__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("issuer"));
                             }
-                            issuer__ = Some(map.next_value()?);
+                            issuer__ = Some(map_.next_value()?);
                         }
                         GeneratedField::BatchDenom => {
                             if batch_denom__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("batchDenom"));
                             }
-                            batch_denom__ = Some(map.next_value()?);
+                            batch_denom__ = Some(map_.next_value()?);
                         }
                     }
                 }
@@ -9339,12 +9354,12 @@ impl<'de> serde::Deserialize<'de> for MsgSealBatchResponse {
                 formatter.write_str("struct regen.ecocredit.v1.MsgSealBatchResponse")
             }
 
-            fn visit_map<V>(self, mut map: V) -> std::result::Result<MsgSealBatchResponse, V::Error>
+            fn visit_map<V>(self, mut map_: V) -> std::result::Result<MsgSealBatchResponse, V::Error>
                 where
                     V: serde::de::MapAccess<'de>,
             {
-                while map.next_key::<GeneratedField>()?.is_some() {
-                    let _ = map.next_value::<serde::de::IgnoredAny>()?;
+                while map_.next_key::<GeneratedField>()?.is_some() {
+                    let _ = map_.next_value::<serde::de::IgnoredAny>()?;
                 }
                 Ok(MsgSealBatchResponse {
                 })
@@ -9439,32 +9454,32 @@ impl<'de> serde::Deserialize<'de> for MsgSend {
                 formatter.write_str("struct regen.ecocredit.v1.MsgSend")
             }
 
-            fn visit_map<V>(self, mut map: V) -> std::result::Result<MsgSend, V::Error>
+            fn visit_map<V>(self, mut map_: V) -> std::result::Result<MsgSend, V::Error>
                 where
                     V: serde::de::MapAccess<'de>,
             {
                 let mut sender__ = None;
                 let mut recipient__ = None;
                 let mut credits__ = None;
-                while let Some(k) = map.next_key()? {
+                while let Some(k) = map_.next_key()? {
                     match k {
                         GeneratedField::Sender => {
                             if sender__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("sender"));
                             }
-                            sender__ = Some(map.next_value()?);
+                            sender__ = Some(map_.next_value()?);
                         }
                         GeneratedField::Recipient => {
                             if recipient__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("recipient"));
                             }
-                            recipient__ = Some(map.next_value()?);
+                            recipient__ = Some(map_.next_value()?);
                         }
                         GeneratedField::Credits => {
                             if credits__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("credits"));
                             }
-                            credits__ = Some(map.next_value()?);
+                            credits__ = Some(map_.next_value()?);
                         }
                     }
                 }
@@ -9587,7 +9602,7 @@ impl<'de> serde::Deserialize<'de> for msg_send::SendCredits {
                 formatter.write_str("struct regen.ecocredit.v1.MsgSend.SendCredits")
             }
 
-            fn visit_map<V>(self, mut map: V) -> std::result::Result<msg_send::SendCredits, V::Error>
+            fn visit_map<V>(self, mut map_: V) -> std::result::Result<msg_send::SendCredits, V::Error>
                 where
                     V: serde::de::MapAccess<'de>,
             {
@@ -9596,37 +9611,37 @@ impl<'de> serde::Deserialize<'de> for msg_send::SendCredits {
                 let mut retired_amount__ = None;
                 let mut retirement_jurisdiction__ = None;
                 let mut retirement_reason__ = None;
-                while let Some(k) = map.next_key()? {
+                while let Some(k) = map_.next_key()? {
                     match k {
                         GeneratedField::BatchDenom => {
                             if batch_denom__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("batchDenom"));
                             }
-                            batch_denom__ = Some(map.next_value()?);
+                            batch_denom__ = Some(map_.next_value()?);
                         }
                         GeneratedField::TradableAmount => {
                             if tradable_amount__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("tradableAmount"));
                             }
-                            tradable_amount__ = Some(map.next_value()?);
+                            tradable_amount__ = Some(map_.next_value()?);
                         }
                         GeneratedField::RetiredAmount => {
                             if retired_amount__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("retiredAmount"));
                             }
-                            retired_amount__ = Some(map.next_value()?);
+                            retired_amount__ = Some(map_.next_value()?);
                         }
                         GeneratedField::RetirementJurisdiction => {
                             if retirement_jurisdiction__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("retirementJurisdiction"));
                             }
-                            retirement_jurisdiction__ = Some(map.next_value()?);
+                            retirement_jurisdiction__ = Some(map_.next_value()?);
                         }
                         GeneratedField::RetirementReason => {
                             if retirement_reason__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("retirementReason"));
                             }
-                            retirement_reason__ = Some(map.next_value()?);
+                            retirement_reason__ = Some(map_.next_value()?);
                         }
                     }
                 }
@@ -9699,12 +9714,12 @@ impl<'de> serde::Deserialize<'de> for MsgSendResponse {
                 formatter.write_str("struct regen.ecocredit.v1.MsgSendResponse")
             }
 
-            fn visit_map<V>(self, mut map: V) -> std::result::Result<MsgSendResponse, V::Error>
+            fn visit_map<V>(self, mut map_: V) -> std::result::Result<MsgSendResponse, V::Error>
                 where
                     V: serde::de::MapAccess<'de>,
             {
-                while map.next_key::<GeneratedField>()?.is_some() {
-                    let _ = map.next_value::<serde::de::IgnoredAny>()?;
+                while map_.next_key::<GeneratedField>()?.is_some() {
+                    let _ = map_.next_value::<serde::de::IgnoredAny>()?;
                 }
                 Ok(MsgSendResponse {
                 })
@@ -9790,25 +9805,25 @@ impl<'de> serde::Deserialize<'de> for MsgSetClassCreatorAllowlist {
                 formatter.write_str("struct regen.ecocredit.v1.MsgSetClassCreatorAllowlist")
             }
 
-            fn visit_map<V>(self, mut map: V) -> std::result::Result<MsgSetClassCreatorAllowlist, V::Error>
+            fn visit_map<V>(self, mut map_: V) -> std::result::Result<MsgSetClassCreatorAllowlist, V::Error>
                 where
                     V: serde::de::MapAccess<'de>,
             {
                 let mut authority__ = None;
                 let mut enabled__ = None;
-                while let Some(k) = map.next_key()? {
+                while let Some(k) = map_.next_key()? {
                     match k {
                         GeneratedField::Authority => {
                             if authority__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("authority"));
                             }
-                            authority__ = Some(map.next_value()?);
+                            authority__ = Some(map_.next_value()?);
                         }
                         GeneratedField::Enabled => {
                             if enabled__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("enabled"));
                             }
-                            enabled__ = Some(map.next_value()?);
+                            enabled__ = Some(map_.next_value()?);
                         }
                     }
                 }
@@ -9878,12 +9893,12 @@ impl<'de> serde::Deserialize<'de> for MsgSetClassCreatorAllowlistResponse {
                 formatter.write_str("struct regen.ecocredit.v1.MsgSetClassCreatorAllowlistResponse")
             }
 
-            fn visit_map<V>(self, mut map: V) -> std::result::Result<MsgSetClassCreatorAllowlistResponse, V::Error>
+            fn visit_map<V>(self, mut map_: V) -> std::result::Result<MsgSetClassCreatorAllowlistResponse, V::Error>
                 where
                     V: serde::de::MapAccess<'de>,
             {
-                while map.next_key::<GeneratedField>()?.is_some() {
-                    let _ = map.next_value::<serde::de::IgnoredAny>()?;
+                while map_.next_key::<GeneratedField>()?.is_some() {
+                    let _ = map_.next_value::<serde::de::IgnoredAny>()?;
                 }
                 Ok(MsgSetClassCreatorAllowlistResponse {
                 })
@@ -9980,32 +9995,32 @@ impl<'de> serde::Deserialize<'de> for MsgUpdateBatchMetadata {
                 formatter.write_str("struct regen.ecocredit.v1.MsgUpdateBatchMetadata")
             }
 
-            fn visit_map<V>(self, mut map: V) -> std::result::Result<MsgUpdateBatchMetadata, V::Error>
+            fn visit_map<V>(self, mut map_: V) -> std::result::Result<MsgUpdateBatchMetadata, V::Error>
                 where
                     V: serde::de::MapAccess<'de>,
             {
                 let mut issuer__ = None;
                 let mut batch_denom__ = None;
                 let mut new_metadata__ = None;
-                while let Some(k) = map.next_key()? {
+                while let Some(k) = map_.next_key()? {
                     match k {
                         GeneratedField::Issuer => {
                             if issuer__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("issuer"));
                             }
-                            issuer__ = Some(map.next_value()?);
+                            issuer__ = Some(map_.next_value()?);
                         }
                         GeneratedField::BatchDenom => {
                             if batch_denom__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("batchDenom"));
                             }
-                            batch_denom__ = Some(map.next_value()?);
+                            batch_denom__ = Some(map_.next_value()?);
                         }
                         GeneratedField::NewMetadata => {
                             if new_metadata__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("newMetadata"));
                             }
-                            new_metadata__ = Some(map.next_value()?);
+                            new_metadata__ = Some(map_.next_value()?);
                         }
                     }
                 }
@@ -10076,12 +10091,12 @@ impl<'de> serde::Deserialize<'de> for MsgUpdateBatchMetadataResponse {
                 formatter.write_str("struct regen.ecocredit.v1.MsgUpdateBatchMetadataResponse")
             }
 
-            fn visit_map<V>(self, mut map: V) -> std::result::Result<MsgUpdateBatchMetadataResponse, V::Error>
+            fn visit_map<V>(self, mut map_: V) -> std::result::Result<MsgUpdateBatchMetadataResponse, V::Error>
                 where
                     V: serde::de::MapAccess<'de>,
             {
-                while map.next_key::<GeneratedField>()?.is_some() {
-                    let _ = map.next_value::<serde::de::IgnoredAny>()?;
+                while map_.next_key::<GeneratedField>()?.is_some() {
+                    let _ = map_.next_value::<serde::de::IgnoredAny>()?;
                 }
                 Ok(MsgUpdateBatchMetadataResponse {
                 })
@@ -10178,32 +10193,32 @@ impl<'de> serde::Deserialize<'de> for MsgUpdateClassAdmin {
                 formatter.write_str("struct regen.ecocredit.v1.MsgUpdateClassAdmin")
             }
 
-            fn visit_map<V>(self, mut map: V) -> std::result::Result<MsgUpdateClassAdmin, V::Error>
+            fn visit_map<V>(self, mut map_: V) -> std::result::Result<MsgUpdateClassAdmin, V::Error>
                 where
                     V: serde::de::MapAccess<'de>,
             {
                 let mut admin__ = None;
                 let mut class_id__ = None;
                 let mut new_admin__ = None;
-                while let Some(k) = map.next_key()? {
+                while let Some(k) = map_.next_key()? {
                     match k {
                         GeneratedField::Admin => {
                             if admin__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("admin"));
                             }
-                            admin__ = Some(map.next_value()?);
+                            admin__ = Some(map_.next_value()?);
                         }
                         GeneratedField::ClassId => {
                             if class_id__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("classId"));
                             }
-                            class_id__ = Some(map.next_value()?);
+                            class_id__ = Some(map_.next_value()?);
                         }
                         GeneratedField::NewAdmin => {
                             if new_admin__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("newAdmin"));
                             }
-                            new_admin__ = Some(map.next_value()?);
+                            new_admin__ = Some(map_.next_value()?);
                         }
                     }
                 }
@@ -10274,12 +10289,12 @@ impl<'de> serde::Deserialize<'de> for MsgUpdateClassAdminResponse {
                 formatter.write_str("struct regen.ecocredit.v1.MsgUpdateClassAdminResponse")
             }
 
-            fn visit_map<V>(self, mut map: V) -> std::result::Result<MsgUpdateClassAdminResponse, V::Error>
+            fn visit_map<V>(self, mut map_: V) -> std::result::Result<MsgUpdateClassAdminResponse, V::Error>
                 where
                     V: serde::de::MapAccess<'de>,
             {
-                while map.next_key::<GeneratedField>()?.is_some() {
-                    let _ = map.next_value::<serde::de::IgnoredAny>()?;
+                while map_.next_key::<GeneratedField>()?.is_some() {
+                    let _ = map_.next_value::<serde::de::IgnoredAny>()?;
                 }
                 Ok(MsgUpdateClassAdminResponse {
                 })
@@ -10365,25 +10380,25 @@ impl<'de> serde::Deserialize<'de> for MsgUpdateClassFee {
                 formatter.write_str("struct regen.ecocredit.v1.MsgUpdateClassFee")
             }
 
-            fn visit_map<V>(self, mut map: V) -> std::result::Result<MsgUpdateClassFee, V::Error>
+            fn visit_map<V>(self, mut map_: V) -> std::result::Result<MsgUpdateClassFee, V::Error>
                 where
                     V: serde::de::MapAccess<'de>,
             {
                 let mut authority__ = None;
                 let mut fee__ = None;
-                while let Some(k) = map.next_key()? {
+                while let Some(k) = map_.next_key()? {
                     match k {
                         GeneratedField::Authority => {
                             if authority__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("authority"));
                             }
-                            authority__ = Some(map.next_value()?);
+                            authority__ = Some(map_.next_value()?);
                         }
                         GeneratedField::Fee => {
                             if fee__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("fee"));
                             }
-                            fee__ = map.next_value()?;
+                            fee__ = map_.next_value()?;
                         }
                     }
                 }
@@ -10453,12 +10468,12 @@ impl<'de> serde::Deserialize<'de> for MsgUpdateClassFeeResponse {
                 formatter.write_str("struct regen.ecocredit.v1.MsgUpdateClassFeeResponse")
             }
 
-            fn visit_map<V>(self, mut map: V) -> std::result::Result<MsgUpdateClassFeeResponse, V::Error>
+            fn visit_map<V>(self, mut map_: V) -> std::result::Result<MsgUpdateClassFeeResponse, V::Error>
                 where
                     V: serde::de::MapAccess<'de>,
             {
-                while map.next_key::<GeneratedField>()?.is_some() {
-                    let _ = map.next_value::<serde::de::IgnoredAny>()?;
+                while map_.next_key::<GeneratedField>()?.is_some() {
+                    let _ = map_.next_value::<serde::de::IgnoredAny>()?;
                 }
                 Ok(MsgUpdateClassFeeResponse {
                 })
@@ -10565,7 +10580,7 @@ impl<'de> serde::Deserialize<'de> for MsgUpdateClassIssuers {
                 formatter.write_str("struct regen.ecocredit.v1.MsgUpdateClassIssuers")
             }
 
-            fn visit_map<V>(self, mut map: V) -> std::result::Result<MsgUpdateClassIssuers, V::Error>
+            fn visit_map<V>(self, mut map_: V) -> std::result::Result<MsgUpdateClassIssuers, V::Error>
                 where
                     V: serde::de::MapAccess<'de>,
             {
@@ -10573,31 +10588,31 @@ impl<'de> serde::Deserialize<'de> for MsgUpdateClassIssuers {
                 let mut class_id__ = None;
                 let mut add_issuers__ = None;
                 let mut remove_issuers__ = None;
-                while let Some(k) = map.next_key()? {
+                while let Some(k) = map_.next_key()? {
                     match k {
                         GeneratedField::Admin => {
                             if admin__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("admin"));
                             }
-                            admin__ = Some(map.next_value()?);
+                            admin__ = Some(map_.next_value()?);
                         }
                         GeneratedField::ClassId => {
                             if class_id__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("classId"));
                             }
-                            class_id__ = Some(map.next_value()?);
+                            class_id__ = Some(map_.next_value()?);
                         }
                         GeneratedField::AddIssuers => {
                             if add_issuers__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("addIssuers"));
                             }
-                            add_issuers__ = Some(map.next_value()?);
+                            add_issuers__ = Some(map_.next_value()?);
                         }
                         GeneratedField::RemoveIssuers => {
                             if remove_issuers__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("removeIssuers"));
                             }
-                            remove_issuers__ = Some(map.next_value()?);
+                            remove_issuers__ = Some(map_.next_value()?);
                         }
                     }
                 }
@@ -10669,12 +10684,12 @@ impl<'de> serde::Deserialize<'de> for MsgUpdateClassIssuersResponse {
                 formatter.write_str("struct regen.ecocredit.v1.MsgUpdateClassIssuersResponse")
             }
 
-            fn visit_map<V>(self, mut map: V) -> std::result::Result<MsgUpdateClassIssuersResponse, V::Error>
+            fn visit_map<V>(self, mut map_: V) -> std::result::Result<MsgUpdateClassIssuersResponse, V::Error>
                 where
                     V: serde::de::MapAccess<'de>,
             {
-                while map.next_key::<GeneratedField>()?.is_some() {
-                    let _ = map.next_value::<serde::de::IgnoredAny>()?;
+                while map_.next_key::<GeneratedField>()?.is_some() {
+                    let _ = map_.next_value::<serde::de::IgnoredAny>()?;
                 }
                 Ok(MsgUpdateClassIssuersResponse {
                 })
@@ -10771,32 +10786,32 @@ impl<'de> serde::Deserialize<'de> for MsgUpdateClassMetadata {
                 formatter.write_str("struct regen.ecocredit.v1.MsgUpdateClassMetadata")
             }
 
-            fn visit_map<V>(self, mut map: V) -> std::result::Result<MsgUpdateClassMetadata, V::Error>
+            fn visit_map<V>(self, mut map_: V) -> std::result::Result<MsgUpdateClassMetadata, V::Error>
                 where
                     V: serde::de::MapAccess<'de>,
             {
                 let mut admin__ = None;
                 let mut class_id__ = None;
                 let mut new_metadata__ = None;
-                while let Some(k) = map.next_key()? {
+                while let Some(k) = map_.next_key()? {
                     match k {
                         GeneratedField::Admin => {
                             if admin__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("admin"));
                             }
-                            admin__ = Some(map.next_value()?);
+                            admin__ = Some(map_.next_value()?);
                         }
                         GeneratedField::ClassId => {
                             if class_id__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("classId"));
                             }
-                            class_id__ = Some(map.next_value()?);
+                            class_id__ = Some(map_.next_value()?);
                         }
                         GeneratedField::NewMetadata => {
                             if new_metadata__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("newMetadata"));
                             }
-                            new_metadata__ = Some(map.next_value()?);
+                            new_metadata__ = Some(map_.next_value()?);
                         }
                     }
                 }
@@ -10867,12 +10882,12 @@ impl<'de> serde::Deserialize<'de> for MsgUpdateClassMetadataResponse {
                 formatter.write_str("struct regen.ecocredit.v1.MsgUpdateClassMetadataResponse")
             }
 
-            fn visit_map<V>(self, mut map: V) -> std::result::Result<MsgUpdateClassMetadataResponse, V::Error>
+            fn visit_map<V>(self, mut map_: V) -> std::result::Result<MsgUpdateClassMetadataResponse, V::Error>
                 where
                     V: serde::de::MapAccess<'de>,
             {
-                while map.next_key::<GeneratedField>()?.is_some() {
-                    let _ = map.next_value::<serde::de::IgnoredAny>()?;
+                while map_.next_key::<GeneratedField>()?.is_some() {
+                    let _ = map_.next_value::<serde::de::IgnoredAny>()?;
                 }
                 Ok(MsgUpdateClassMetadataResponse {
                 })
@@ -10969,32 +10984,32 @@ impl<'de> serde::Deserialize<'de> for MsgUpdateProjectAdmin {
                 formatter.write_str("struct regen.ecocredit.v1.MsgUpdateProjectAdmin")
             }
 
-            fn visit_map<V>(self, mut map: V) -> std::result::Result<MsgUpdateProjectAdmin, V::Error>
+            fn visit_map<V>(self, mut map_: V) -> std::result::Result<MsgUpdateProjectAdmin, V::Error>
                 where
                     V: serde::de::MapAccess<'de>,
             {
                 let mut admin__ = None;
                 let mut project_id__ = None;
                 let mut new_admin__ = None;
-                while let Some(k) = map.next_key()? {
+                while let Some(k) = map_.next_key()? {
                     match k {
                         GeneratedField::Admin => {
                             if admin__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("admin"));
                             }
-                            admin__ = Some(map.next_value()?);
+                            admin__ = Some(map_.next_value()?);
                         }
                         GeneratedField::ProjectId => {
                             if project_id__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("projectId"));
                             }
-                            project_id__ = Some(map.next_value()?);
+                            project_id__ = Some(map_.next_value()?);
                         }
                         GeneratedField::NewAdmin => {
                             if new_admin__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("newAdmin"));
                             }
-                            new_admin__ = Some(map.next_value()?);
+                            new_admin__ = Some(map_.next_value()?);
                         }
                     }
                 }
@@ -11065,12 +11080,12 @@ impl<'de> serde::Deserialize<'de> for MsgUpdateProjectAdminResponse {
                 formatter.write_str("struct regen.ecocredit.v1.MsgUpdateProjectAdminResponse")
             }
 
-            fn visit_map<V>(self, mut map: V) -> std::result::Result<MsgUpdateProjectAdminResponse, V::Error>
+            fn visit_map<V>(self, mut map_: V) -> std::result::Result<MsgUpdateProjectAdminResponse, V::Error>
                 where
                     V: serde::de::MapAccess<'de>,
             {
-                while map.next_key::<GeneratedField>()?.is_some() {
-                    let _ = map.next_value::<serde::de::IgnoredAny>()?;
+                while map_.next_key::<GeneratedField>()?.is_some() {
+                    let _ = map_.next_value::<serde::de::IgnoredAny>()?;
                 }
                 Ok(MsgUpdateProjectAdminResponse {
                 })
@@ -11113,8 +11128,8 @@ impl serde::Serialize for MsgUpdateProjectEnrollment {
             struct_ser.serialize_field("classId", &self.class_id)?;
         }
         if self.new_status != 0 {
-            let v = ProjectEnrollmentStatus::from_i32(self.new_status)
-                .ok_or_else(|| serde::ser::Error::custom(format!("Invalid variant {}", self.new_status)))?;
+            let v = ProjectEnrollmentStatus::try_from(self.new_status)
+                .map_err(|_| serde::ser::Error::custom(format!("Invalid variant {}", self.new_status)))?;
             struct_ser.serialize_field("newStatus", &v)?;
         }
         if !self.metadata.is_empty() {
@@ -11188,7 +11203,7 @@ impl<'de> serde::Deserialize<'de> for MsgUpdateProjectEnrollment {
                 formatter.write_str("struct regen.ecocredit.v1.MsgUpdateProjectEnrollment")
             }
 
-            fn visit_map<V>(self, mut map: V) -> std::result::Result<MsgUpdateProjectEnrollment, V::Error>
+            fn visit_map<V>(self, mut map_: V) -> std::result::Result<MsgUpdateProjectEnrollment, V::Error>
                 where
                     V: serde::de::MapAccess<'de>,
             {
@@ -11197,37 +11212,37 @@ impl<'de> serde::Deserialize<'de> for MsgUpdateProjectEnrollment {
                 let mut class_id__ = None;
                 let mut new_status__ = None;
                 let mut metadata__ = None;
-                while let Some(k) = map.next_key()? {
+                while let Some(k) = map_.next_key()? {
                     match k {
                         GeneratedField::Issuer => {
                             if issuer__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("issuer"));
                             }
-                            issuer__ = Some(map.next_value()?);
+                            issuer__ = Some(map_.next_value()?);
                         }
                         GeneratedField::ProjectId => {
                             if project_id__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("projectId"));
                             }
-                            project_id__ = Some(map.next_value()?);
+                            project_id__ = Some(map_.next_value()?);
                         }
                         GeneratedField::ClassId => {
                             if class_id__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("classId"));
                             }
-                            class_id__ = Some(map.next_value()?);
+                            class_id__ = Some(map_.next_value()?);
                         }
                         GeneratedField::NewStatus => {
                             if new_status__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("newStatus"));
                             }
-                            new_status__ = Some(map.next_value::<ProjectEnrollmentStatus>()? as i32);
+                            new_status__ = Some(map_.next_value::<ProjectEnrollmentStatus>()? as i32);
                         }
                         GeneratedField::Metadata => {
                             if metadata__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("metadata"));
                             }
-                            metadata__ = Some(map.next_value()?);
+                            metadata__ = Some(map_.next_value()?);
                         }
                     }
                 }
@@ -11300,12 +11315,12 @@ impl<'de> serde::Deserialize<'de> for MsgUpdateProjectEnrollmentResponse {
                 formatter.write_str("struct regen.ecocredit.v1.MsgUpdateProjectEnrollmentResponse")
             }
 
-            fn visit_map<V>(self, mut map: V) -> std::result::Result<MsgUpdateProjectEnrollmentResponse, V::Error>
+            fn visit_map<V>(self, mut map_: V) -> std::result::Result<MsgUpdateProjectEnrollmentResponse, V::Error>
                 where
                     V: serde::de::MapAccess<'de>,
             {
-                while map.next_key::<GeneratedField>()?.is_some() {
-                    let _ = map.next_value::<serde::de::IgnoredAny>()?;
+                while map_.next_key::<GeneratedField>()?.is_some() {
+                    let _ = map_.next_value::<serde::de::IgnoredAny>()?;
                 }
                 Ok(MsgUpdateProjectEnrollmentResponse {
                 })
@@ -11391,25 +11406,25 @@ impl<'de> serde::Deserialize<'de> for MsgUpdateProjectFee {
                 formatter.write_str("struct regen.ecocredit.v1.MsgUpdateProjectFee")
             }
 
-            fn visit_map<V>(self, mut map: V) -> std::result::Result<MsgUpdateProjectFee, V::Error>
+            fn visit_map<V>(self, mut map_: V) -> std::result::Result<MsgUpdateProjectFee, V::Error>
                 where
                     V: serde::de::MapAccess<'de>,
             {
                 let mut authority__ = None;
                 let mut fee__ = None;
-                while let Some(k) = map.next_key()? {
+                while let Some(k) = map_.next_key()? {
                     match k {
                         GeneratedField::Authority => {
                             if authority__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("authority"));
                             }
-                            authority__ = Some(map.next_value()?);
+                            authority__ = Some(map_.next_value()?);
                         }
                         GeneratedField::Fee => {
                             if fee__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("fee"));
                             }
-                            fee__ = map.next_value()?;
+                            fee__ = map_.next_value()?;
                         }
                     }
                 }
@@ -11479,12 +11494,12 @@ impl<'de> serde::Deserialize<'de> for MsgUpdateProjectFeeResponse {
                 formatter.write_str("struct regen.ecocredit.v1.MsgUpdateProjectFeeResponse")
             }
 
-            fn visit_map<V>(self, mut map: V) -> std::result::Result<MsgUpdateProjectFeeResponse, V::Error>
+            fn visit_map<V>(self, mut map_: V) -> std::result::Result<MsgUpdateProjectFeeResponse, V::Error>
                 where
                     V: serde::de::MapAccess<'de>,
             {
-                while map.next_key::<GeneratedField>()?.is_some() {
-                    let _ = map.next_value::<serde::de::IgnoredAny>()?;
+                while map_.next_key::<GeneratedField>()?.is_some() {
+                    let _ = map_.next_value::<serde::de::IgnoredAny>()?;
                 }
                 Ok(MsgUpdateProjectFeeResponse {
                 })
@@ -11581,32 +11596,32 @@ impl<'de> serde::Deserialize<'de> for MsgUpdateProjectMetadata {
                 formatter.write_str("struct regen.ecocredit.v1.MsgUpdateProjectMetadata")
             }
 
-            fn visit_map<V>(self, mut map: V) -> std::result::Result<MsgUpdateProjectMetadata, V::Error>
+            fn visit_map<V>(self, mut map_: V) -> std::result::Result<MsgUpdateProjectMetadata, V::Error>
                 where
                     V: serde::de::MapAccess<'de>,
             {
                 let mut admin__ = None;
                 let mut project_id__ = None;
                 let mut new_metadata__ = None;
-                while let Some(k) = map.next_key()? {
+                while let Some(k) = map_.next_key()? {
                     match k {
                         GeneratedField::Admin => {
                             if admin__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("admin"));
                             }
-                            admin__ = Some(map.next_value()?);
+                            admin__ = Some(map_.next_value()?);
                         }
                         GeneratedField::ProjectId => {
                             if project_id__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("projectId"));
                             }
-                            project_id__ = Some(map.next_value()?);
+                            project_id__ = Some(map_.next_value()?);
                         }
                         GeneratedField::NewMetadata => {
                             if new_metadata__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("newMetadata"));
                             }
-                            new_metadata__ = Some(map.next_value()?);
+                            new_metadata__ = Some(map_.next_value()?);
                         }
                     }
                 }
@@ -11677,12 +11692,12 @@ impl<'de> serde::Deserialize<'de> for MsgUpdateProjectMetadataResponse {
                 formatter.write_str("struct regen.ecocredit.v1.MsgUpdateProjectMetadataResponse")
             }
 
-            fn visit_map<V>(self, mut map: V) -> std::result::Result<MsgUpdateProjectMetadataResponse, V::Error>
+            fn visit_map<V>(self, mut map_: V) -> std::result::Result<MsgUpdateProjectMetadataResponse, V::Error>
                 where
                     V: serde::de::MapAccess<'de>,
             {
-                while map.next_key::<GeneratedField>()?.is_some() {
-                    let _ = map.next_value::<serde::de::IgnoredAny>()?;
+                while map_.next_key::<GeneratedField>()?.is_some() {
+                    let _ = map_.next_value::<serde::de::IgnoredAny>()?;
                 }
                 Ok(MsgUpdateProjectMetadataResponse {
                 })
@@ -11786,7 +11801,7 @@ impl<'de> serde::Deserialize<'de> for OriginTx {
                 formatter.write_str("struct regen.ecocredit.v1.OriginTx")
             }
 
-            fn visit_map<V>(self, mut map: V) -> std::result::Result<OriginTx, V::Error>
+            fn visit_map<V>(self, mut map_: V) -> std::result::Result<OriginTx, V::Error>
                 where
                     V: serde::de::MapAccess<'de>,
             {
@@ -11794,31 +11809,31 @@ impl<'de> serde::Deserialize<'de> for OriginTx {
                 let mut source__ = None;
                 let mut contract__ = None;
                 let mut note__ = None;
-                while let Some(k) = map.next_key()? {
+                while let Some(k) = map_.next_key()? {
                     match k {
                         GeneratedField::Id => {
                             if id__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("id"));
                             }
-                            id__ = Some(map.next_value()?);
+                            id__ = Some(map_.next_value()?);
                         }
                         GeneratedField::Source => {
                             if source__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("source"));
                             }
-                            source__ = Some(map.next_value()?);
+                            source__ = Some(map_.next_value()?);
                         }
                         GeneratedField::Contract => {
                             if contract__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("contract"));
                             }
-                            contract__ = Some(map.next_value()?);
+                            contract__ = Some(map_.next_value()?);
                         }
                         GeneratedField::Note => {
                             if note__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("note"));
                             }
-                            note__ = Some(map.next_value()?);
+                            note__ = Some(map_.next_value()?);
                         }
                     }
                 }
@@ -11852,6 +11867,7 @@ impl serde::Serialize for OriginTxIndex {
         }
         let mut struct_ser = serializer.serialize_struct("regen.ecocredit.v1.OriginTxIndex", len)?;
         if self.class_key != 0 {
+            #[allow(clippy::needless_borrow)]
             struct_ser.serialize_field("classKey", ToString::to_string(&self.class_key).as_str())?;
         }
         if !self.id.is_empty() {
@@ -11920,34 +11936,34 @@ impl<'de> serde::Deserialize<'de> for OriginTxIndex {
                 formatter.write_str("struct regen.ecocredit.v1.OriginTxIndex")
             }
 
-            fn visit_map<V>(self, mut map: V) -> std::result::Result<OriginTxIndex, V::Error>
+            fn visit_map<V>(self, mut map_: V) -> std::result::Result<OriginTxIndex, V::Error>
                 where
                     V: serde::de::MapAccess<'de>,
             {
                 let mut class_key__ = None;
                 let mut id__ = None;
                 let mut source__ = None;
-                while let Some(k) = map.next_key()? {
+                while let Some(k) = map_.next_key()? {
                     match k {
                         GeneratedField::ClassKey => {
                             if class_key__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("classKey"));
                             }
                             class_key__ = 
-                                Some(map.next_value::<::pbjson::private::NumberDeserialize<_>>()?.0)
+                                Some(map_.next_value::<::pbjson::private::NumberDeserialize<_>>()?.0)
                             ;
                         }
                         GeneratedField::Id => {
                             if id__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("id"));
                             }
-                            id__ = Some(map.next_value()?);
+                            id__ = Some(map_.next_value()?);
                         }
                         GeneratedField::Source => {
                             if source__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("source"));
                             }
-                            source__ = Some(map.next_value()?);
+                            source__ = Some(map_.next_value()?);
                         }
                     }
                 }
@@ -12080,7 +12096,7 @@ impl<'de> serde::Deserialize<'de> for Params {
                 formatter.write_str("struct regen.ecocredit.v1.Params")
             }
 
-            fn visit_map<V>(self, mut map: V) -> std::result::Result<Params, V::Error>
+            fn visit_map<V>(self, mut map_: V) -> std::result::Result<Params, V::Error>
                 where
                     V: serde::de::MapAccess<'de>,
             {
@@ -12090,43 +12106,43 @@ impl<'de> serde::Deserialize<'de> for Params {
                 let mut allowlist_enabled__ = None;
                 let mut allowed_denoms__ = None;
                 let mut allowed_bridge_chains__ = None;
-                while let Some(k) = map.next_key()? {
+                while let Some(k) = map_.next_key()? {
                     match k {
                         GeneratedField::CreditClassFee => {
                             if credit_class_fee__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("creditClassFee"));
                             }
-                            credit_class_fee__ = Some(map.next_value()?);
+                            credit_class_fee__ = Some(map_.next_value()?);
                         }
                         GeneratedField::BasketFee => {
                             if basket_fee__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("basketFee"));
                             }
-                            basket_fee__ = Some(map.next_value()?);
+                            basket_fee__ = Some(map_.next_value()?);
                         }
                         GeneratedField::AllowedClassCreators => {
                             if allowed_class_creators__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("allowedClassCreators"));
                             }
-                            allowed_class_creators__ = Some(map.next_value()?);
+                            allowed_class_creators__ = Some(map_.next_value()?);
                         }
                         GeneratedField::AllowlistEnabled => {
                             if allowlist_enabled__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("allowlistEnabled"));
                             }
-                            allowlist_enabled__ = Some(map.next_value()?);
+                            allowlist_enabled__ = Some(map_.next_value()?);
                         }
                         GeneratedField::AllowedDenoms => {
                             if allowed_denoms__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("allowedDenoms"));
                             }
-                            allowed_denoms__ = Some(map.next_value()?);
+                            allowed_denoms__ = Some(map_.next_value()?);
                         }
                         GeneratedField::AllowedBridgeChains => {
                             if allowed_bridge_chains__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("allowedBridgeChains"));
                             }
-                            allowed_bridge_chains__ = Some(map.next_value()?);
+                            allowed_bridge_chains__ = Some(map_.next_value()?);
                         }
                     }
                 }
@@ -12174,15 +12190,18 @@ impl serde::Serialize for Project {
         }
         let mut struct_ser = serializer.serialize_struct("regen.ecocredit.v1.Project", len)?;
         if self.key != 0 {
+            #[allow(clippy::needless_borrow)]
             struct_ser.serialize_field("key", ToString::to_string(&self.key).as_str())?;
         }
         if !self.id.is_empty() {
             struct_ser.serialize_field("id", &self.id)?;
         }
         if !self.admin.is_empty() {
+            #[allow(clippy::needless_borrow)]
             struct_ser.serialize_field("admin", pbjson::private::base64::encode(&self.admin).as_str())?;
         }
         if self.class_key != 0 {
+            #[allow(clippy::needless_borrow)]
             struct_ser.serialize_field("classKey", ToString::to_string(&self.class_key).as_str())?;
         }
         if !self.jurisdiction.is_empty() {
@@ -12267,7 +12286,7 @@ impl<'de> serde::Deserialize<'de> for Project {
                 formatter.write_str("struct regen.ecocredit.v1.Project")
             }
 
-            fn visit_map<V>(self, mut map: V) -> std::result::Result<Project, V::Error>
+            fn visit_map<V>(self, mut map_: V) -> std::result::Result<Project, V::Error>
                 where
                     V: serde::de::MapAccess<'de>,
             {
@@ -12278,28 +12297,28 @@ impl<'de> serde::Deserialize<'de> for Project {
                 let mut jurisdiction__ = None;
                 let mut metadata__ = None;
                 let mut reference_id__ = None;
-                while let Some(k) = map.next_key()? {
+                while let Some(k) = map_.next_key()? {
                     match k {
                         GeneratedField::Key => {
                             if key__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("key"));
                             }
                             key__ = 
-                                Some(map.next_value::<::pbjson::private::NumberDeserialize<_>>()?.0)
+                                Some(map_.next_value::<::pbjson::private::NumberDeserialize<_>>()?.0)
                             ;
                         }
                         GeneratedField::Id => {
                             if id__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("id"));
                             }
-                            id__ = Some(map.next_value()?);
+                            id__ = Some(map_.next_value()?);
                         }
                         GeneratedField::Admin => {
                             if admin__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("admin"));
                             }
                             admin__ = 
-                                Some(map.next_value::<::pbjson::private::BytesDeserialize<_>>()?.0)
+                                Some(map_.next_value::<::pbjson::private::BytesDeserialize<_>>()?.0)
                             ;
                         }
                         GeneratedField::ClassKey => {
@@ -12307,26 +12326,26 @@ impl<'de> serde::Deserialize<'de> for Project {
                                 return Err(serde::de::Error::duplicate_field("classKey"));
                             }
                             class_key__ = 
-                                Some(map.next_value::<::pbjson::private::NumberDeserialize<_>>()?.0)
+                                Some(map_.next_value::<::pbjson::private::NumberDeserialize<_>>()?.0)
                             ;
                         }
                         GeneratedField::Jurisdiction => {
                             if jurisdiction__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("jurisdiction"));
                             }
-                            jurisdiction__ = Some(map.next_value()?);
+                            jurisdiction__ = Some(map_.next_value()?);
                         }
                         GeneratedField::Metadata => {
                             if metadata__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("metadata"));
                             }
-                            metadata__ = Some(map.next_value()?);
+                            metadata__ = Some(map_.next_value()?);
                         }
                         GeneratedField::ReferenceId => {
                             if reference_id__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("referenceId"));
                             }
-                            reference_id__ = Some(map.next_value()?);
+                            reference_id__ = Some(map_.next_value()?);
                         }
                     }
                 }
@@ -12369,14 +12388,16 @@ impl serde::Serialize for ProjectEnrollment {
         }
         let mut struct_ser = serializer.serialize_struct("regen.ecocredit.v1.ProjectEnrollment", len)?;
         if self.project_key != 0 {
+            #[allow(clippy::needless_borrow)]
             struct_ser.serialize_field("projectKey", ToString::to_string(&self.project_key).as_str())?;
         }
         if self.class_key != 0 {
+            #[allow(clippy::needless_borrow)]
             struct_ser.serialize_field("classKey", ToString::to_string(&self.class_key).as_str())?;
         }
         if self.status != 0 {
-            let v = ProjectEnrollmentStatus::from_i32(self.status)
-                .ok_or_else(|| serde::ser::Error::custom(format!("Invalid variant {}", self.status)))?;
+            let v = ProjectEnrollmentStatus::try_from(self.status)
+                .map_err(|_| serde::ser::Error::custom(format!("Invalid variant {}", self.status)))?;
             struct_ser.serialize_field("status", &v)?;
         }
         if !self.application_metadata.is_empty() {
@@ -12454,7 +12475,7 @@ impl<'de> serde::Deserialize<'de> for ProjectEnrollment {
                 formatter.write_str("struct regen.ecocredit.v1.ProjectEnrollment")
             }
 
-            fn visit_map<V>(self, mut map: V) -> std::result::Result<ProjectEnrollment, V::Error>
+            fn visit_map<V>(self, mut map_: V) -> std::result::Result<ProjectEnrollment, V::Error>
                 where
                     V: serde::de::MapAccess<'de>,
             {
@@ -12463,14 +12484,14 @@ impl<'de> serde::Deserialize<'de> for ProjectEnrollment {
                 let mut status__ = None;
                 let mut application_metadata__ = None;
                 let mut enrollment_metadata__ = None;
-                while let Some(k) = map.next_key()? {
+                while let Some(k) = map_.next_key()? {
                     match k {
                         GeneratedField::ProjectKey => {
                             if project_key__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("projectKey"));
                             }
                             project_key__ = 
-                                Some(map.next_value::<::pbjson::private::NumberDeserialize<_>>()?.0)
+                                Some(map_.next_value::<::pbjson::private::NumberDeserialize<_>>()?.0)
                             ;
                         }
                         GeneratedField::ClassKey => {
@@ -12478,26 +12499,26 @@ impl<'de> serde::Deserialize<'de> for ProjectEnrollment {
                                 return Err(serde::de::Error::duplicate_field("classKey"));
                             }
                             class_key__ = 
-                                Some(map.next_value::<::pbjson::private::NumberDeserialize<_>>()?.0)
+                                Some(map_.next_value::<::pbjson::private::NumberDeserialize<_>>()?.0)
                             ;
                         }
                         GeneratedField::Status => {
                             if status__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("status"));
                             }
-                            status__ = Some(map.next_value::<ProjectEnrollmentStatus>()? as i32);
+                            status__ = Some(map_.next_value::<ProjectEnrollmentStatus>()? as i32);
                         }
                         GeneratedField::ApplicationMetadata => {
                             if application_metadata__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("applicationMetadata"));
                             }
-                            application_metadata__ = Some(map.next_value()?);
+                            application_metadata__ = Some(map_.next_value()?);
                         }
                         GeneratedField::EnrollmentMetadata => {
                             if enrollment_metadata__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("enrollmentMetadata"));
                             }
-                            enrollment_metadata__ = Some(map.next_value()?);
+                            enrollment_metadata__ = Some(map_.next_value()?);
                         }
                     }
                 }
@@ -12556,10 +12577,9 @@ impl<'de> serde::Deserialize<'de> for ProjectEnrollmentStatus {
             where
                 E: serde::de::Error,
             {
-                use std::convert::TryFrom;
                 i32::try_from(v)
                     .ok()
-                    .and_then(ProjectEnrollmentStatus::from_i32)
+                    .and_then(|x| x.try_into().ok())
                     .ok_or_else(|| {
                         serde::de::Error::invalid_value(serde::de::Unexpected::Signed(v), &self)
                     })
@@ -12569,10 +12589,9 @@ impl<'de> serde::Deserialize<'de> for ProjectEnrollmentStatus {
             where
                 E: serde::de::Error,
             {
-                use std::convert::TryFrom;
                 i32::try_from(v)
                     .ok()
-                    .and_then(ProjectEnrollmentStatus::from_i32)
+                    .and_then(|x| x.try_into().ok())
                     .ok_or_else(|| {
                         serde::de::Error::invalid_value(serde::de::Unexpected::Unsigned(v), &self)
                     })
@@ -12663,18 +12682,18 @@ impl<'de> serde::Deserialize<'de> for ProjectFee {
                 formatter.write_str("struct regen.ecocredit.v1.ProjectFee")
             }
 
-            fn visit_map<V>(self, mut map: V) -> std::result::Result<ProjectFee, V::Error>
+            fn visit_map<V>(self, mut map_: V) -> std::result::Result<ProjectFee, V::Error>
                 where
                     V: serde::de::MapAccess<'de>,
             {
                 let mut fee__ = None;
-                while let Some(k) = map.next_key()? {
+                while let Some(k) = map_.next_key()? {
                     match k {
                         GeneratedField::Fee => {
                             if fee__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("fee"));
                             }
-                            fee__ = map.next_value()?;
+                            fee__ = map_.next_value()?;
                         }
                     }
                 }
@@ -12801,7 +12820,7 @@ impl<'de> serde::Deserialize<'de> for ProjectInfo {
                 formatter.write_str("struct regen.ecocredit.v1.ProjectInfo")
             }
 
-            fn visit_map<V>(self, mut map: V) -> std::result::Result<ProjectInfo, V::Error>
+            fn visit_map<V>(self, mut map_: V) -> std::result::Result<ProjectInfo, V::Error>
                 where
                     V: serde::de::MapAccess<'de>,
             {
@@ -12811,43 +12830,43 @@ impl<'de> serde::Deserialize<'de> for ProjectInfo {
                 let mut jurisdiction__ = None;
                 let mut metadata__ = None;
                 let mut reference_id__ = None;
-                while let Some(k) = map.next_key()? {
+                while let Some(k) = map_.next_key()? {
                     match k {
                         GeneratedField::Id => {
                             if id__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("id"));
                             }
-                            id__ = Some(map.next_value()?);
+                            id__ = Some(map_.next_value()?);
                         }
                         GeneratedField::Admin => {
                             if admin__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("admin"));
                             }
-                            admin__ = Some(map.next_value()?);
+                            admin__ = Some(map_.next_value()?);
                         }
                         GeneratedField::ClassId => {
                             if class_id__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("classId"));
                             }
-                            class_id__ = Some(map.next_value()?);
+                            class_id__ = Some(map_.next_value()?);
                         }
                         GeneratedField::Jurisdiction => {
                             if jurisdiction__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("jurisdiction"));
                             }
-                            jurisdiction__ = Some(map.next_value()?);
+                            jurisdiction__ = Some(map_.next_value()?);
                         }
                         GeneratedField::Metadata => {
                             if metadata__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("metadata"));
                             }
-                            metadata__ = Some(map.next_value()?);
+                            metadata__ = Some(map_.next_value()?);
                         }
                         GeneratedField::ReferenceId => {
                             if reference_id__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("referenceId"));
                             }
-                            reference_id__ = Some(map.next_value()?);
+                            reference_id__ = Some(map_.next_value()?);
                         }
                     }
                 }
@@ -12880,9 +12899,11 @@ impl serde::Serialize for ProjectSequence {
         }
         let mut struct_ser = serializer.serialize_struct("regen.ecocredit.v1.ProjectSequence", len)?;
         if self.class_key != 0 {
+            #[allow(clippy::needless_borrow)]
             struct_ser.serialize_field("classKey", ToString::to_string(&self.class_key).as_str())?;
         }
         if self.next_sequence != 0 {
+            #[allow(clippy::needless_borrow)]
             struct_ser.serialize_field("nextSequence", ToString::to_string(&self.next_sequence).as_str())?;
         }
         struct_ser.end()
@@ -12943,20 +12964,20 @@ impl<'de> serde::Deserialize<'de> for ProjectSequence {
                 formatter.write_str("struct regen.ecocredit.v1.ProjectSequence")
             }
 
-            fn visit_map<V>(self, mut map: V) -> std::result::Result<ProjectSequence, V::Error>
+            fn visit_map<V>(self, mut map_: V) -> std::result::Result<ProjectSequence, V::Error>
                 where
                     V: serde::de::MapAccess<'de>,
             {
                 let mut class_key__ = None;
                 let mut next_sequence__ = None;
-                while let Some(k) = map.next_key()? {
+                while let Some(k) = map_.next_key()? {
                     match k {
                         GeneratedField::ClassKey => {
                             if class_key__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("classKey"));
                             }
                             class_key__ = 
-                                Some(map.next_value::<::pbjson::private::NumberDeserialize<_>>()?.0)
+                                Some(map_.next_value::<::pbjson::private::NumberDeserialize<_>>()?.0)
                             ;
                         }
                         GeneratedField::NextSequence => {
@@ -12964,7 +12985,7 @@ impl<'de> serde::Deserialize<'de> for ProjectSequence {
                                 return Err(serde::de::Error::duplicate_field("nextSequence"));
                             }
                             next_sequence__ = 
-                                Some(map.next_value::<::pbjson::private::NumberDeserialize<_>>()?.0)
+                                Some(map_.next_value::<::pbjson::private::NumberDeserialize<_>>()?.0)
                             ;
                         }
                     }
@@ -13046,18 +13067,18 @@ impl<'de> serde::Deserialize<'de> for QueryAllBalancesRequest {
                 formatter.write_str("struct regen.ecocredit.v1.QueryAllBalancesRequest")
             }
 
-            fn visit_map<V>(self, mut map: V) -> std::result::Result<QueryAllBalancesRequest, V::Error>
+            fn visit_map<V>(self, mut map_: V) -> std::result::Result<QueryAllBalancesRequest, V::Error>
                 where
                     V: serde::de::MapAccess<'de>,
             {
                 let mut pagination__ = None;
-                while let Some(k) = map.next_key()? {
+                while let Some(k) = map_.next_key()? {
                     match k {
                         GeneratedField::Pagination => {
                             if pagination__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("pagination"));
                             }
-                            pagination__ = map.next_value()?;
+                            pagination__ = map_.next_value()?;
                         }
                     }
                 }
@@ -13146,25 +13167,25 @@ impl<'de> serde::Deserialize<'de> for QueryAllBalancesResponse {
                 formatter.write_str("struct regen.ecocredit.v1.QueryAllBalancesResponse")
             }
 
-            fn visit_map<V>(self, mut map: V) -> std::result::Result<QueryAllBalancesResponse, V::Error>
+            fn visit_map<V>(self, mut map_: V) -> std::result::Result<QueryAllBalancesResponse, V::Error>
                 where
                     V: serde::de::MapAccess<'de>,
             {
                 let mut balances__ = None;
                 let mut pagination__ = None;
-                while let Some(k) = map.next_key()? {
+                while let Some(k) = map_.next_key()? {
                     match k {
                         GeneratedField::Balances => {
                             if balances__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("balances"));
                             }
-                            balances__ = Some(map.next_value()?);
+                            balances__ = Some(map_.next_value()?);
                         }
                         GeneratedField::Pagination => {
                             if pagination__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("pagination"));
                             }
-                            pagination__ = map.next_value()?;
+                            pagination__ = map_.next_value()?;
                         }
                     }
                 }
@@ -13234,12 +13255,12 @@ impl<'de> serde::Deserialize<'de> for QueryAllowedBridgeChainsRequest {
                 formatter.write_str("struct regen.ecocredit.v1.QueryAllowedBridgeChainsRequest")
             }
 
-            fn visit_map<V>(self, mut map: V) -> std::result::Result<QueryAllowedBridgeChainsRequest, V::Error>
+            fn visit_map<V>(self, mut map_: V) -> std::result::Result<QueryAllowedBridgeChainsRequest, V::Error>
                 where
                     V: serde::de::MapAccess<'de>,
             {
-                while map.next_key::<GeneratedField>()?.is_some() {
-                    let _ = map.next_value::<serde::de::IgnoredAny>()?;
+                while map_.next_key::<GeneratedField>()?.is_some() {
+                    let _ = map_.next_value::<serde::de::IgnoredAny>()?;
                 }
                 Ok(QueryAllowedBridgeChainsRequest {
                 })
@@ -13317,18 +13338,18 @@ impl<'de> serde::Deserialize<'de> for QueryAllowedBridgeChainsResponse {
                 formatter.write_str("struct regen.ecocredit.v1.QueryAllowedBridgeChainsResponse")
             }
 
-            fn visit_map<V>(self, mut map: V) -> std::result::Result<QueryAllowedBridgeChainsResponse, V::Error>
+            fn visit_map<V>(self, mut map_: V) -> std::result::Result<QueryAllowedBridgeChainsResponse, V::Error>
                 where
                     V: serde::de::MapAccess<'de>,
             {
                 let mut allowed_bridge_chains__ = None;
-                while let Some(k) = map.next_key()? {
+                while let Some(k) = map_.next_key()? {
                     match k {
                         GeneratedField::AllowedBridgeChains => {
                             if allowed_bridge_chains__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("allowedBridgeChains"));
                             }
-                            allowed_bridge_chains__ = Some(map.next_value()?);
+                            allowed_bridge_chains__ = Some(map_.next_value()?);
                         }
                     }
                 }
@@ -13408,18 +13429,18 @@ impl<'de> serde::Deserialize<'de> for QueryAllowedClassCreatorsRequest {
                 formatter.write_str("struct regen.ecocredit.v1.QueryAllowedClassCreatorsRequest")
             }
 
-            fn visit_map<V>(self, mut map: V) -> std::result::Result<QueryAllowedClassCreatorsRequest, V::Error>
+            fn visit_map<V>(self, mut map_: V) -> std::result::Result<QueryAllowedClassCreatorsRequest, V::Error>
                 where
                     V: serde::de::MapAccess<'de>,
             {
                 let mut pagination__ = None;
-                while let Some(k) = map.next_key()? {
+                while let Some(k) = map_.next_key()? {
                     match k {
                         GeneratedField::Pagination => {
                             if pagination__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("pagination"));
                             }
-                            pagination__ = map.next_value()?;
+                            pagination__ = map_.next_value()?;
                         }
                     }
                 }
@@ -13509,25 +13530,25 @@ impl<'de> serde::Deserialize<'de> for QueryAllowedClassCreatorsResponse {
                 formatter.write_str("struct regen.ecocredit.v1.QueryAllowedClassCreatorsResponse")
             }
 
-            fn visit_map<V>(self, mut map: V) -> std::result::Result<QueryAllowedClassCreatorsResponse, V::Error>
+            fn visit_map<V>(self, mut map_: V) -> std::result::Result<QueryAllowedClassCreatorsResponse, V::Error>
                 where
                     V: serde::de::MapAccess<'de>,
             {
                 let mut class_creators__ = None;
                 let mut pagination__ = None;
-                while let Some(k) = map.next_key()? {
+                while let Some(k) = map_.next_key()? {
                     match k {
                         GeneratedField::ClassCreators => {
                             if class_creators__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("classCreators"));
                             }
-                            class_creators__ = Some(map.next_value()?);
+                            class_creators__ = Some(map_.next_value()?);
                         }
                         GeneratedField::Pagination => {
                             if pagination__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("pagination"));
                             }
-                            pagination__ = map.next_value()?;
+                            pagination__ = map_.next_value()?;
                         }
                     }
                 }
@@ -13618,25 +13639,25 @@ impl<'de> serde::Deserialize<'de> for QueryBalanceRequest {
                 formatter.write_str("struct regen.ecocredit.v1.QueryBalanceRequest")
             }
 
-            fn visit_map<V>(self, mut map: V) -> std::result::Result<QueryBalanceRequest, V::Error>
+            fn visit_map<V>(self, mut map_: V) -> std::result::Result<QueryBalanceRequest, V::Error>
                 where
                     V: serde::de::MapAccess<'de>,
             {
                 let mut address__ = None;
                 let mut batch_denom__ = None;
-                while let Some(k) = map.next_key()? {
+                while let Some(k) = map_.next_key()? {
                     match k {
                         GeneratedField::Address => {
                             if address__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("address"));
                             }
-                            address__ = Some(map.next_value()?);
+                            address__ = Some(map_.next_value()?);
                         }
                         GeneratedField::BatchDenom => {
                             if batch_denom__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("batchDenom"));
                             }
-                            batch_denom__ = Some(map.next_value()?);
+                            batch_denom__ = Some(map_.next_value()?);
                         }
                     }
                 }
@@ -13717,18 +13738,18 @@ impl<'de> serde::Deserialize<'de> for QueryBalanceResponse {
                 formatter.write_str("struct regen.ecocredit.v1.QueryBalanceResponse")
             }
 
-            fn visit_map<V>(self, mut map: V) -> std::result::Result<QueryBalanceResponse, V::Error>
+            fn visit_map<V>(self, mut map_: V) -> std::result::Result<QueryBalanceResponse, V::Error>
                 where
                     V: serde::de::MapAccess<'de>,
             {
                 let mut balance__ = None;
-                while let Some(k) = map.next_key()? {
+                while let Some(k) = map_.next_key()? {
                     match k {
                         GeneratedField::Balance => {
                             if balance__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("balance"));
                             }
-                            balance__ = map.next_value()?;
+                            balance__ = map_.next_value()?;
                         }
                     }
                 }
@@ -13818,25 +13839,25 @@ impl<'de> serde::Deserialize<'de> for QueryBalancesByBatchRequest {
                 formatter.write_str("struct regen.ecocredit.v1.QueryBalancesByBatchRequest")
             }
 
-            fn visit_map<V>(self, mut map: V) -> std::result::Result<QueryBalancesByBatchRequest, V::Error>
+            fn visit_map<V>(self, mut map_: V) -> std::result::Result<QueryBalancesByBatchRequest, V::Error>
                 where
                     V: serde::de::MapAccess<'de>,
             {
                 let mut batch_denom__ = None;
                 let mut pagination__ = None;
-                while let Some(k) = map.next_key()? {
+                while let Some(k) = map_.next_key()? {
                     match k {
                         GeneratedField::BatchDenom => {
                             if batch_denom__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("batchDenom"));
                             }
-                            batch_denom__ = Some(map.next_value()?);
+                            batch_denom__ = Some(map_.next_value()?);
                         }
                         GeneratedField::Pagination => {
                             if pagination__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("pagination"));
                             }
-                            pagination__ = map.next_value()?;
+                            pagination__ = map_.next_value()?;
                         }
                     }
                 }
@@ -13926,25 +13947,25 @@ impl<'de> serde::Deserialize<'de> for QueryBalancesByBatchResponse {
                 formatter.write_str("struct regen.ecocredit.v1.QueryBalancesByBatchResponse")
             }
 
-            fn visit_map<V>(self, mut map: V) -> std::result::Result<QueryBalancesByBatchResponse, V::Error>
+            fn visit_map<V>(self, mut map_: V) -> std::result::Result<QueryBalancesByBatchResponse, V::Error>
                 where
                     V: serde::de::MapAccess<'de>,
             {
                 let mut balances__ = None;
                 let mut pagination__ = None;
-                while let Some(k) = map.next_key()? {
+                while let Some(k) = map_.next_key()? {
                     match k {
                         GeneratedField::Balances => {
                             if balances__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("balances"));
                             }
-                            balances__ = Some(map.next_value()?);
+                            balances__ = Some(map_.next_value()?);
                         }
                         GeneratedField::Pagination => {
                             if pagination__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("pagination"));
                             }
-                            pagination__ = map.next_value()?;
+                            pagination__ = map_.next_value()?;
                         }
                     }
                 }
@@ -14034,25 +14055,25 @@ impl<'de> serde::Deserialize<'de> for QueryBalancesRequest {
                 formatter.write_str("struct regen.ecocredit.v1.QueryBalancesRequest")
             }
 
-            fn visit_map<V>(self, mut map: V) -> std::result::Result<QueryBalancesRequest, V::Error>
+            fn visit_map<V>(self, mut map_: V) -> std::result::Result<QueryBalancesRequest, V::Error>
                 where
                     V: serde::de::MapAccess<'de>,
             {
                 let mut address__ = None;
                 let mut pagination__ = None;
-                while let Some(k) = map.next_key()? {
+                while let Some(k) = map_.next_key()? {
                     match k {
                         GeneratedField::Address => {
                             if address__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("address"));
                             }
-                            address__ = Some(map.next_value()?);
+                            address__ = Some(map_.next_value()?);
                         }
                         GeneratedField::Pagination => {
                             if pagination__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("pagination"));
                             }
-                            pagination__ = map.next_value()?;
+                            pagination__ = map_.next_value()?;
                         }
                     }
                 }
@@ -14142,25 +14163,25 @@ impl<'de> serde::Deserialize<'de> for QueryBalancesResponse {
                 formatter.write_str("struct regen.ecocredit.v1.QueryBalancesResponse")
             }
 
-            fn visit_map<V>(self, mut map: V) -> std::result::Result<QueryBalancesResponse, V::Error>
+            fn visit_map<V>(self, mut map_: V) -> std::result::Result<QueryBalancesResponse, V::Error>
                 where
                     V: serde::de::MapAccess<'de>,
             {
                 let mut balances__ = None;
                 let mut pagination__ = None;
-                while let Some(k) = map.next_key()? {
+                while let Some(k) = map_.next_key()? {
                     match k {
                         GeneratedField::Balances => {
                             if balances__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("balances"));
                             }
-                            balances__ = Some(map.next_value()?);
+                            balances__ = Some(map_.next_value()?);
                         }
                         GeneratedField::Pagination => {
                             if pagination__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("pagination"));
                             }
-                            pagination__ = map.next_value()?;
+                            pagination__ = map_.next_value()?;
                         }
                     }
                 }
@@ -14242,18 +14263,18 @@ impl<'de> serde::Deserialize<'de> for QueryBatchRequest {
                 formatter.write_str("struct regen.ecocredit.v1.QueryBatchRequest")
             }
 
-            fn visit_map<V>(self, mut map: V) -> std::result::Result<QueryBatchRequest, V::Error>
+            fn visit_map<V>(self, mut map_: V) -> std::result::Result<QueryBatchRequest, V::Error>
                 where
                     V: serde::de::MapAccess<'de>,
             {
                 let mut batch_denom__ = None;
-                while let Some(k) = map.next_key()? {
+                while let Some(k) = map_.next_key()? {
                     match k {
                         GeneratedField::BatchDenom => {
                             if batch_denom__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("batchDenom"));
                             }
-                            batch_denom__ = Some(map.next_value()?);
+                            batch_denom__ = Some(map_.next_value()?);
                         }
                     }
                 }
@@ -14333,18 +14354,18 @@ impl<'de> serde::Deserialize<'de> for QueryBatchResponse {
                 formatter.write_str("struct regen.ecocredit.v1.QueryBatchResponse")
             }
 
-            fn visit_map<V>(self, mut map: V) -> std::result::Result<QueryBatchResponse, V::Error>
+            fn visit_map<V>(self, mut map_: V) -> std::result::Result<QueryBatchResponse, V::Error>
                 where
                     V: serde::de::MapAccess<'de>,
             {
                 let mut batch__ = None;
-                while let Some(k) = map.next_key()? {
+                while let Some(k) = map_.next_key()? {
                     match k {
                         GeneratedField::Batch => {
                             if batch__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("batch"));
                             }
-                            batch__ = map.next_value()?;
+                            batch__ = map_.next_value()?;
                         }
                     }
                 }
@@ -14434,25 +14455,25 @@ impl<'de> serde::Deserialize<'de> for QueryBatchesByClassRequest {
                 formatter.write_str("struct regen.ecocredit.v1.QueryBatchesByClassRequest")
             }
 
-            fn visit_map<V>(self, mut map: V) -> std::result::Result<QueryBatchesByClassRequest, V::Error>
+            fn visit_map<V>(self, mut map_: V) -> std::result::Result<QueryBatchesByClassRequest, V::Error>
                 where
                     V: serde::de::MapAccess<'de>,
             {
                 let mut class_id__ = None;
                 let mut pagination__ = None;
-                while let Some(k) = map.next_key()? {
+                while let Some(k) = map_.next_key()? {
                     match k {
                         GeneratedField::ClassId => {
                             if class_id__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("classId"));
                             }
-                            class_id__ = Some(map.next_value()?);
+                            class_id__ = Some(map_.next_value()?);
                         }
                         GeneratedField::Pagination => {
                             if pagination__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("pagination"));
                             }
-                            pagination__ = map.next_value()?;
+                            pagination__ = map_.next_value()?;
                         }
                     }
                 }
@@ -14542,25 +14563,25 @@ impl<'de> serde::Deserialize<'de> for QueryBatchesByClassResponse {
                 formatter.write_str("struct regen.ecocredit.v1.QueryBatchesByClassResponse")
             }
 
-            fn visit_map<V>(self, mut map: V) -> std::result::Result<QueryBatchesByClassResponse, V::Error>
+            fn visit_map<V>(self, mut map_: V) -> std::result::Result<QueryBatchesByClassResponse, V::Error>
                 where
                     V: serde::de::MapAccess<'de>,
             {
                 let mut batches__ = None;
                 let mut pagination__ = None;
-                while let Some(k) = map.next_key()? {
+                while let Some(k) = map_.next_key()? {
                     match k {
                         GeneratedField::Batches => {
                             if batches__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("batches"));
                             }
-                            batches__ = Some(map.next_value()?);
+                            batches__ = Some(map_.next_value()?);
                         }
                         GeneratedField::Pagination => {
                             if pagination__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("pagination"));
                             }
-                            pagination__ = map.next_value()?;
+                            pagination__ = map_.next_value()?;
                         }
                     }
                 }
@@ -14650,25 +14671,25 @@ impl<'de> serde::Deserialize<'de> for QueryBatchesByIssuerRequest {
                 formatter.write_str("struct regen.ecocredit.v1.QueryBatchesByIssuerRequest")
             }
 
-            fn visit_map<V>(self, mut map: V) -> std::result::Result<QueryBatchesByIssuerRequest, V::Error>
+            fn visit_map<V>(self, mut map_: V) -> std::result::Result<QueryBatchesByIssuerRequest, V::Error>
                 where
                     V: serde::de::MapAccess<'de>,
             {
                 let mut issuer__ = None;
                 let mut pagination__ = None;
-                while let Some(k) = map.next_key()? {
+                while let Some(k) = map_.next_key()? {
                     match k {
                         GeneratedField::Issuer => {
                             if issuer__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("issuer"));
                             }
-                            issuer__ = Some(map.next_value()?);
+                            issuer__ = Some(map_.next_value()?);
                         }
                         GeneratedField::Pagination => {
                             if pagination__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("pagination"));
                             }
-                            pagination__ = map.next_value()?;
+                            pagination__ = map_.next_value()?;
                         }
                     }
                 }
@@ -14758,25 +14779,25 @@ impl<'de> serde::Deserialize<'de> for QueryBatchesByIssuerResponse {
                 formatter.write_str("struct regen.ecocredit.v1.QueryBatchesByIssuerResponse")
             }
 
-            fn visit_map<V>(self, mut map: V) -> std::result::Result<QueryBatchesByIssuerResponse, V::Error>
+            fn visit_map<V>(self, mut map_: V) -> std::result::Result<QueryBatchesByIssuerResponse, V::Error>
                 where
                     V: serde::de::MapAccess<'de>,
             {
                 let mut batches__ = None;
                 let mut pagination__ = None;
-                while let Some(k) = map.next_key()? {
+                while let Some(k) = map_.next_key()? {
                     match k {
                         GeneratedField::Batches => {
                             if batches__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("batches"));
                             }
-                            batches__ = Some(map.next_value()?);
+                            batches__ = Some(map_.next_value()?);
                         }
                         GeneratedField::Pagination => {
                             if pagination__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("pagination"));
                             }
-                            pagination__ = map.next_value()?;
+                            pagination__ = map_.next_value()?;
                         }
                     }
                 }
@@ -14867,25 +14888,25 @@ impl<'de> serde::Deserialize<'de> for QueryBatchesByProjectRequest {
                 formatter.write_str("struct regen.ecocredit.v1.QueryBatchesByProjectRequest")
             }
 
-            fn visit_map<V>(self, mut map: V) -> std::result::Result<QueryBatchesByProjectRequest, V::Error>
+            fn visit_map<V>(self, mut map_: V) -> std::result::Result<QueryBatchesByProjectRequest, V::Error>
                 where
                     V: serde::de::MapAccess<'de>,
             {
                 let mut project_id__ = None;
                 let mut pagination__ = None;
-                while let Some(k) = map.next_key()? {
+                while let Some(k) = map_.next_key()? {
                     match k {
                         GeneratedField::ProjectId => {
                             if project_id__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("projectId"));
                             }
-                            project_id__ = Some(map.next_value()?);
+                            project_id__ = Some(map_.next_value()?);
                         }
                         GeneratedField::Pagination => {
                             if pagination__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("pagination"));
                             }
-                            pagination__ = map.next_value()?;
+                            pagination__ = map_.next_value()?;
                         }
                     }
                 }
@@ -14975,25 +14996,25 @@ impl<'de> serde::Deserialize<'de> for QueryBatchesByProjectResponse {
                 formatter.write_str("struct regen.ecocredit.v1.QueryBatchesByProjectResponse")
             }
 
-            fn visit_map<V>(self, mut map: V) -> std::result::Result<QueryBatchesByProjectResponse, V::Error>
+            fn visit_map<V>(self, mut map_: V) -> std::result::Result<QueryBatchesByProjectResponse, V::Error>
                 where
                     V: serde::de::MapAccess<'de>,
             {
                 let mut batches__ = None;
                 let mut pagination__ = None;
-                while let Some(k) = map.next_key()? {
+                while let Some(k) = map_.next_key()? {
                     match k {
                         GeneratedField::Batches => {
                             if batches__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("batches"));
                             }
-                            batches__ = Some(map.next_value()?);
+                            batches__ = Some(map_.next_value()?);
                         }
                         GeneratedField::Pagination => {
                             if pagination__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("pagination"));
                             }
-                            pagination__ = map.next_value()?;
+                            pagination__ = map_.next_value()?;
                         }
                     }
                 }
@@ -15074,18 +15095,18 @@ impl<'de> serde::Deserialize<'de> for QueryBatchesRequest {
                 formatter.write_str("struct regen.ecocredit.v1.QueryBatchesRequest")
             }
 
-            fn visit_map<V>(self, mut map: V) -> std::result::Result<QueryBatchesRequest, V::Error>
+            fn visit_map<V>(self, mut map_: V) -> std::result::Result<QueryBatchesRequest, V::Error>
                 where
                     V: serde::de::MapAccess<'de>,
             {
                 let mut pagination__ = None;
-                while let Some(k) = map.next_key()? {
+                while let Some(k) = map_.next_key()? {
                     match k {
                         GeneratedField::Pagination => {
                             if pagination__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("pagination"));
                             }
-                            pagination__ = map.next_value()?;
+                            pagination__ = map_.next_value()?;
                         }
                     }
                 }
@@ -15174,25 +15195,25 @@ impl<'de> serde::Deserialize<'de> for QueryBatchesResponse {
                 formatter.write_str("struct regen.ecocredit.v1.QueryBatchesResponse")
             }
 
-            fn visit_map<V>(self, mut map: V) -> std::result::Result<QueryBatchesResponse, V::Error>
+            fn visit_map<V>(self, mut map_: V) -> std::result::Result<QueryBatchesResponse, V::Error>
                 where
                     V: serde::de::MapAccess<'de>,
             {
                 let mut batches__ = None;
                 let mut pagination__ = None;
-                while let Some(k) = map.next_key()? {
+                while let Some(k) = map_.next_key()? {
                     match k {
                         GeneratedField::Batches => {
                             if batches__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("batches"));
                             }
-                            batches__ = Some(map.next_value()?);
+                            batches__ = Some(map_.next_value()?);
                         }
                         GeneratedField::Pagination => {
                             if pagination__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("pagination"));
                             }
-                            pagination__ = map.next_value()?;
+                            pagination__ = map_.next_value()?;
                         }
                     }
                 }
@@ -15262,12 +15283,12 @@ impl<'de> serde::Deserialize<'de> for QueryClassCreatorAllowlistRequest {
                 formatter.write_str("struct regen.ecocredit.v1.QueryClassCreatorAllowlistRequest")
             }
 
-            fn visit_map<V>(self, mut map: V) -> std::result::Result<QueryClassCreatorAllowlistRequest, V::Error>
+            fn visit_map<V>(self, mut map_: V) -> std::result::Result<QueryClassCreatorAllowlistRequest, V::Error>
                 where
                     V: serde::de::MapAccess<'de>,
             {
-                while map.next_key::<GeneratedField>()?.is_some() {
-                    let _ = map.next_value::<serde::de::IgnoredAny>()?;
+                while map_.next_key::<GeneratedField>()?.is_some() {
+                    let _ = map_.next_value::<serde::de::IgnoredAny>()?;
                 }
                 Ok(QueryClassCreatorAllowlistRequest {
                 })
@@ -15344,18 +15365,18 @@ impl<'de> serde::Deserialize<'de> for QueryClassCreatorAllowlistResponse {
                 formatter.write_str("struct regen.ecocredit.v1.QueryClassCreatorAllowlistResponse")
             }
 
-            fn visit_map<V>(self, mut map: V) -> std::result::Result<QueryClassCreatorAllowlistResponse, V::Error>
+            fn visit_map<V>(self, mut map_: V) -> std::result::Result<QueryClassCreatorAllowlistResponse, V::Error>
                 where
                     V: serde::de::MapAccess<'de>,
             {
                 let mut enabled__ = None;
-                while let Some(k) = map.next_key()? {
+                while let Some(k) = map_.next_key()? {
                     match k {
                         GeneratedField::Enabled => {
                             if enabled__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("enabled"));
                             }
-                            enabled__ = Some(map.next_value()?);
+                            enabled__ = Some(map_.next_value()?);
                         }
                     }
                 }
@@ -15424,12 +15445,12 @@ impl<'de> serde::Deserialize<'de> for QueryClassFeeRequest {
                 formatter.write_str("struct regen.ecocredit.v1.QueryClassFeeRequest")
             }
 
-            fn visit_map<V>(self, mut map: V) -> std::result::Result<QueryClassFeeRequest, V::Error>
+            fn visit_map<V>(self, mut map_: V) -> std::result::Result<QueryClassFeeRequest, V::Error>
                 where
                     V: serde::de::MapAccess<'de>,
             {
-                while map.next_key::<GeneratedField>()?.is_some() {
-                    let _ = map.next_value::<serde::de::IgnoredAny>()?;
+                while map_.next_key::<GeneratedField>()?.is_some() {
+                    let _ = map_.next_value::<serde::de::IgnoredAny>()?;
                 }
                 Ok(QueryClassFeeRequest {
                 })
@@ -15506,18 +15527,18 @@ impl<'de> serde::Deserialize<'de> for QueryClassFeeResponse {
                 formatter.write_str("struct regen.ecocredit.v1.QueryClassFeeResponse")
             }
 
-            fn visit_map<V>(self, mut map: V) -> std::result::Result<QueryClassFeeResponse, V::Error>
+            fn visit_map<V>(self, mut map_: V) -> std::result::Result<QueryClassFeeResponse, V::Error>
                 where
                     V: serde::de::MapAccess<'de>,
             {
                 let mut fee__ = None;
-                while let Some(k) = map.next_key()? {
+                while let Some(k) = map_.next_key()? {
                     match k {
                         GeneratedField::Fee => {
                             if fee__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("fee"));
                             }
-                            fee__ = map.next_value()?;
+                            fee__ = map_.next_value()?;
                         }
                     }
                 }
@@ -15607,25 +15628,25 @@ impl<'de> serde::Deserialize<'de> for QueryClassIssuersRequest {
                 formatter.write_str("struct regen.ecocredit.v1.QueryClassIssuersRequest")
             }
 
-            fn visit_map<V>(self, mut map: V) -> std::result::Result<QueryClassIssuersRequest, V::Error>
+            fn visit_map<V>(self, mut map_: V) -> std::result::Result<QueryClassIssuersRequest, V::Error>
                 where
                     V: serde::de::MapAccess<'de>,
             {
                 let mut class_id__ = None;
                 let mut pagination__ = None;
-                while let Some(k) = map.next_key()? {
+                while let Some(k) = map_.next_key()? {
                     match k {
                         GeneratedField::ClassId => {
                             if class_id__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("classId"));
                             }
-                            class_id__ = Some(map.next_value()?);
+                            class_id__ = Some(map_.next_value()?);
                         }
                         GeneratedField::Pagination => {
                             if pagination__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("pagination"));
                             }
-                            pagination__ = map.next_value()?;
+                            pagination__ = map_.next_value()?;
                         }
                     }
                 }
@@ -15715,25 +15736,25 @@ impl<'de> serde::Deserialize<'de> for QueryClassIssuersResponse {
                 formatter.write_str("struct regen.ecocredit.v1.QueryClassIssuersResponse")
             }
 
-            fn visit_map<V>(self, mut map: V) -> std::result::Result<QueryClassIssuersResponse, V::Error>
+            fn visit_map<V>(self, mut map_: V) -> std::result::Result<QueryClassIssuersResponse, V::Error>
                 where
                     V: serde::de::MapAccess<'de>,
             {
                 let mut issuers__ = None;
                 let mut pagination__ = None;
-                while let Some(k) = map.next_key()? {
+                while let Some(k) = map_.next_key()? {
                     match k {
                         GeneratedField::Issuers => {
                             if issuers__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("issuers"));
                             }
-                            issuers__ = Some(map.next_value()?);
+                            issuers__ = Some(map_.next_value()?);
                         }
                         GeneratedField::Pagination => {
                             if pagination__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("pagination"));
                             }
-                            pagination__ = map.next_value()?;
+                            pagination__ = map_.next_value()?;
                         }
                     }
                 }
@@ -15815,18 +15836,18 @@ impl<'de> serde::Deserialize<'de> for QueryClassRequest {
                 formatter.write_str("struct regen.ecocredit.v1.QueryClassRequest")
             }
 
-            fn visit_map<V>(self, mut map: V) -> std::result::Result<QueryClassRequest, V::Error>
+            fn visit_map<V>(self, mut map_: V) -> std::result::Result<QueryClassRequest, V::Error>
                 where
                     V: serde::de::MapAccess<'de>,
             {
                 let mut class_id__ = None;
-                while let Some(k) = map.next_key()? {
+                while let Some(k) = map_.next_key()? {
                     match k {
                         GeneratedField::ClassId => {
                             if class_id__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("classId"));
                             }
-                            class_id__ = Some(map.next_value()?);
+                            class_id__ = Some(map_.next_value()?);
                         }
                     }
                 }
@@ -15906,18 +15927,18 @@ impl<'de> serde::Deserialize<'de> for QueryClassResponse {
                 formatter.write_str("struct regen.ecocredit.v1.QueryClassResponse")
             }
 
-            fn visit_map<V>(self, mut map: V) -> std::result::Result<QueryClassResponse, V::Error>
+            fn visit_map<V>(self, mut map_: V) -> std::result::Result<QueryClassResponse, V::Error>
                 where
                     V: serde::de::MapAccess<'de>,
             {
                 let mut class__ = None;
-                while let Some(k) = map.next_key()? {
+                while let Some(k) = map_.next_key()? {
                     match k {
                         GeneratedField::Class => {
                             if class__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("class"));
                             }
-                            class__ = map.next_value()?;
+                            class__ = map_.next_value()?;
                         }
                     }
                 }
@@ -16006,25 +16027,25 @@ impl<'de> serde::Deserialize<'de> for QueryClassesByAdminRequest {
                 formatter.write_str("struct regen.ecocredit.v1.QueryClassesByAdminRequest")
             }
 
-            fn visit_map<V>(self, mut map: V) -> std::result::Result<QueryClassesByAdminRequest, V::Error>
+            fn visit_map<V>(self, mut map_: V) -> std::result::Result<QueryClassesByAdminRequest, V::Error>
                 where
                     V: serde::de::MapAccess<'de>,
             {
                 let mut admin__ = None;
                 let mut pagination__ = None;
-                while let Some(k) = map.next_key()? {
+                while let Some(k) = map_.next_key()? {
                     match k {
                         GeneratedField::Admin => {
                             if admin__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("admin"));
                             }
-                            admin__ = Some(map.next_value()?);
+                            admin__ = Some(map_.next_value()?);
                         }
                         GeneratedField::Pagination => {
                             if pagination__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("pagination"));
                             }
-                            pagination__ = map.next_value()?;
+                            pagination__ = map_.next_value()?;
                         }
                     }
                 }
@@ -16114,25 +16135,25 @@ impl<'de> serde::Deserialize<'de> for QueryClassesByAdminResponse {
                 formatter.write_str("struct regen.ecocredit.v1.QueryClassesByAdminResponse")
             }
 
-            fn visit_map<V>(self, mut map: V) -> std::result::Result<QueryClassesByAdminResponse, V::Error>
+            fn visit_map<V>(self, mut map_: V) -> std::result::Result<QueryClassesByAdminResponse, V::Error>
                 where
                     V: serde::de::MapAccess<'de>,
             {
                 let mut classes__ = None;
                 let mut pagination__ = None;
-                while let Some(k) = map.next_key()? {
+                while let Some(k) = map_.next_key()? {
                     match k {
                         GeneratedField::Classes => {
                             if classes__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("classes"));
                             }
-                            classes__ = Some(map.next_value()?);
+                            classes__ = Some(map_.next_value()?);
                         }
                         GeneratedField::Pagination => {
                             if pagination__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("pagination"));
                             }
-                            pagination__ = map.next_value()?;
+                            pagination__ = map_.next_value()?;
                         }
                     }
                 }
@@ -16213,18 +16234,18 @@ impl<'de> serde::Deserialize<'de> for QueryClassesRequest {
                 formatter.write_str("struct regen.ecocredit.v1.QueryClassesRequest")
             }
 
-            fn visit_map<V>(self, mut map: V) -> std::result::Result<QueryClassesRequest, V::Error>
+            fn visit_map<V>(self, mut map_: V) -> std::result::Result<QueryClassesRequest, V::Error>
                 where
                     V: serde::de::MapAccess<'de>,
             {
                 let mut pagination__ = None;
-                while let Some(k) = map.next_key()? {
+                while let Some(k) = map_.next_key()? {
                     match k {
                         GeneratedField::Pagination => {
                             if pagination__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("pagination"));
                             }
-                            pagination__ = map.next_value()?;
+                            pagination__ = map_.next_value()?;
                         }
                     }
                 }
@@ -16313,25 +16334,25 @@ impl<'de> serde::Deserialize<'de> for QueryClassesResponse {
                 formatter.write_str("struct regen.ecocredit.v1.QueryClassesResponse")
             }
 
-            fn visit_map<V>(self, mut map: V) -> std::result::Result<QueryClassesResponse, V::Error>
+            fn visit_map<V>(self, mut map_: V) -> std::result::Result<QueryClassesResponse, V::Error>
                 where
                     V: serde::de::MapAccess<'de>,
             {
                 let mut classes__ = None;
                 let mut pagination__ = None;
-                while let Some(k) = map.next_key()? {
+                while let Some(k) = map_.next_key()? {
                     match k {
                         GeneratedField::Classes => {
                             if classes__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("classes"));
                             }
-                            classes__ = Some(map.next_value()?);
+                            classes__ = Some(map_.next_value()?);
                         }
                         GeneratedField::Pagination => {
                             if pagination__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("pagination"));
                             }
-                            pagination__ = map.next_value()?;
+                            pagination__ = map_.next_value()?;
                         }
                     }
                 }
@@ -16412,18 +16433,18 @@ impl<'de> serde::Deserialize<'de> for QueryCreditTypeRequest {
                 formatter.write_str("struct regen.ecocredit.v1.QueryCreditTypeRequest")
             }
 
-            fn visit_map<V>(self, mut map: V) -> std::result::Result<QueryCreditTypeRequest, V::Error>
+            fn visit_map<V>(self, mut map_: V) -> std::result::Result<QueryCreditTypeRequest, V::Error>
                 where
                     V: serde::de::MapAccess<'de>,
             {
                 let mut abbreviation__ = None;
-                while let Some(k) = map.next_key()? {
+                while let Some(k) = map_.next_key()? {
                     match k {
                         GeneratedField::Abbreviation => {
                             if abbreviation__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("abbreviation"));
                             }
-                            abbreviation__ = Some(map.next_value()?);
+                            abbreviation__ = Some(map_.next_value()?);
                         }
                     }
                 }
@@ -16504,18 +16525,18 @@ impl<'de> serde::Deserialize<'de> for QueryCreditTypeResponse {
                 formatter.write_str("struct regen.ecocredit.v1.QueryCreditTypeResponse")
             }
 
-            fn visit_map<V>(self, mut map: V) -> std::result::Result<QueryCreditTypeResponse, V::Error>
+            fn visit_map<V>(self, mut map_: V) -> std::result::Result<QueryCreditTypeResponse, V::Error>
                 where
                     V: serde::de::MapAccess<'de>,
             {
                 let mut credit_type__ = None;
-                while let Some(k) = map.next_key()? {
+                while let Some(k) = map_.next_key()? {
                     match k {
                         GeneratedField::CreditType => {
                             if credit_type__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("creditType"));
                             }
-                            credit_type__ = map.next_value()?;
+                            credit_type__ = map_.next_value()?;
                         }
                     }
                 }
@@ -16584,12 +16605,12 @@ impl<'de> serde::Deserialize<'de> for QueryCreditTypesRequest {
                 formatter.write_str("struct regen.ecocredit.v1.QueryCreditTypesRequest")
             }
 
-            fn visit_map<V>(self, mut map: V) -> std::result::Result<QueryCreditTypesRequest, V::Error>
+            fn visit_map<V>(self, mut map_: V) -> std::result::Result<QueryCreditTypesRequest, V::Error>
                 where
                     V: serde::de::MapAccess<'de>,
             {
-                while map.next_key::<GeneratedField>()?.is_some() {
-                    let _ = map.next_value::<serde::de::IgnoredAny>()?;
+                while map_.next_key::<GeneratedField>()?.is_some() {
+                    let _ = map_.next_value::<serde::de::IgnoredAny>()?;
                 }
                 Ok(QueryCreditTypesRequest {
                 })
@@ -16667,18 +16688,18 @@ impl<'de> serde::Deserialize<'de> for QueryCreditTypesResponse {
                 formatter.write_str("struct regen.ecocredit.v1.QueryCreditTypesResponse")
             }
 
-            fn visit_map<V>(self, mut map: V) -> std::result::Result<QueryCreditTypesResponse, V::Error>
+            fn visit_map<V>(self, mut map_: V) -> std::result::Result<QueryCreditTypesResponse, V::Error>
                 where
                     V: serde::de::MapAccess<'de>,
             {
                 let mut credit_types__ = None;
-                while let Some(k) = map.next_key()? {
+                while let Some(k) = map_.next_key()? {
                     match k {
                         GeneratedField::CreditTypes => {
                             if credit_types__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("creditTypes"));
                             }
-                            credit_types__ = Some(map.next_value()?);
+                            credit_types__ = Some(map_.next_value()?);
                         }
                     }
                 }
@@ -16747,12 +16768,12 @@ impl<'de> serde::Deserialize<'de> for QueryParamsRequest {
                 formatter.write_str("struct regen.ecocredit.v1.QueryParamsRequest")
             }
 
-            fn visit_map<V>(self, mut map: V) -> std::result::Result<QueryParamsRequest, V::Error>
+            fn visit_map<V>(self, mut map_: V) -> std::result::Result<QueryParamsRequest, V::Error>
                 where
                     V: serde::de::MapAccess<'de>,
             {
-                while map.next_key::<GeneratedField>()?.is_some() {
-                    let _ = map.next_value::<serde::de::IgnoredAny>()?;
+                while map_.next_key::<GeneratedField>()?.is_some() {
+                    let _ = map_.next_value::<serde::de::IgnoredAny>()?;
                 }
                 Ok(QueryParamsRequest {
                 })
@@ -16829,18 +16850,18 @@ impl<'de> serde::Deserialize<'de> for QueryParamsResponse {
                 formatter.write_str("struct regen.ecocredit.v1.QueryParamsResponse")
             }
 
-            fn visit_map<V>(self, mut map: V) -> std::result::Result<QueryParamsResponse, V::Error>
+            fn visit_map<V>(self, mut map_: V) -> std::result::Result<QueryParamsResponse, V::Error>
                 where
                     V: serde::de::MapAccess<'de>,
             {
                 let mut params__ = None;
-                while let Some(k) = map.next_key()? {
+                while let Some(k) = map_.next_key()? {
                     match k {
                         GeneratedField::Params => {
                             if params__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("params"));
                             }
-                            params__ = map.next_value()?;
+                            params__ = map_.next_value()?;
                         }
                     }
                 }
@@ -16931,25 +16952,25 @@ impl<'de> serde::Deserialize<'de> for QueryProjectEnrollmentRequest {
                 formatter.write_str("struct regen.ecocredit.v1.QueryProjectEnrollmentRequest")
             }
 
-            fn visit_map<V>(self, mut map: V) -> std::result::Result<QueryProjectEnrollmentRequest, V::Error>
+            fn visit_map<V>(self, mut map_: V) -> std::result::Result<QueryProjectEnrollmentRequest, V::Error>
                 where
                     V: serde::de::MapAccess<'de>,
             {
                 let mut project_id__ = None;
                 let mut class_id__ = None;
-                while let Some(k) = map.next_key()? {
+                while let Some(k) = map_.next_key()? {
                     match k {
                         GeneratedField::ProjectId => {
                             if project_id__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("projectId"));
                             }
-                            project_id__ = Some(map.next_value()?);
+                            project_id__ = Some(map_.next_value()?);
                         }
                         GeneratedField::ClassId => {
                             if class_id__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("classId"));
                             }
-                            class_id__ = Some(map.next_value()?);
+                            class_id__ = Some(map_.next_value()?);
                         }
                     }
                 }
@@ -17031,18 +17052,18 @@ impl<'de> serde::Deserialize<'de> for QueryProjectEnrollmentResponse {
                 formatter.write_str("struct regen.ecocredit.v1.QueryProjectEnrollmentResponse")
             }
 
-            fn visit_map<V>(self, mut map: V) -> std::result::Result<QueryProjectEnrollmentResponse, V::Error>
+            fn visit_map<V>(self, mut map_: V) -> std::result::Result<QueryProjectEnrollmentResponse, V::Error>
                 where
                     V: serde::de::MapAccess<'de>,
             {
                 let mut project_class__ = None;
-                while let Some(k) = map.next_key()? {
+                while let Some(k) = map_.next_key()? {
                     match k {
                         GeneratedField::ProjectClass => {
                             if project_class__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("projectClass"));
                             }
-                            project_class__ = map.next_value()?;
+                            project_class__ = map_.next_value()?;
                         }
                     }
                 }
@@ -17132,25 +17153,25 @@ impl<'de> serde::Deserialize<'de> for QueryProjectEnrollmentsRequest {
                 formatter.write_str("struct regen.ecocredit.v1.QueryProjectEnrollmentsRequest")
             }
 
-            fn visit_map<V>(self, mut map: V) -> std::result::Result<QueryProjectEnrollmentsRequest, V::Error>
+            fn visit_map<V>(self, mut map_: V) -> std::result::Result<QueryProjectEnrollmentsRequest, V::Error>
                 where
                     V: serde::de::MapAccess<'de>,
             {
                 let mut project_id__ = None;
                 let mut pagination__ = None;
-                while let Some(k) = map.next_key()? {
+                while let Some(k) = map_.next_key()? {
                     match k {
                         GeneratedField::ProjectId => {
                             if project_id__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("projectId"));
                             }
-                            project_id__ = Some(map.next_value()?);
+                            project_id__ = Some(map_.next_value()?);
                         }
                         GeneratedField::Pagination => {
                             if pagination__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("pagination"));
                             }
-                            pagination__ = map.next_value()?;
+                            pagination__ = map_.next_value()?;
                         }
                     }
                 }
@@ -17240,25 +17261,25 @@ impl<'de> serde::Deserialize<'de> for QueryProjectEnrollmentsResponse {
                 formatter.write_str("struct regen.ecocredit.v1.QueryProjectEnrollmentsResponse")
             }
 
-            fn visit_map<V>(self, mut map: V) -> std::result::Result<QueryProjectEnrollmentsResponse, V::Error>
+            fn visit_map<V>(self, mut map_: V) -> std::result::Result<QueryProjectEnrollmentsResponse, V::Error>
                 where
                     V: serde::de::MapAccess<'de>,
             {
                 let mut enrollments__ = None;
                 let mut pagination__ = None;
-                while let Some(k) = map.next_key()? {
+                while let Some(k) = map_.next_key()? {
                     match k {
                         GeneratedField::Enrollments => {
                             if enrollments__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("enrollments"));
                             }
-                            enrollments__ = Some(map.next_value()?);
+                            enrollments__ = Some(map_.next_value()?);
                         }
                         GeneratedField::Pagination => {
                             if pagination__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("pagination"));
                             }
-                            pagination__ = map.next_value()?;
+                            pagination__ = map_.next_value()?;
                         }
                     }
                 }
@@ -17340,18 +17361,18 @@ impl<'de> serde::Deserialize<'de> for QueryProjectRequest {
                 formatter.write_str("struct regen.ecocredit.v1.QueryProjectRequest")
             }
 
-            fn visit_map<V>(self, mut map: V) -> std::result::Result<QueryProjectRequest, V::Error>
+            fn visit_map<V>(self, mut map_: V) -> std::result::Result<QueryProjectRequest, V::Error>
                 where
                     V: serde::de::MapAccess<'de>,
             {
                 let mut project_id__ = None;
-                while let Some(k) = map.next_key()? {
+                while let Some(k) = map_.next_key()? {
                     match k {
                         GeneratedField::ProjectId => {
                             if project_id__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("projectId"));
                             }
-                            project_id__ = Some(map.next_value()?);
+                            project_id__ = Some(map_.next_value()?);
                         }
                     }
                 }
@@ -17431,18 +17452,18 @@ impl<'de> serde::Deserialize<'de> for QueryProjectResponse {
                 formatter.write_str("struct regen.ecocredit.v1.QueryProjectResponse")
             }
 
-            fn visit_map<V>(self, mut map: V) -> std::result::Result<QueryProjectResponse, V::Error>
+            fn visit_map<V>(self, mut map_: V) -> std::result::Result<QueryProjectResponse, V::Error>
                 where
                     V: serde::de::MapAccess<'de>,
             {
                 let mut project__ = None;
-                while let Some(k) = map.next_key()? {
+                while let Some(k) = map_.next_key()? {
                     match k {
                         GeneratedField::Project => {
                             if project__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("project"));
                             }
-                            project__ = map.next_value()?;
+                            project__ = map_.next_value()?;
                         }
                     }
                 }
@@ -17531,25 +17552,25 @@ impl<'de> serde::Deserialize<'de> for QueryProjectsByAdminRequest {
                 formatter.write_str("struct regen.ecocredit.v1.QueryProjectsByAdminRequest")
             }
 
-            fn visit_map<V>(self, mut map: V) -> std::result::Result<QueryProjectsByAdminRequest, V::Error>
+            fn visit_map<V>(self, mut map_: V) -> std::result::Result<QueryProjectsByAdminRequest, V::Error>
                 where
                     V: serde::de::MapAccess<'de>,
             {
                 let mut admin__ = None;
                 let mut pagination__ = None;
-                while let Some(k) = map.next_key()? {
+                while let Some(k) = map_.next_key()? {
                     match k {
                         GeneratedField::Admin => {
                             if admin__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("admin"));
                             }
-                            admin__ = Some(map.next_value()?);
+                            admin__ = Some(map_.next_value()?);
                         }
                         GeneratedField::Pagination => {
                             if pagination__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("pagination"));
                             }
-                            pagination__ = map.next_value()?;
+                            pagination__ = map_.next_value()?;
                         }
                     }
                 }
@@ -17639,25 +17660,25 @@ impl<'de> serde::Deserialize<'de> for QueryProjectsByAdminResponse {
                 formatter.write_str("struct regen.ecocredit.v1.QueryProjectsByAdminResponse")
             }
 
-            fn visit_map<V>(self, mut map: V) -> std::result::Result<QueryProjectsByAdminResponse, V::Error>
+            fn visit_map<V>(self, mut map_: V) -> std::result::Result<QueryProjectsByAdminResponse, V::Error>
                 where
                     V: serde::de::MapAccess<'de>,
             {
                 let mut projects__ = None;
                 let mut pagination__ = None;
-                while let Some(k) = map.next_key()? {
+                while let Some(k) = map_.next_key()? {
                     match k {
                         GeneratedField::Projects => {
                             if projects__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("projects"));
                             }
-                            projects__ = Some(map.next_value()?);
+                            projects__ = Some(map_.next_value()?);
                         }
                         GeneratedField::Pagination => {
                             if pagination__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("pagination"));
                             }
-                            pagination__ = map.next_value()?;
+                            pagination__ = map_.next_value()?;
                         }
                     }
                 }
@@ -17748,25 +17769,25 @@ impl<'de> serde::Deserialize<'de> for QueryProjectsByClassRequest {
                 formatter.write_str("struct regen.ecocredit.v1.QueryProjectsByClassRequest")
             }
 
-            fn visit_map<V>(self, mut map: V) -> std::result::Result<QueryProjectsByClassRequest, V::Error>
+            fn visit_map<V>(self, mut map_: V) -> std::result::Result<QueryProjectsByClassRequest, V::Error>
                 where
                     V: serde::de::MapAccess<'de>,
             {
                 let mut class_id__ = None;
                 let mut pagination__ = None;
-                while let Some(k) = map.next_key()? {
+                while let Some(k) = map_.next_key()? {
                     match k {
                         GeneratedField::ClassId => {
                             if class_id__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("classId"));
                             }
-                            class_id__ = Some(map.next_value()?);
+                            class_id__ = Some(map_.next_value()?);
                         }
                         GeneratedField::Pagination => {
                             if pagination__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("pagination"));
                             }
-                            pagination__ = map.next_value()?;
+                            pagination__ = map_.next_value()?;
                         }
                     }
                 }
@@ -17856,25 +17877,25 @@ impl<'de> serde::Deserialize<'de> for QueryProjectsByClassResponse {
                 formatter.write_str("struct regen.ecocredit.v1.QueryProjectsByClassResponse")
             }
 
-            fn visit_map<V>(self, mut map: V) -> std::result::Result<QueryProjectsByClassResponse, V::Error>
+            fn visit_map<V>(self, mut map_: V) -> std::result::Result<QueryProjectsByClassResponse, V::Error>
                 where
                     V: serde::de::MapAccess<'de>,
             {
                 let mut projects__ = None;
                 let mut pagination__ = None;
-                while let Some(k) = map.next_key()? {
+                while let Some(k) = map_.next_key()? {
                     match k {
                         GeneratedField::Projects => {
                             if projects__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("projects"));
                             }
-                            projects__ = Some(map.next_value()?);
+                            projects__ = Some(map_.next_value()?);
                         }
                         GeneratedField::Pagination => {
                             if pagination__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("pagination"));
                             }
-                            pagination__ = map.next_value()?;
+                            pagination__ = map_.next_value()?;
                         }
                     }
                 }
@@ -17965,25 +17986,25 @@ impl<'de> serde::Deserialize<'de> for QueryProjectsByReferenceIdRequest {
                 formatter.write_str("struct regen.ecocredit.v1.QueryProjectsByReferenceIdRequest")
             }
 
-            fn visit_map<V>(self, mut map: V) -> std::result::Result<QueryProjectsByReferenceIdRequest, V::Error>
+            fn visit_map<V>(self, mut map_: V) -> std::result::Result<QueryProjectsByReferenceIdRequest, V::Error>
                 where
                     V: serde::de::MapAccess<'de>,
             {
                 let mut reference_id__ = None;
                 let mut pagination__ = None;
-                while let Some(k) = map.next_key()? {
+                while let Some(k) = map_.next_key()? {
                     match k {
                         GeneratedField::ReferenceId => {
                             if reference_id__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("referenceId"));
                             }
-                            reference_id__ = Some(map.next_value()?);
+                            reference_id__ = Some(map_.next_value()?);
                         }
                         GeneratedField::Pagination => {
                             if pagination__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("pagination"));
                             }
-                            pagination__ = map.next_value()?;
+                            pagination__ = map_.next_value()?;
                         }
                     }
                 }
@@ -18073,25 +18094,25 @@ impl<'de> serde::Deserialize<'de> for QueryProjectsByReferenceIdResponse {
                 formatter.write_str("struct regen.ecocredit.v1.QueryProjectsByReferenceIdResponse")
             }
 
-            fn visit_map<V>(self, mut map: V) -> std::result::Result<QueryProjectsByReferenceIdResponse, V::Error>
+            fn visit_map<V>(self, mut map_: V) -> std::result::Result<QueryProjectsByReferenceIdResponse, V::Error>
                 where
                     V: serde::de::MapAccess<'de>,
             {
                 let mut projects__ = None;
                 let mut pagination__ = None;
-                while let Some(k) = map.next_key()? {
+                while let Some(k) = map_.next_key()? {
                     match k {
                         GeneratedField::Projects => {
                             if projects__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("projects"));
                             }
-                            projects__ = Some(map.next_value()?);
+                            projects__ = Some(map_.next_value()?);
                         }
                         GeneratedField::Pagination => {
                             if pagination__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("pagination"));
                             }
-                            pagination__ = map.next_value()?;
+                            pagination__ = map_.next_value()?;
                         }
                     }
                 }
@@ -18172,18 +18193,18 @@ impl<'de> serde::Deserialize<'de> for QueryProjectsRequest {
                 formatter.write_str("struct regen.ecocredit.v1.QueryProjectsRequest")
             }
 
-            fn visit_map<V>(self, mut map: V) -> std::result::Result<QueryProjectsRequest, V::Error>
+            fn visit_map<V>(self, mut map_: V) -> std::result::Result<QueryProjectsRequest, V::Error>
                 where
                     V: serde::de::MapAccess<'de>,
             {
                 let mut pagination__ = None;
-                while let Some(k) = map.next_key()? {
+                while let Some(k) = map_.next_key()? {
                     match k {
                         GeneratedField::Pagination => {
                             if pagination__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("pagination"));
                             }
-                            pagination__ = map.next_value()?;
+                            pagination__ = map_.next_value()?;
                         }
                     }
                 }
@@ -18272,25 +18293,25 @@ impl<'de> serde::Deserialize<'de> for QueryProjectsResponse {
                 formatter.write_str("struct regen.ecocredit.v1.QueryProjectsResponse")
             }
 
-            fn visit_map<V>(self, mut map: V) -> std::result::Result<QueryProjectsResponse, V::Error>
+            fn visit_map<V>(self, mut map_: V) -> std::result::Result<QueryProjectsResponse, V::Error>
                 where
                     V: serde::de::MapAccess<'de>,
             {
                 let mut projects__ = None;
                 let mut pagination__ = None;
-                while let Some(k) = map.next_key()? {
+                while let Some(k) = map_.next_key()? {
                     match k {
                         GeneratedField::Projects => {
                             if projects__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("projects"));
                             }
-                            projects__ = Some(map.next_value()?);
+                            projects__ = Some(map_.next_value()?);
                         }
                         GeneratedField::Pagination => {
                             if pagination__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("pagination"));
                             }
-                            pagination__ = map.next_value()?;
+                            pagination__ = map_.next_value()?;
                         }
                     }
                 }
@@ -18372,18 +18393,18 @@ impl<'de> serde::Deserialize<'de> for QuerySupplyRequest {
                 formatter.write_str("struct regen.ecocredit.v1.QuerySupplyRequest")
             }
 
-            fn visit_map<V>(self, mut map: V) -> std::result::Result<QuerySupplyRequest, V::Error>
+            fn visit_map<V>(self, mut map_: V) -> std::result::Result<QuerySupplyRequest, V::Error>
                 where
                     V: serde::de::MapAccess<'de>,
             {
                 let mut batch_denom__ = None;
-                while let Some(k) = map.next_key()? {
+                while let Some(k) = map_.next_key()? {
                     match k {
                         GeneratedField::BatchDenom => {
                             if batch_denom__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("batchDenom"));
                             }
-                            batch_denom__ = Some(map.next_value()?);
+                            batch_denom__ = Some(map_.next_value()?);
                         }
                     }
                 }
@@ -18484,32 +18505,32 @@ impl<'de> serde::Deserialize<'de> for QuerySupplyResponse {
                 formatter.write_str("struct regen.ecocredit.v1.QuerySupplyResponse")
             }
 
-            fn visit_map<V>(self, mut map: V) -> std::result::Result<QuerySupplyResponse, V::Error>
+            fn visit_map<V>(self, mut map_: V) -> std::result::Result<QuerySupplyResponse, V::Error>
                 where
                     V: serde::de::MapAccess<'de>,
             {
                 let mut tradable_amount__ = None;
                 let mut retired_amount__ = None;
                 let mut cancelled_amount__ = None;
-                while let Some(k) = map.next_key()? {
+                while let Some(k) = map_.next_key()? {
                     match k {
                         GeneratedField::TradableAmount => {
                             if tradable_amount__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("tradableAmount"));
                             }
-                            tradable_amount__ = Some(map.next_value()?);
+                            tradable_amount__ = Some(map_.next_value()?);
                         }
                         GeneratedField::RetiredAmount => {
                             if retired_amount__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("retiredAmount"));
                             }
-                            retired_amount__ = Some(map.next_value()?);
+                            retired_amount__ = Some(map_.next_value()?);
                         }
                         GeneratedField::CancelledAmount => {
                             if cancelled_amount__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("cancelledAmount"));
                             }
-                            cancelled_amount__ = Some(map.next_value()?);
+                            cancelled_amount__ = Some(map_.next_value()?);
                         }
                     }
                 }

@@ -1,5 +1,10 @@
 pub mod error;
 pub mod signer;
+pub mod client;
+
+// Generated protobuf modules
+#[path = "gen/mod.rs"]
+pub mod types;
 
 // Re-export commonly used types for convenience
 pub use error::{RegenError, Result};

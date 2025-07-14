@@ -85,32 +85,32 @@ impl<'de> serde::Deserialize<'de> for AllowDenomProposal {
                 formatter.write_str("struct regen.ecocredit.marketplace.v1.AllowDenomProposal")
             }
 
-            fn visit_map<V>(self, mut map: V) -> std::result::Result<AllowDenomProposal, V::Error>
+            fn visit_map<V>(self, mut map_: V) -> std::result::Result<AllowDenomProposal, V::Error>
                 where
                     V: serde::de::MapAccess<'de>,
             {
                 let mut title__ = None;
                 let mut description__ = None;
                 let mut denom__ = None;
-                while let Some(k) = map.next_key()? {
+                while let Some(k) = map_.next_key()? {
                     match k {
                         GeneratedField::Title => {
                             if title__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("title"));
                             }
-                            title__ = Some(map.next_value()?);
+                            title__ = Some(map_.next_value()?);
                         }
                         GeneratedField::Description => {
                             if description__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("description"));
                             }
-                            description__ = Some(map.next_value()?);
+                            description__ = Some(map_.next_value()?);
                         }
                         GeneratedField::Denom => {
                             if denom__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("denom"));
                             }
-                            denom__ = map.next_value()?;
+                            denom__ = map_.next_value()?;
                         }
                     }
                 }
@@ -212,33 +212,33 @@ impl<'de> serde::Deserialize<'de> for AllowedDenom {
                 formatter.write_str("struct regen.ecocredit.marketplace.v1.AllowedDenom")
             }
 
-            fn visit_map<V>(self, mut map: V) -> std::result::Result<AllowedDenom, V::Error>
+            fn visit_map<V>(self, mut map_: V) -> std::result::Result<AllowedDenom, V::Error>
                 where
                     V: serde::de::MapAccess<'de>,
             {
                 let mut bank_denom__ = None;
                 let mut display_denom__ = None;
                 let mut exponent__ = None;
-                while let Some(k) = map.next_key()? {
+                while let Some(k) = map_.next_key()? {
                     match k {
                         GeneratedField::BankDenom => {
                             if bank_denom__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("bankDenom"));
                             }
-                            bank_denom__ = Some(map.next_value()?);
+                            bank_denom__ = Some(map_.next_value()?);
                         }
                         GeneratedField::DisplayDenom => {
                             if display_denom__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("displayDenom"));
                             }
-                            display_denom__ = Some(map.next_value()?);
+                            display_denom__ = Some(map_.next_value()?);
                         }
                         GeneratedField::Exponent => {
                             if exponent__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("exponent"));
                             }
                             exponent__ = 
-                                Some(map.next_value::<::pbjson::private::NumberDeserialize<_>>()?.0)
+                                Some(map_.next_value::<::pbjson::private::NumberDeserialize<_>>()?.0)
                             ;
                         }
                     }
@@ -321,18 +321,18 @@ impl<'de> serde::Deserialize<'de> for EventAllowDenom {
                 formatter.write_str("struct regen.ecocredit.marketplace.v1.EventAllowDenom")
             }
 
-            fn visit_map<V>(self, mut map: V) -> std::result::Result<EventAllowDenom, V::Error>
+            fn visit_map<V>(self, mut map_: V) -> std::result::Result<EventAllowDenom, V::Error>
                 where
                     V: serde::de::MapAccess<'de>,
             {
                 let mut denom__ = None;
-                while let Some(k) = map.next_key()? {
+                while let Some(k) = map_.next_key()? {
                     match k {
                         GeneratedField::Denom => {
                             if denom__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("denom"));
                             }
-                            denom__ = Some(map.next_value()?);
+                            denom__ = Some(map_.next_value()?);
                         }
                     }
                 }
@@ -369,6 +369,7 @@ impl serde::Serialize for EventBuyDirect {
         }
         let mut struct_ser = serializer.serialize_struct("regen.ecocredit.marketplace.v1.EventBuyDirect", len)?;
         if self.sell_order_id != 0 {
+            #[allow(clippy::needless_borrow)]
             struct_ser.serialize_field("sellOrderId", ToString::to_string(&self.sell_order_id).as_str())?;
         }
         if !self.seller.is_empty() {
@@ -451,7 +452,7 @@ impl<'de> serde::Deserialize<'de> for EventBuyDirect {
                 formatter.write_str("struct regen.ecocredit.marketplace.v1.EventBuyDirect")
             }
 
-            fn visit_map<V>(self, mut map: V) -> std::result::Result<EventBuyDirect, V::Error>
+            fn visit_map<V>(self, mut map_: V) -> std::result::Result<EventBuyDirect, V::Error>
                 where
                     V: serde::de::MapAccess<'de>,
             {
@@ -460,39 +461,39 @@ impl<'de> serde::Deserialize<'de> for EventBuyDirect {
                 let mut seller_fee_paid__ = None;
                 let mut buyer__ = None;
                 let mut buyer_fee_paid__ = None;
-                while let Some(k) = map.next_key()? {
+                while let Some(k) = map_.next_key()? {
                     match k {
                         GeneratedField::SellOrderId => {
                             if sell_order_id__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("sellOrderId"));
                             }
                             sell_order_id__ = 
-                                Some(map.next_value::<::pbjson::private::NumberDeserialize<_>>()?.0)
+                                Some(map_.next_value::<::pbjson::private::NumberDeserialize<_>>()?.0)
                             ;
                         }
                         GeneratedField::Seller => {
                             if seller__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("seller"));
                             }
-                            seller__ = Some(map.next_value()?);
+                            seller__ = Some(map_.next_value()?);
                         }
                         GeneratedField::SellerFeePaid => {
                             if seller_fee_paid__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("sellerFeePaid"));
                             }
-                            seller_fee_paid__ = map.next_value()?;
+                            seller_fee_paid__ = map_.next_value()?;
                         }
                         GeneratedField::Buyer => {
                             if buyer__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("buyer"));
                             }
-                            buyer__ = Some(map.next_value()?);
+                            buyer__ = Some(map_.next_value()?);
                         }
                         GeneratedField::BuyerFeePaid => {
                             if buyer_fee_paid__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("buyerFeePaid"));
                             }
-                            buyer_fee_paid__ = map.next_value()?;
+                            buyer_fee_paid__ = map_.next_value()?;
                         }
                     }
                 }
@@ -521,6 +522,7 @@ impl serde::Serialize for EventCancelSellOrder {
         }
         let mut struct_ser = serializer.serialize_struct("regen.ecocredit.marketplace.v1.EventCancelSellOrder", len)?;
         if self.sell_order_id != 0 {
+            #[allow(clippy::needless_borrow)]
             struct_ser.serialize_field("sellOrderId", ToString::to_string(&self.sell_order_id).as_str())?;
         }
         struct_ser.end()
@@ -577,19 +579,19 @@ impl<'de> serde::Deserialize<'de> for EventCancelSellOrder {
                 formatter.write_str("struct regen.ecocredit.marketplace.v1.EventCancelSellOrder")
             }
 
-            fn visit_map<V>(self, mut map: V) -> std::result::Result<EventCancelSellOrder, V::Error>
+            fn visit_map<V>(self, mut map_: V) -> std::result::Result<EventCancelSellOrder, V::Error>
                 where
                     V: serde::de::MapAccess<'de>,
             {
                 let mut sell_order_id__ = None;
-                while let Some(k) = map.next_key()? {
+                while let Some(k) = map_.next_key()? {
                     match k {
                         GeneratedField::SellOrderId => {
                             if sell_order_id__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("sellOrderId"));
                             }
                             sell_order_id__ = 
-                                Some(map.next_value::<::pbjson::private::NumberDeserialize<_>>()?.0)
+                                Some(map_.next_value::<::pbjson::private::NumberDeserialize<_>>()?.0)
                             ;
                         }
                     }
@@ -670,18 +672,18 @@ impl<'de> serde::Deserialize<'de> for EventRemoveAllowedDenom {
                 formatter.write_str("struct regen.ecocredit.marketplace.v1.EventRemoveAllowedDenom")
             }
 
-            fn visit_map<V>(self, mut map: V) -> std::result::Result<EventRemoveAllowedDenom, V::Error>
+            fn visit_map<V>(self, mut map_: V) -> std::result::Result<EventRemoveAllowedDenom, V::Error>
                 where
                     V: serde::de::MapAccess<'de>,
             {
                 let mut denom__ = None;
-                while let Some(k) = map.next_key()? {
+                while let Some(k) = map_.next_key()? {
                     match k {
                         GeneratedField::Denom => {
                             if denom__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("denom"));
                             }
-                            denom__ = Some(map.next_value()?);
+                            denom__ = Some(map_.next_value()?);
                         }
                     }
                 }
@@ -706,6 +708,7 @@ impl serde::Serialize for EventSell {
         }
         let mut struct_ser = serializer.serialize_struct("regen.ecocredit.marketplace.v1.EventSell", len)?;
         if self.sell_order_id != 0 {
+            #[allow(clippy::needless_borrow)]
             struct_ser.serialize_field("sellOrderId", ToString::to_string(&self.sell_order_id).as_str())?;
         }
         struct_ser.end()
@@ -762,19 +765,19 @@ impl<'de> serde::Deserialize<'de> for EventSell {
                 formatter.write_str("struct regen.ecocredit.marketplace.v1.EventSell")
             }
 
-            fn visit_map<V>(self, mut map: V) -> std::result::Result<EventSell, V::Error>
+            fn visit_map<V>(self, mut map_: V) -> std::result::Result<EventSell, V::Error>
                 where
                     V: serde::de::MapAccess<'de>,
             {
                 let mut sell_order_id__ = None;
-                while let Some(k) = map.next_key()? {
+                while let Some(k) = map_.next_key()? {
                     match k {
                         GeneratedField::SellOrderId => {
                             if sell_order_id__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("sellOrderId"));
                             }
                             sell_order_id__ = 
-                                Some(map.next_value::<::pbjson::private::NumberDeserialize<_>>()?.0)
+                                Some(map_.next_value::<::pbjson::private::NumberDeserialize<_>>()?.0)
                             ;
                         }
                     }
@@ -800,6 +803,7 @@ impl serde::Serialize for EventUpdateSellOrder {
         }
         let mut struct_ser = serializer.serialize_struct("regen.ecocredit.marketplace.v1.EventUpdateSellOrder", len)?;
         if self.sell_order_id != 0 {
+            #[allow(clippy::needless_borrow)]
             struct_ser.serialize_field("sellOrderId", ToString::to_string(&self.sell_order_id).as_str())?;
         }
         struct_ser.end()
@@ -856,19 +860,19 @@ impl<'de> serde::Deserialize<'de> for EventUpdateSellOrder {
                 formatter.write_str("struct regen.ecocredit.marketplace.v1.EventUpdateSellOrder")
             }
 
-            fn visit_map<V>(self, mut map: V) -> std::result::Result<EventUpdateSellOrder, V::Error>
+            fn visit_map<V>(self, mut map_: V) -> std::result::Result<EventUpdateSellOrder, V::Error>
                 where
                     V: serde::de::MapAccess<'de>,
             {
                 let mut sell_order_id__ = None;
-                while let Some(k) = map.next_key()? {
+                while let Some(k) = map_.next_key()? {
                     match k {
                         GeneratedField::SellOrderId => {
                             if sell_order_id__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("sellOrderId"));
                             }
                             sell_order_id__ = 
-                                Some(map.next_value::<::pbjson::private::NumberDeserialize<_>>()?.0)
+                                Some(map_.next_value::<::pbjson::private::NumberDeserialize<_>>()?.0)
                             ;
                         }
                     }
@@ -960,25 +964,25 @@ impl<'de> serde::Deserialize<'de> for FeeParams {
                 formatter.write_str("struct regen.ecocredit.marketplace.v1.FeeParams")
             }
 
-            fn visit_map<V>(self, mut map: V) -> std::result::Result<FeeParams, V::Error>
+            fn visit_map<V>(self, mut map_: V) -> std::result::Result<FeeParams, V::Error>
                 where
                     V: serde::de::MapAccess<'de>,
             {
                 let mut buyer_percentage_fee__ = None;
                 let mut seller_percentage_fee__ = None;
-                while let Some(k) = map.next_key()? {
+                while let Some(k) = map_.next_key()? {
                     match k {
                         GeneratedField::BuyerPercentageFee => {
                             if buyer_percentage_fee__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("buyerPercentageFee"));
                             }
-                            buyer_percentage_fee__ = Some(map.next_value()?);
+                            buyer_percentage_fee__ = Some(map_.next_value()?);
                         }
                         GeneratedField::SellerPercentageFee => {
                             if seller_percentage_fee__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("sellerPercentageFee"));
                             }
-                            seller_percentage_fee__ = Some(map.next_value()?);
+                            seller_percentage_fee__ = Some(map_.next_value()?);
                         }
                     }
                 }
@@ -1013,6 +1017,7 @@ impl serde::Serialize for Market {
         }
         let mut struct_ser = serializer.serialize_struct("regen.ecocredit.marketplace.v1.Market", len)?;
         if self.id != 0 {
+            #[allow(clippy::needless_borrow)]
             struct_ser.serialize_field("id", ToString::to_string(&self.id).as_str())?;
         }
         if !self.credit_type_abbrev.is_empty() {
@@ -1089,7 +1094,7 @@ impl<'de> serde::Deserialize<'de> for Market {
                 formatter.write_str("struct regen.ecocredit.marketplace.v1.Market")
             }
 
-            fn visit_map<V>(self, mut map: V) -> std::result::Result<Market, V::Error>
+            fn visit_map<V>(self, mut map_: V) -> std::result::Result<Market, V::Error>
                 where
                     V: serde::de::MapAccess<'de>,
             {
@@ -1097,34 +1102,34 @@ impl<'de> serde::Deserialize<'de> for Market {
                 let mut credit_type_abbrev__ = None;
                 let mut bank_denom__ = None;
                 let mut precision_modifier__ = None;
-                while let Some(k) = map.next_key()? {
+                while let Some(k) = map_.next_key()? {
                     match k {
                         GeneratedField::Id => {
                             if id__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("id"));
                             }
                             id__ = 
-                                Some(map.next_value::<::pbjson::private::NumberDeserialize<_>>()?.0)
+                                Some(map_.next_value::<::pbjson::private::NumberDeserialize<_>>()?.0)
                             ;
                         }
                         GeneratedField::CreditTypeAbbrev => {
                             if credit_type_abbrev__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("creditTypeAbbrev"));
                             }
-                            credit_type_abbrev__ = Some(map.next_value()?);
+                            credit_type_abbrev__ = Some(map_.next_value()?);
                         }
                         GeneratedField::BankDenom => {
                             if bank_denom__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("bankDenom"));
                             }
-                            bank_denom__ = Some(map.next_value()?);
+                            bank_denom__ = Some(map_.next_value()?);
                         }
                         GeneratedField::PrecisionModifier => {
                             if precision_modifier__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("precisionModifier"));
                             }
                             precision_modifier__ = 
-                                Some(map.next_value::<::pbjson::private::NumberDeserialize<_>>()?.0)
+                                Some(map_.next_value::<::pbjson::private::NumberDeserialize<_>>()?.0)
                             ;
                         }
                     }
@@ -1237,7 +1242,7 @@ impl<'de> serde::Deserialize<'de> for MsgAddAllowedDenom {
                 formatter.write_str("struct regen.ecocredit.marketplace.v1.MsgAddAllowedDenom")
             }
 
-            fn visit_map<V>(self, mut map: V) -> std::result::Result<MsgAddAllowedDenom, V::Error>
+            fn visit_map<V>(self, mut map_: V) -> std::result::Result<MsgAddAllowedDenom, V::Error>
                 where
                     V: serde::de::MapAccess<'de>,
             {
@@ -1245,32 +1250,32 @@ impl<'de> serde::Deserialize<'de> for MsgAddAllowedDenom {
                 let mut bank_denom__ = None;
                 let mut display_denom__ = None;
                 let mut exponent__ = None;
-                while let Some(k) = map.next_key()? {
+                while let Some(k) = map_.next_key()? {
                     match k {
                         GeneratedField::Authority => {
                             if authority__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("authority"));
                             }
-                            authority__ = Some(map.next_value()?);
+                            authority__ = Some(map_.next_value()?);
                         }
                         GeneratedField::BankDenom => {
                             if bank_denom__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("bankDenom"));
                             }
-                            bank_denom__ = Some(map.next_value()?);
+                            bank_denom__ = Some(map_.next_value()?);
                         }
                         GeneratedField::DisplayDenom => {
                             if display_denom__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("displayDenom"));
                             }
-                            display_denom__ = Some(map.next_value()?);
+                            display_denom__ = Some(map_.next_value()?);
                         }
                         GeneratedField::Exponent => {
                             if exponent__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("exponent"));
                             }
                             exponent__ = 
-                                Some(map.next_value::<::pbjson::private::NumberDeserialize<_>>()?.0)
+                                Some(map_.next_value::<::pbjson::private::NumberDeserialize<_>>()?.0)
                             ;
                         }
                     }
@@ -1343,12 +1348,12 @@ impl<'de> serde::Deserialize<'de> for MsgAddAllowedDenomResponse {
                 formatter.write_str("struct regen.ecocredit.marketplace.v1.MsgAddAllowedDenomResponse")
             }
 
-            fn visit_map<V>(self, mut map: V) -> std::result::Result<MsgAddAllowedDenomResponse, V::Error>
+            fn visit_map<V>(self, mut map_: V) -> std::result::Result<MsgAddAllowedDenomResponse, V::Error>
                 where
                     V: serde::de::MapAccess<'de>,
             {
-                while map.next_key::<GeneratedField>()?.is_some() {
-                    let _ = map.next_value::<serde::de::IgnoredAny>()?;
+                while map_.next_key::<GeneratedField>()?.is_some() {
+                    let _ = map_.next_value::<serde::de::IgnoredAny>()?;
                 }
                 Ok(MsgAddAllowedDenomResponse {
                 })
@@ -1434,25 +1439,25 @@ impl<'de> serde::Deserialize<'de> for MsgBuyDirect {
                 formatter.write_str("struct regen.ecocredit.marketplace.v1.MsgBuyDirect")
             }
 
-            fn visit_map<V>(self, mut map: V) -> std::result::Result<MsgBuyDirect, V::Error>
+            fn visit_map<V>(self, mut map_: V) -> std::result::Result<MsgBuyDirect, V::Error>
                 where
                     V: serde::de::MapAccess<'de>,
             {
                 let mut buyer__ = None;
                 let mut orders__ = None;
-                while let Some(k) = map.next_key()? {
+                while let Some(k) = map_.next_key()? {
                     match k {
                         GeneratedField::Buyer => {
                             if buyer__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("buyer"));
                             }
-                            buyer__ = Some(map.next_value()?);
+                            buyer__ = Some(map_.next_value()?);
                         }
                         GeneratedField::Orders => {
                             if orders__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("orders"));
                             }
-                            orders__ = Some(map.next_value()?);
+                            orders__ = Some(map_.next_value()?);
                         }
                     }
                 }
@@ -1496,6 +1501,7 @@ impl serde::Serialize for msg_buy_direct::Order {
         }
         let mut struct_ser = serializer.serialize_struct("regen.ecocredit.marketplace.v1.MsgBuyDirect.Order", len)?;
         if self.sell_order_id != 0 {
+            #[allow(clippy::needless_borrow)]
             struct_ser.serialize_field("sellOrderId", ToString::to_string(&self.sell_order_id).as_str())?;
         }
         if !self.quantity.is_empty() {
@@ -1593,7 +1599,7 @@ impl<'de> serde::Deserialize<'de> for msg_buy_direct::Order {
                 formatter.write_str("struct regen.ecocredit.marketplace.v1.MsgBuyDirect.Order")
             }
 
-            fn visit_map<V>(self, mut map: V) -> std::result::Result<msg_buy_direct::Order, V::Error>
+            fn visit_map<V>(self, mut map_: V) -> std::result::Result<msg_buy_direct::Order, V::Error>
                 where
                     V: serde::de::MapAccess<'de>,
             {
@@ -1604,51 +1610,51 @@ impl<'de> serde::Deserialize<'de> for msg_buy_direct::Order {
                 let mut retirement_jurisdiction__ = None;
                 let mut retirement_reason__ = None;
                 let mut max_fee_amount__ = None;
-                while let Some(k) = map.next_key()? {
+                while let Some(k) = map_.next_key()? {
                     match k {
                         GeneratedField::SellOrderId => {
                             if sell_order_id__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("sellOrderId"));
                             }
                             sell_order_id__ = 
-                                Some(map.next_value::<::pbjson::private::NumberDeserialize<_>>()?.0)
+                                Some(map_.next_value::<::pbjson::private::NumberDeserialize<_>>()?.0)
                             ;
                         }
                         GeneratedField::Quantity => {
                             if quantity__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("quantity"));
                             }
-                            quantity__ = Some(map.next_value()?);
+                            quantity__ = Some(map_.next_value()?);
                         }
                         GeneratedField::BidPrice => {
                             if bid_price__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("bidPrice"));
                             }
-                            bid_price__ = map.next_value()?;
+                            bid_price__ = map_.next_value()?;
                         }
                         GeneratedField::DisableAutoRetire => {
                             if disable_auto_retire__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("disableAutoRetire"));
                             }
-                            disable_auto_retire__ = Some(map.next_value()?);
+                            disable_auto_retire__ = Some(map_.next_value()?);
                         }
                         GeneratedField::RetirementJurisdiction => {
                             if retirement_jurisdiction__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("retirementJurisdiction"));
                             }
-                            retirement_jurisdiction__ = Some(map.next_value()?);
+                            retirement_jurisdiction__ = Some(map_.next_value()?);
                         }
                         GeneratedField::RetirementReason => {
                             if retirement_reason__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("retirementReason"));
                             }
-                            retirement_reason__ = Some(map.next_value()?);
+                            retirement_reason__ = Some(map_.next_value()?);
                         }
                         GeneratedField::MaxFeeAmount => {
                             if max_fee_amount__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("maxFeeAmount"));
                             }
-                            max_fee_amount__ = map.next_value()?;
+                            max_fee_amount__ = map_.next_value()?;
                         }
                     }
                 }
@@ -1723,12 +1729,12 @@ impl<'de> serde::Deserialize<'de> for MsgBuyDirectResponse {
                 formatter.write_str("struct regen.ecocredit.marketplace.v1.MsgBuyDirectResponse")
             }
 
-            fn visit_map<V>(self, mut map: V) -> std::result::Result<MsgBuyDirectResponse, V::Error>
+            fn visit_map<V>(self, mut map_: V) -> std::result::Result<MsgBuyDirectResponse, V::Error>
                 where
                     V: serde::de::MapAccess<'de>,
             {
-                while map.next_key::<GeneratedField>()?.is_some() {
-                    let _ = map.next_value::<serde::de::IgnoredAny>()?;
+                while map_.next_key::<GeneratedField>()?.is_some() {
+                    let _ = map_.next_value::<serde::de::IgnoredAny>()?;
                 }
                 Ok(MsgBuyDirectResponse {
                 })
@@ -1756,6 +1762,7 @@ impl serde::Serialize for MsgCancelSellOrder {
             struct_ser.serialize_field("seller", &self.seller)?;
         }
         if self.sell_order_id != 0 {
+            #[allow(clippy::needless_borrow)]
             struct_ser.serialize_field("sellOrderId", ToString::to_string(&self.sell_order_id).as_str())?;
         }
         struct_ser.end()
@@ -1815,26 +1822,26 @@ impl<'de> serde::Deserialize<'de> for MsgCancelSellOrder {
                 formatter.write_str("struct regen.ecocredit.marketplace.v1.MsgCancelSellOrder")
             }
 
-            fn visit_map<V>(self, mut map: V) -> std::result::Result<MsgCancelSellOrder, V::Error>
+            fn visit_map<V>(self, mut map_: V) -> std::result::Result<MsgCancelSellOrder, V::Error>
                 where
                     V: serde::de::MapAccess<'de>,
             {
                 let mut seller__ = None;
                 let mut sell_order_id__ = None;
-                while let Some(k) = map.next_key()? {
+                while let Some(k) = map_.next_key()? {
                     match k {
                         GeneratedField::Seller => {
                             if seller__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("seller"));
                             }
-                            seller__ = Some(map.next_value()?);
+                            seller__ = Some(map_.next_value()?);
                         }
                         GeneratedField::SellOrderId => {
                             if sell_order_id__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("sellOrderId"));
                             }
                             sell_order_id__ = 
-                                Some(map.next_value::<::pbjson::private::NumberDeserialize<_>>()?.0)
+                                Some(map_.next_value::<::pbjson::private::NumberDeserialize<_>>()?.0)
                             ;
                         }
                     }
@@ -1905,12 +1912,12 @@ impl<'de> serde::Deserialize<'de> for MsgCancelSellOrderResponse {
                 formatter.write_str("struct regen.ecocredit.marketplace.v1.MsgCancelSellOrderResponse")
             }
 
-            fn visit_map<V>(self, mut map: V) -> std::result::Result<MsgCancelSellOrderResponse, V::Error>
+            fn visit_map<V>(self, mut map_: V) -> std::result::Result<MsgCancelSellOrderResponse, V::Error>
                 where
                     V: serde::de::MapAccess<'de>,
             {
-                while map.next_key::<GeneratedField>()?.is_some() {
-                    let _ = map.next_value::<serde::de::IgnoredAny>()?;
+                while map_.next_key::<GeneratedField>()?.is_some() {
+                    let _ = map_.next_value::<serde::de::IgnoredAny>()?;
                 }
                 Ok(MsgCancelSellOrderResponse {
                 })
@@ -2005,32 +2012,32 @@ impl<'de> serde::Deserialize<'de> for MsgGovSendFromFeePool {
                 formatter.write_str("struct regen.ecocredit.marketplace.v1.MsgGovSendFromFeePool")
             }
 
-            fn visit_map<V>(self, mut map: V) -> std::result::Result<MsgGovSendFromFeePool, V::Error>
+            fn visit_map<V>(self, mut map_: V) -> std::result::Result<MsgGovSendFromFeePool, V::Error>
                 where
                     V: serde::de::MapAccess<'de>,
             {
                 let mut authority__ = None;
                 let mut recipient__ = None;
                 let mut coins__ = None;
-                while let Some(k) = map.next_key()? {
+                while let Some(k) = map_.next_key()? {
                     match k {
                         GeneratedField::Authority => {
                             if authority__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("authority"));
                             }
-                            authority__ = Some(map.next_value()?);
+                            authority__ = Some(map_.next_value()?);
                         }
                         GeneratedField::Recipient => {
                             if recipient__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("recipient"));
                             }
-                            recipient__ = Some(map.next_value()?);
+                            recipient__ = Some(map_.next_value()?);
                         }
                         GeneratedField::Coins => {
                             if coins__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("coins"));
                             }
-                            coins__ = Some(map.next_value()?);
+                            coins__ = Some(map_.next_value()?);
                         }
                     }
                 }
@@ -2101,12 +2108,12 @@ impl<'de> serde::Deserialize<'de> for MsgGovSendFromFeePoolResponse {
                 formatter.write_str("struct regen.ecocredit.marketplace.v1.MsgGovSendFromFeePoolResponse")
             }
 
-            fn visit_map<V>(self, mut map: V) -> std::result::Result<MsgGovSendFromFeePoolResponse, V::Error>
+            fn visit_map<V>(self, mut map_: V) -> std::result::Result<MsgGovSendFromFeePoolResponse, V::Error>
                 where
                     V: serde::de::MapAccess<'de>,
             {
-                while map.next_key::<GeneratedField>()?.is_some() {
-                    let _ = map.next_value::<serde::de::IgnoredAny>()?;
+                while map_.next_key::<GeneratedField>()?.is_some() {
+                    let _ = map_.next_value::<serde::de::IgnoredAny>()?;
                 }
                 Ok(MsgGovSendFromFeePoolResponse {
                 })
@@ -2192,25 +2199,25 @@ impl<'de> serde::Deserialize<'de> for MsgGovSetFeeParams {
                 formatter.write_str("struct regen.ecocredit.marketplace.v1.MsgGovSetFeeParams")
             }
 
-            fn visit_map<V>(self, mut map: V) -> std::result::Result<MsgGovSetFeeParams, V::Error>
+            fn visit_map<V>(self, mut map_: V) -> std::result::Result<MsgGovSetFeeParams, V::Error>
                 where
                     V: serde::de::MapAccess<'de>,
             {
                 let mut authority__ = None;
                 let mut fees__ = None;
-                while let Some(k) = map.next_key()? {
+                while let Some(k) = map_.next_key()? {
                     match k {
                         GeneratedField::Authority => {
                             if authority__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("authority"));
                             }
-                            authority__ = Some(map.next_value()?);
+                            authority__ = Some(map_.next_value()?);
                         }
                         GeneratedField::Fees => {
                             if fees__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("fees"));
                             }
-                            fees__ = map.next_value()?;
+                            fees__ = map_.next_value()?;
                         }
                     }
                 }
@@ -2280,12 +2287,12 @@ impl<'de> serde::Deserialize<'de> for MsgGovSetFeeParamsResponse {
                 formatter.write_str("struct regen.ecocredit.marketplace.v1.MsgGovSetFeeParamsResponse")
             }
 
-            fn visit_map<V>(self, mut map: V) -> std::result::Result<MsgGovSetFeeParamsResponse, V::Error>
+            fn visit_map<V>(self, mut map_: V) -> std::result::Result<MsgGovSetFeeParamsResponse, V::Error>
                 where
                     V: serde::de::MapAccess<'de>,
             {
-                while map.next_key::<GeneratedField>()?.is_some() {
-                    let _ = map.next_value::<serde::de::IgnoredAny>()?;
+                while map_.next_key::<GeneratedField>()?.is_some() {
+                    let _ = map_.next_value::<serde::de::IgnoredAny>()?;
                 }
                 Ok(MsgGovSetFeeParamsResponse {
                 })
@@ -2371,25 +2378,25 @@ impl<'de> serde::Deserialize<'de> for MsgRemoveAllowedDenom {
                 formatter.write_str("struct regen.ecocredit.marketplace.v1.MsgRemoveAllowedDenom")
             }
 
-            fn visit_map<V>(self, mut map: V) -> std::result::Result<MsgRemoveAllowedDenom, V::Error>
+            fn visit_map<V>(self, mut map_: V) -> std::result::Result<MsgRemoveAllowedDenom, V::Error>
                 where
                     V: serde::de::MapAccess<'de>,
             {
                 let mut authority__ = None;
                 let mut denom__ = None;
-                while let Some(k) = map.next_key()? {
+                while let Some(k) = map_.next_key()? {
                     match k {
                         GeneratedField::Authority => {
                             if authority__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("authority"));
                             }
-                            authority__ = Some(map.next_value()?);
+                            authority__ = Some(map_.next_value()?);
                         }
                         GeneratedField::Denom => {
                             if denom__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("denom"));
                             }
-                            denom__ = Some(map.next_value()?);
+                            denom__ = Some(map_.next_value()?);
                         }
                     }
                 }
@@ -2459,12 +2466,12 @@ impl<'de> serde::Deserialize<'de> for MsgRemoveAllowedDenomResponse {
                 formatter.write_str("struct regen.ecocredit.marketplace.v1.MsgRemoveAllowedDenomResponse")
             }
 
-            fn visit_map<V>(self, mut map: V) -> std::result::Result<MsgRemoveAllowedDenomResponse, V::Error>
+            fn visit_map<V>(self, mut map_: V) -> std::result::Result<MsgRemoveAllowedDenomResponse, V::Error>
                 where
                     V: serde::de::MapAccess<'de>,
             {
-                while map.next_key::<GeneratedField>()?.is_some() {
-                    let _ = map.next_value::<serde::de::IgnoredAny>()?;
+                while map_.next_key::<GeneratedField>()?.is_some() {
+                    let _ = map_.next_value::<serde::de::IgnoredAny>()?;
                 }
                 Ok(MsgRemoveAllowedDenomResponse {
                 })
@@ -2550,25 +2557,25 @@ impl<'de> serde::Deserialize<'de> for MsgSell {
                 formatter.write_str("struct regen.ecocredit.marketplace.v1.MsgSell")
             }
 
-            fn visit_map<V>(self, mut map: V) -> std::result::Result<MsgSell, V::Error>
+            fn visit_map<V>(self, mut map_: V) -> std::result::Result<MsgSell, V::Error>
                 where
                     V: serde::de::MapAccess<'de>,
             {
                 let mut seller__ = None;
                 let mut orders__ = None;
-                while let Some(k) = map.next_key()? {
+                while let Some(k) = map_.next_key()? {
                     match k {
                         GeneratedField::Seller => {
                             if seller__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("seller"));
                             }
-                            seller__ = Some(map.next_value()?);
+                            seller__ = Some(map_.next_value()?);
                         }
                         GeneratedField::Orders => {
                             if orders__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("orders"));
                             }
-                            orders__ = Some(map.next_value()?);
+                            orders__ = Some(map_.next_value()?);
                         }
                     }
                 }
@@ -2688,7 +2695,7 @@ impl<'de> serde::Deserialize<'de> for msg_sell::Order {
                 formatter.write_str("struct regen.ecocredit.marketplace.v1.MsgSell.Order")
             }
 
-            fn visit_map<V>(self, mut map: V) -> std::result::Result<msg_sell::Order, V::Error>
+            fn visit_map<V>(self, mut map_: V) -> std::result::Result<msg_sell::Order, V::Error>
                 where
                     V: serde::de::MapAccess<'de>,
             {
@@ -2697,37 +2704,37 @@ impl<'de> serde::Deserialize<'de> for msg_sell::Order {
                 let mut ask_price__ = None;
                 let mut disable_auto_retire__ = None;
                 let mut expiration__ = None;
-                while let Some(k) = map.next_key()? {
+                while let Some(k) = map_.next_key()? {
                     match k {
                         GeneratedField::BatchDenom => {
                             if batch_denom__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("batchDenom"));
                             }
-                            batch_denom__ = Some(map.next_value()?);
+                            batch_denom__ = Some(map_.next_value()?);
                         }
                         GeneratedField::Quantity => {
                             if quantity__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("quantity"));
                             }
-                            quantity__ = Some(map.next_value()?);
+                            quantity__ = Some(map_.next_value()?);
                         }
                         GeneratedField::AskPrice => {
                             if ask_price__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("askPrice"));
                             }
-                            ask_price__ = map.next_value()?;
+                            ask_price__ = map_.next_value()?;
                         }
                         GeneratedField::DisableAutoRetire => {
                             if disable_auto_retire__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("disableAutoRetire"));
                             }
-                            disable_auto_retire__ = Some(map.next_value()?);
+                            disable_auto_retire__ = Some(map_.next_value()?);
                         }
                         GeneratedField::Expiration => {
                             if expiration__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("expiration"));
                             }
-                            expiration__ = map.next_value()?;
+                            expiration__ = map_.next_value()?;
                         }
                     }
                 }
@@ -2812,19 +2819,19 @@ impl<'de> serde::Deserialize<'de> for MsgSellResponse {
                 formatter.write_str("struct regen.ecocredit.marketplace.v1.MsgSellResponse")
             }
 
-            fn visit_map<V>(self, mut map: V) -> std::result::Result<MsgSellResponse, V::Error>
+            fn visit_map<V>(self, mut map_: V) -> std::result::Result<MsgSellResponse, V::Error>
                 where
                     V: serde::de::MapAccess<'de>,
             {
                 let mut sell_order_ids__ = None;
-                while let Some(k) = map.next_key()? {
+                while let Some(k) = map_.next_key()? {
                     match k {
                         GeneratedField::SellOrderIds => {
                             if sell_order_ids__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("sellOrderIds"));
                             }
                             sell_order_ids__ = 
-                                Some(map.next_value::<Vec<::pbjson::private::NumberDeserialize<_>>>()?
+                                Some(map_.next_value::<Vec<::pbjson::private::NumberDeserialize<_>>>()?
                                     .into_iter().map(|x| x.0).collect())
                             ;
                         }
@@ -2915,25 +2922,25 @@ impl<'de> serde::Deserialize<'de> for MsgUpdateSellOrders {
                 formatter.write_str("struct regen.ecocredit.marketplace.v1.MsgUpdateSellOrders")
             }
 
-            fn visit_map<V>(self, mut map: V) -> std::result::Result<MsgUpdateSellOrders, V::Error>
+            fn visit_map<V>(self, mut map_: V) -> std::result::Result<MsgUpdateSellOrders, V::Error>
                 where
                     V: serde::de::MapAccess<'de>,
             {
                 let mut seller__ = None;
                 let mut updates__ = None;
-                while let Some(k) = map.next_key()? {
+                while let Some(k) = map_.next_key()? {
                     match k {
                         GeneratedField::Seller => {
                             if seller__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("seller"));
                             }
-                            seller__ = Some(map.next_value()?);
+                            seller__ = Some(map_.next_value()?);
                         }
                         GeneratedField::Updates => {
                             if updates__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("updates"));
                             }
-                            updates__ = Some(map.next_value()?);
+                            updates__ = Some(map_.next_value()?);
                         }
                     }
                 }
@@ -2971,6 +2978,7 @@ impl serde::Serialize for msg_update_sell_orders::Update {
         }
         let mut struct_ser = serializer.serialize_struct("regen.ecocredit.marketplace.v1.MsgUpdateSellOrders.Update", len)?;
         if self.sell_order_id != 0 {
+            #[allow(clippy::needless_borrow)]
             struct_ser.serialize_field("sellOrderId", ToString::to_string(&self.sell_order_id).as_str())?;
         }
         if !self.new_quantity.is_empty() {
@@ -3055,7 +3063,7 @@ impl<'de> serde::Deserialize<'de> for msg_update_sell_orders::Update {
                 formatter.write_str("struct regen.ecocredit.marketplace.v1.MsgUpdateSellOrders.Update")
             }
 
-            fn visit_map<V>(self, mut map: V) -> std::result::Result<msg_update_sell_orders::Update, V::Error>
+            fn visit_map<V>(self, mut map_: V) -> std::result::Result<msg_update_sell_orders::Update, V::Error>
                 where
                     V: serde::de::MapAccess<'de>,
             {
@@ -3064,39 +3072,39 @@ impl<'de> serde::Deserialize<'de> for msg_update_sell_orders::Update {
                 let mut new_ask_price__ = None;
                 let mut disable_auto_retire__ = None;
                 let mut new_expiration__ = None;
-                while let Some(k) = map.next_key()? {
+                while let Some(k) = map_.next_key()? {
                     match k {
                         GeneratedField::SellOrderId => {
                             if sell_order_id__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("sellOrderId"));
                             }
                             sell_order_id__ = 
-                                Some(map.next_value::<::pbjson::private::NumberDeserialize<_>>()?.0)
+                                Some(map_.next_value::<::pbjson::private::NumberDeserialize<_>>()?.0)
                             ;
                         }
                         GeneratedField::NewQuantity => {
                             if new_quantity__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("newQuantity"));
                             }
-                            new_quantity__ = Some(map.next_value()?);
+                            new_quantity__ = Some(map_.next_value()?);
                         }
                         GeneratedField::NewAskPrice => {
                             if new_ask_price__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("newAskPrice"));
                             }
-                            new_ask_price__ = map.next_value()?;
+                            new_ask_price__ = map_.next_value()?;
                         }
                         GeneratedField::DisableAutoRetire => {
                             if disable_auto_retire__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("disableAutoRetire"));
                             }
-                            disable_auto_retire__ = Some(map.next_value()?);
+                            disable_auto_retire__ = Some(map_.next_value()?);
                         }
                         GeneratedField::NewExpiration => {
                             if new_expiration__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("newExpiration"));
                             }
-                            new_expiration__ = map.next_value()?;
+                            new_expiration__ = map_.next_value()?;
                         }
                     }
                 }
@@ -3169,12 +3177,12 @@ impl<'de> serde::Deserialize<'de> for MsgUpdateSellOrdersResponse {
                 formatter.write_str("struct regen.ecocredit.marketplace.v1.MsgUpdateSellOrdersResponse")
             }
 
-            fn visit_map<V>(self, mut map: V) -> std::result::Result<MsgUpdateSellOrdersResponse, V::Error>
+            fn visit_map<V>(self, mut map_: V) -> std::result::Result<MsgUpdateSellOrdersResponse, V::Error>
                 where
                     V: serde::de::MapAccess<'de>,
             {
-                while map.next_key::<GeneratedField>()?.is_some() {
-                    let _ = map.next_value::<serde::de::IgnoredAny>()?;
+                while map_.next_key::<GeneratedField>()?.is_some() {
+                    let _ = map_.next_value::<serde::de::IgnoredAny>()?;
                 }
                 Ok(MsgUpdateSellOrdersResponse {
                 })
@@ -3251,18 +3259,18 @@ impl<'de> serde::Deserialize<'de> for QueryAllowedDenomsRequest {
                 formatter.write_str("struct regen.ecocredit.marketplace.v1.QueryAllowedDenomsRequest")
             }
 
-            fn visit_map<V>(self, mut map: V) -> std::result::Result<QueryAllowedDenomsRequest, V::Error>
+            fn visit_map<V>(self, mut map_: V) -> std::result::Result<QueryAllowedDenomsRequest, V::Error>
                 where
                     V: serde::de::MapAccess<'de>,
             {
                 let mut pagination__ = None;
-                while let Some(k) = map.next_key()? {
+                while let Some(k) = map_.next_key()? {
                     match k {
                         GeneratedField::Pagination => {
                             if pagination__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("pagination"));
                             }
-                            pagination__ = map.next_value()?;
+                            pagination__ = map_.next_value()?;
                         }
                     }
                 }
@@ -3352,25 +3360,25 @@ impl<'de> serde::Deserialize<'de> for QueryAllowedDenomsResponse {
                 formatter.write_str("struct regen.ecocredit.marketplace.v1.QueryAllowedDenomsResponse")
             }
 
-            fn visit_map<V>(self, mut map: V) -> std::result::Result<QueryAllowedDenomsResponse, V::Error>
+            fn visit_map<V>(self, mut map_: V) -> std::result::Result<QueryAllowedDenomsResponse, V::Error>
                 where
                     V: serde::de::MapAccess<'de>,
             {
                 let mut allowed_denoms__ = None;
                 let mut pagination__ = None;
-                while let Some(k) = map.next_key()? {
+                while let Some(k) = map_.next_key()? {
                     match k {
                         GeneratedField::AllowedDenoms => {
                             if allowed_denoms__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("allowedDenoms"));
                             }
-                            allowed_denoms__ = Some(map.next_value()?);
+                            allowed_denoms__ = Some(map_.next_value()?);
                         }
                         GeneratedField::Pagination => {
                             if pagination__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("pagination"));
                             }
-                            pagination__ = map.next_value()?;
+                            pagination__ = map_.next_value()?;
                         }
                     }
                 }
@@ -3396,6 +3404,7 @@ impl serde::Serialize for QuerySellOrderRequest {
         }
         let mut struct_ser = serializer.serialize_struct("regen.ecocredit.marketplace.v1.QuerySellOrderRequest", len)?;
         if self.sell_order_id != 0 {
+            #[allow(clippy::needless_borrow)]
             struct_ser.serialize_field("sellOrderId", ToString::to_string(&self.sell_order_id).as_str())?;
         }
         struct_ser.end()
@@ -3452,19 +3461,19 @@ impl<'de> serde::Deserialize<'de> for QuerySellOrderRequest {
                 formatter.write_str("struct regen.ecocredit.marketplace.v1.QuerySellOrderRequest")
             }
 
-            fn visit_map<V>(self, mut map: V) -> std::result::Result<QuerySellOrderRequest, V::Error>
+            fn visit_map<V>(self, mut map_: V) -> std::result::Result<QuerySellOrderRequest, V::Error>
                 where
                     V: serde::de::MapAccess<'de>,
             {
                 let mut sell_order_id__ = None;
-                while let Some(k) = map.next_key()? {
+                while let Some(k) = map_.next_key()? {
                     match k {
                         GeneratedField::SellOrderId => {
                             if sell_order_id__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("sellOrderId"));
                             }
                             sell_order_id__ = 
-                                Some(map.next_value::<::pbjson::private::NumberDeserialize<_>>()?.0)
+                                Some(map_.next_value::<::pbjson::private::NumberDeserialize<_>>()?.0)
                             ;
                         }
                     }
@@ -3546,18 +3555,18 @@ impl<'de> serde::Deserialize<'de> for QuerySellOrderResponse {
                 formatter.write_str("struct regen.ecocredit.marketplace.v1.QuerySellOrderResponse")
             }
 
-            fn visit_map<V>(self, mut map: V) -> std::result::Result<QuerySellOrderResponse, V::Error>
+            fn visit_map<V>(self, mut map_: V) -> std::result::Result<QuerySellOrderResponse, V::Error>
                 where
                     V: serde::de::MapAccess<'de>,
             {
                 let mut sell_order__ = None;
-                while let Some(k) = map.next_key()? {
+                while let Some(k) = map_.next_key()? {
                     match k {
                         GeneratedField::SellOrder => {
                             if sell_order__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("sellOrder"));
                             }
-                            sell_order__ = map.next_value()?;
+                            sell_order__ = map_.next_value()?;
                         }
                     }
                 }
@@ -3647,25 +3656,25 @@ impl<'de> serde::Deserialize<'de> for QuerySellOrdersByBatchRequest {
                 formatter.write_str("struct regen.ecocredit.marketplace.v1.QuerySellOrdersByBatchRequest")
             }
 
-            fn visit_map<V>(self, mut map: V) -> std::result::Result<QuerySellOrdersByBatchRequest, V::Error>
+            fn visit_map<V>(self, mut map_: V) -> std::result::Result<QuerySellOrdersByBatchRequest, V::Error>
                 where
                     V: serde::de::MapAccess<'de>,
             {
                 let mut batch_denom__ = None;
                 let mut pagination__ = None;
-                while let Some(k) = map.next_key()? {
+                while let Some(k) = map_.next_key()? {
                     match k {
                         GeneratedField::BatchDenom => {
                             if batch_denom__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("batchDenom"));
                             }
-                            batch_denom__ = Some(map.next_value()?);
+                            batch_denom__ = Some(map_.next_value()?);
                         }
                         GeneratedField::Pagination => {
                             if pagination__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("pagination"));
                             }
-                            pagination__ = map.next_value()?;
+                            pagination__ = map_.next_value()?;
                         }
                     }
                 }
@@ -3756,25 +3765,25 @@ impl<'de> serde::Deserialize<'de> for QuerySellOrdersByBatchResponse {
                 formatter.write_str("struct regen.ecocredit.marketplace.v1.QuerySellOrdersByBatchResponse")
             }
 
-            fn visit_map<V>(self, mut map: V) -> std::result::Result<QuerySellOrdersByBatchResponse, V::Error>
+            fn visit_map<V>(self, mut map_: V) -> std::result::Result<QuerySellOrdersByBatchResponse, V::Error>
                 where
                     V: serde::de::MapAccess<'de>,
             {
                 let mut sell_orders__ = None;
                 let mut pagination__ = None;
-                while let Some(k) = map.next_key()? {
+                while let Some(k) = map_.next_key()? {
                     match k {
                         GeneratedField::SellOrders => {
                             if sell_orders__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("sellOrders"));
                             }
-                            sell_orders__ = Some(map.next_value()?);
+                            sell_orders__ = Some(map_.next_value()?);
                         }
                         GeneratedField::Pagination => {
                             if pagination__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("pagination"));
                             }
-                            pagination__ = map.next_value()?;
+                            pagination__ = map_.next_value()?;
                         }
                     }
                 }
@@ -3864,25 +3873,25 @@ impl<'de> serde::Deserialize<'de> for QuerySellOrdersBySellerRequest {
                 formatter.write_str("struct regen.ecocredit.marketplace.v1.QuerySellOrdersBySellerRequest")
             }
 
-            fn visit_map<V>(self, mut map: V) -> std::result::Result<QuerySellOrdersBySellerRequest, V::Error>
+            fn visit_map<V>(self, mut map_: V) -> std::result::Result<QuerySellOrdersBySellerRequest, V::Error>
                 where
                     V: serde::de::MapAccess<'de>,
             {
                 let mut seller__ = None;
                 let mut pagination__ = None;
-                while let Some(k) = map.next_key()? {
+                while let Some(k) = map_.next_key()? {
                     match k {
                         GeneratedField::Seller => {
                             if seller__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("seller"));
                             }
-                            seller__ = Some(map.next_value()?);
+                            seller__ = Some(map_.next_value()?);
                         }
                         GeneratedField::Pagination => {
                             if pagination__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("pagination"));
                             }
-                            pagination__ = map.next_value()?;
+                            pagination__ = map_.next_value()?;
                         }
                     }
                 }
@@ -3973,25 +3982,25 @@ impl<'de> serde::Deserialize<'de> for QuerySellOrdersBySellerResponse {
                 formatter.write_str("struct regen.ecocredit.marketplace.v1.QuerySellOrdersBySellerResponse")
             }
 
-            fn visit_map<V>(self, mut map: V) -> std::result::Result<QuerySellOrdersBySellerResponse, V::Error>
+            fn visit_map<V>(self, mut map_: V) -> std::result::Result<QuerySellOrdersBySellerResponse, V::Error>
                 where
                     V: serde::de::MapAccess<'de>,
             {
                 let mut sell_orders__ = None;
                 let mut pagination__ = None;
-                while let Some(k) = map.next_key()? {
+                while let Some(k) = map_.next_key()? {
                     match k {
                         GeneratedField::SellOrders => {
                             if sell_orders__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("sellOrders"));
                             }
-                            sell_orders__ = Some(map.next_value()?);
+                            sell_orders__ = Some(map_.next_value()?);
                         }
                         GeneratedField::Pagination => {
                             if pagination__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("pagination"));
                             }
-                            pagination__ = map.next_value()?;
+                            pagination__ = map_.next_value()?;
                         }
                     }
                 }
@@ -4072,18 +4081,18 @@ impl<'de> serde::Deserialize<'de> for QuerySellOrdersRequest {
                 formatter.write_str("struct regen.ecocredit.marketplace.v1.QuerySellOrdersRequest")
             }
 
-            fn visit_map<V>(self, mut map: V) -> std::result::Result<QuerySellOrdersRequest, V::Error>
+            fn visit_map<V>(self, mut map_: V) -> std::result::Result<QuerySellOrdersRequest, V::Error>
                 where
                     V: serde::de::MapAccess<'de>,
             {
                 let mut pagination__ = None;
-                while let Some(k) = map.next_key()? {
+                while let Some(k) = map_.next_key()? {
                     match k {
                         GeneratedField::Pagination => {
                             if pagination__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("pagination"));
                             }
-                            pagination__ = map.next_value()?;
+                            pagination__ = map_.next_value()?;
                         }
                     }
                 }
@@ -4173,25 +4182,25 @@ impl<'de> serde::Deserialize<'de> for QuerySellOrdersResponse {
                 formatter.write_str("struct regen.ecocredit.marketplace.v1.QuerySellOrdersResponse")
             }
 
-            fn visit_map<V>(self, mut map: V) -> std::result::Result<QuerySellOrdersResponse, V::Error>
+            fn visit_map<V>(self, mut map_: V) -> std::result::Result<QuerySellOrdersResponse, V::Error>
                 where
                     V: serde::de::MapAccess<'de>,
             {
                 let mut sell_orders__ = None;
                 let mut pagination__ = None;
-                while let Some(k) = map.next_key()? {
+                while let Some(k) = map_.next_key()? {
                     match k {
                         GeneratedField::SellOrders => {
                             if sell_orders__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("sellOrders"));
                             }
-                            sell_orders__ = Some(map.next_value()?);
+                            sell_orders__ = Some(map_.next_value()?);
                         }
                         GeneratedField::Pagination => {
                             if pagination__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("pagination"));
                             }
-                            pagination__ = map.next_value()?;
+                            pagination__ = map_.next_value()?;
                         }
                     }
                 }
@@ -4241,18 +4250,22 @@ impl serde::Serialize for SellOrder {
         }
         let mut struct_ser = serializer.serialize_struct("regen.ecocredit.marketplace.v1.SellOrder", len)?;
         if self.id != 0 {
+            #[allow(clippy::needless_borrow)]
             struct_ser.serialize_field("id", ToString::to_string(&self.id).as_str())?;
         }
         if !self.seller.is_empty() {
+            #[allow(clippy::needless_borrow)]
             struct_ser.serialize_field("seller", pbjson::private::base64::encode(&self.seller).as_str())?;
         }
         if self.batch_key != 0 {
+            #[allow(clippy::needless_borrow)]
             struct_ser.serialize_field("batchKey", ToString::to_string(&self.batch_key).as_str())?;
         }
         if !self.quantity.is_empty() {
             struct_ser.serialize_field("quantity", &self.quantity)?;
         }
         if self.market_id != 0 {
+            #[allow(clippy::needless_borrow)]
             struct_ser.serialize_field("marketId", ToString::to_string(&self.market_id).as_str())?;
         }
         if !self.ask_amount.is_empty() {
@@ -4348,7 +4361,7 @@ impl<'de> serde::Deserialize<'de> for SellOrder {
                 formatter.write_str("struct regen.ecocredit.marketplace.v1.SellOrder")
             }
 
-            fn visit_map<V>(self, mut map: V) -> std::result::Result<SellOrder, V::Error>
+            fn visit_map<V>(self, mut map_: V) -> std::result::Result<SellOrder, V::Error>
                 where
                     V: serde::de::MapAccess<'de>,
             {
@@ -4361,14 +4374,14 @@ impl<'de> serde::Deserialize<'de> for SellOrder {
                 let mut disable_auto_retire__ = None;
                 let mut expiration__ = None;
                 let mut maker__ = None;
-                while let Some(k) = map.next_key()? {
+                while let Some(k) = map_.next_key()? {
                     match k {
                         GeneratedField::Id => {
                             if id__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("id"));
                             }
                             id__ = 
-                                Some(map.next_value::<::pbjson::private::NumberDeserialize<_>>()?.0)
+                                Some(map_.next_value::<::pbjson::private::NumberDeserialize<_>>()?.0)
                             ;
                         }
                         GeneratedField::Seller => {
@@ -4376,7 +4389,7 @@ impl<'de> serde::Deserialize<'de> for SellOrder {
                                 return Err(serde::de::Error::duplicate_field("seller"));
                             }
                             seller__ = 
-                                Some(map.next_value::<::pbjson::private::BytesDeserialize<_>>()?.0)
+                                Some(map_.next_value::<::pbjson::private::BytesDeserialize<_>>()?.0)
                             ;
                         }
                         GeneratedField::BatchKey => {
@@ -4384,46 +4397,46 @@ impl<'de> serde::Deserialize<'de> for SellOrder {
                                 return Err(serde::de::Error::duplicate_field("batchKey"));
                             }
                             batch_key__ = 
-                                Some(map.next_value::<::pbjson::private::NumberDeserialize<_>>()?.0)
+                                Some(map_.next_value::<::pbjson::private::NumberDeserialize<_>>()?.0)
                             ;
                         }
                         GeneratedField::Quantity => {
                             if quantity__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("quantity"));
                             }
-                            quantity__ = Some(map.next_value()?);
+                            quantity__ = Some(map_.next_value()?);
                         }
                         GeneratedField::MarketId => {
                             if market_id__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("marketId"));
                             }
                             market_id__ = 
-                                Some(map.next_value::<::pbjson::private::NumberDeserialize<_>>()?.0)
+                                Some(map_.next_value::<::pbjson::private::NumberDeserialize<_>>()?.0)
                             ;
                         }
                         GeneratedField::AskAmount => {
                             if ask_amount__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("askAmount"));
                             }
-                            ask_amount__ = Some(map.next_value()?);
+                            ask_amount__ = Some(map_.next_value()?);
                         }
                         GeneratedField::DisableAutoRetire => {
                             if disable_auto_retire__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("disableAutoRetire"));
                             }
-                            disable_auto_retire__ = Some(map.next_value()?);
+                            disable_auto_retire__ = Some(map_.next_value()?);
                         }
                         GeneratedField::Expiration => {
                             if expiration__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("expiration"));
                             }
-                            expiration__ = map.next_value()?;
+                            expiration__ = map_.next_value()?;
                         }
                         GeneratedField::Maker => {
                             if maker__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("maker"));
                             }
-                            maker__ = Some(map.next_value()?);
+                            maker__ = Some(map_.next_value()?);
                         }
                     }
                 }
@@ -4477,6 +4490,7 @@ impl serde::Serialize for SellOrderInfo {
         }
         let mut struct_ser = serializer.serialize_struct("regen.ecocredit.marketplace.v1.SellOrderInfo", len)?;
         if self.id != 0 {
+            #[allow(clippy::needless_borrow)]
             struct_ser.serialize_field("id", ToString::to_string(&self.id).as_str())?;
         }
         if !self.seller.is_empty() {
@@ -4578,7 +4592,7 @@ impl<'de> serde::Deserialize<'de> for SellOrderInfo {
                 formatter.write_str("struct regen.ecocredit.marketplace.v1.SellOrderInfo")
             }
 
-            fn visit_map<V>(self, mut map: V) -> std::result::Result<SellOrderInfo, V::Error>
+            fn visit_map<V>(self, mut map_: V) -> std::result::Result<SellOrderInfo, V::Error>
                 where
                     V: serde::de::MapAccess<'de>,
             {
@@ -4590,57 +4604,57 @@ impl<'de> serde::Deserialize<'de> for SellOrderInfo {
                 let mut ask_amount__ = None;
                 let mut disable_auto_retire__ = None;
                 let mut expiration__ = None;
-                while let Some(k) = map.next_key()? {
+                while let Some(k) = map_.next_key()? {
                     match k {
                         GeneratedField::Id => {
                             if id__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("id"));
                             }
                             id__ = 
-                                Some(map.next_value::<::pbjson::private::NumberDeserialize<_>>()?.0)
+                                Some(map_.next_value::<::pbjson::private::NumberDeserialize<_>>()?.0)
                             ;
                         }
                         GeneratedField::Seller => {
                             if seller__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("seller"));
                             }
-                            seller__ = Some(map.next_value()?);
+                            seller__ = Some(map_.next_value()?);
                         }
                         GeneratedField::BatchDenom => {
                             if batch_denom__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("batchDenom"));
                             }
-                            batch_denom__ = Some(map.next_value()?);
+                            batch_denom__ = Some(map_.next_value()?);
                         }
                         GeneratedField::Quantity => {
                             if quantity__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("quantity"));
                             }
-                            quantity__ = Some(map.next_value()?);
+                            quantity__ = Some(map_.next_value()?);
                         }
                         GeneratedField::AskDenom => {
                             if ask_denom__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("askDenom"));
                             }
-                            ask_denom__ = Some(map.next_value()?);
+                            ask_denom__ = Some(map_.next_value()?);
                         }
                         GeneratedField::AskAmount => {
                             if ask_amount__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("askAmount"));
                             }
-                            ask_amount__ = Some(map.next_value()?);
+                            ask_amount__ = Some(map_.next_value()?);
                         }
                         GeneratedField::DisableAutoRetire => {
                             if disable_auto_retire__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("disableAutoRetire"));
                             }
-                            disable_auto_retire__ = Some(map.next_value()?);
+                            disable_auto_retire__ = Some(map_.next_value()?);
                         }
                         GeneratedField::Expiration => {
                             if expiration__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("expiration"));
                             }
-                            expiration__ = map.next_value()?;
+                            expiration__ = map_.next_value()?;
                         }
                     }
                 }
