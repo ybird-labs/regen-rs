@@ -47,6 +47,16 @@
             
             echo "✅ Regen protos downloaded successfully to $OUTPUT_DIR!"
           '';
+          
+          generate-regen-types = pkgs.writeShellScriptBin "generate-regen-types" ''
+            echo "🔧 Generating Rust types from Regen Network protobuf definitions..."
+            
+            # Generate Rust code using buf (dependencies from buf.build)
+            echo "Running buf generate with buf.build dependencies..."
+            (cd crates/regen-types && ${pkgs.buf}/bin/buf generate buf.build/regen/regen-ledger) || \
+            (echo "Running from current directory..." && ${pkgs.buf}/bin/buf generate buf.build/regen/regen-ledger)
+            
+          '';
         };
         
         devShells.default = pkgs.mkShell {
@@ -56,6 +66,7 @@
             
             # Cosmos SDK / Blockchain development essentials
             protobuf  # For protobuf compilation
+            buf       # Modern protobuf toolchain (will use latest from nixpkgs)
             pkg-config
             openssl
             

@@ -1,0 +1,33 @@
+version: v2
+managed:
+  enabled: true
+  # Removed go_package_prefix since you're generating Rust code
+plugins:
+  - remote: buf.build/community/neoeinstein-prost:v0.2.3
+    out: src/gen
+    opt:
+      - compile_well_known_types
+      - extern_path=.google.protobuf=::prost_types
+      - extern_path=.cosmos=::cosmos_sdk_proto::cosmos
+      - bytes=.
+      - file_descriptor_set
+  - remote: buf.build/community/neoeinstein-prost-serde:v0.2.3
+    out: src/gen
+    opt:
+      - extern_path=.google.protobuf=::prost_types
+      - extern_path=.cosmos=::cosmos_sdk_proto::cosmos
+  - remote: buf.build/community/neoeinstein-tonic:v0.3.0
+    out: src/gen
+    opt:
+      - compile_well_known_types
+      - extern_path=.google.protobuf=::prost_types
+      - extern_path=.cosmos=::cosmos_sdk_proto::cosmos
+  - remote: buf.build/community/neoeinstein-prost-crate:v0.3.1
+    out: src/gen
+    opt:
+      - no_features
+inputs:
+  - directory: .  # Your local module (with BSR deps from buf.yaml)
+  - git_repo: https://github.com/regen-network/regen-ledger.git
+    tag: v6.0.0
+    subdir: proto  # Adjust this path if needed

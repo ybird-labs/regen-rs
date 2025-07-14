@@ -19,6 +19,9 @@ prost = { workspace = true }
 prost-types = { workspace = true }
 tonic = { workspace = true, optional = true }
 
+# Cosmos SDK types (pre-generated)
+cosmos-sdk-proto = "0.21"
+
 # Serialization
 serde = { workspace = true }
 
