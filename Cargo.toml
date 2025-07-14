@@ -15,12 +15,17 @@ repository = "https://github.com/ybird-labs/regen-rs"
 authors = ["Jeancarlo Barrios"]
 
 [workspace.dependencies]
-# Code generation dependencies
-prost = "0.14.1"
-prost-build = "0.14.1"
-prost-types = "0.14.1"
-tonic = "0.13.1"
-tonic-build = "0.13.1"
+# Code generation dependencies - Compatible with cosmos-sdk-proto
+prost = "0.13"
+prost-build = "0.13"
+prost-types = "0.13"
+tonic = "0.12"
+tonic-build = "0.12"
+
+# JSON serialization for protobuf
+pbjson = "0.7"
+pbjson-build = "0.7"
+pbjson-types = "0.7"
 
 # HTTP client for downloading proto files
 reqwest = { version = "0.12.22", features = ["blocking", "rustls-tls"] }

@@ -86,32 +86,32 @@ impl<'de> serde::Deserialize<'de> for MsgRegisterAccount {
                 formatter.write_str("struct regen.intertx.v1.MsgRegisterAccount")
             }
 
-            fn visit_map<V>(self, mut map: V) -> std::result::Result<MsgRegisterAccount, V::Error>
+            fn visit_map<V>(self, mut map_: V) -> std::result::Result<MsgRegisterAccount, V::Error>
                 where
                     V: serde::de::MapAccess<'de>,
             {
                 let mut owner__ = None;
                 let mut connection_id__ = None;
                 let mut version__ = None;
-                while let Some(k) = map.next_key()? {
+                while let Some(k) = map_.next_key()? {
                     match k {
                         GeneratedField::Owner => {
                             if owner__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("owner"));
                             }
-                            owner__ = Some(map.next_value()?);
+                            owner__ = Some(map_.next_value()?);
                         }
                         GeneratedField::ConnectionId => {
                             if connection_id__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("connectionId"));
                             }
-                            connection_id__ = Some(map.next_value()?);
+                            connection_id__ = Some(map_.next_value()?);
                         }
                         GeneratedField::Version => {
                             if version__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("version"));
                             }
-                            version__ = Some(map.next_value()?);
+                            version__ = Some(map_.next_value()?);
                         }
                     }
                 }
@@ -182,12 +182,12 @@ impl<'de> serde::Deserialize<'de> for MsgRegisterAccountResponse {
                 formatter.write_str("struct regen.intertx.v1.MsgRegisterAccountResponse")
             }
 
-            fn visit_map<V>(self, mut map: V) -> std::result::Result<MsgRegisterAccountResponse, V::Error>
+            fn visit_map<V>(self, mut map_: V) -> std::result::Result<MsgRegisterAccountResponse, V::Error>
                 where
                     V: serde::de::MapAccess<'de>,
             {
-                while map.next_key::<GeneratedField>()?.is_some() {
-                    let _ = map.next_value::<serde::de::IgnoredAny>()?;
+                while map_.next_key::<GeneratedField>()?.is_some() {
+                    let _ = map_.next_value::<serde::de::IgnoredAny>()?;
                 }
                 Ok(MsgRegisterAccountResponse {
                 })
@@ -283,32 +283,32 @@ impl<'de> serde::Deserialize<'de> for MsgSubmitTx {
                 formatter.write_str("struct regen.intertx.v1.MsgSubmitTx")
             }
 
-            fn visit_map<V>(self, mut map: V) -> std::result::Result<MsgSubmitTx, V::Error>
+            fn visit_map<V>(self, mut map_: V) -> std::result::Result<MsgSubmitTx, V::Error>
                 where
                     V: serde::de::MapAccess<'de>,
             {
                 let mut owner__ = None;
                 let mut connection_id__ = None;
                 let mut msg__ = None;
-                while let Some(k) = map.next_key()? {
+                while let Some(k) = map_.next_key()? {
                     match k {
                         GeneratedField::Owner => {
                             if owner__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("owner"));
                             }
-                            owner__ = Some(map.next_value()?);
+                            owner__ = Some(map_.next_value()?);
                         }
                         GeneratedField::ConnectionId => {
                             if connection_id__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("connectionId"));
                             }
-                            connection_id__ = Some(map.next_value()?);
+                            connection_id__ = Some(map_.next_value()?);
                         }
                         GeneratedField::Msg => {
                             if msg__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("msg"));
                             }
-                            msg__ = map.next_value()?;
+                            msg__ = map_.next_value()?;
                         }
                     }
                 }
@@ -379,12 +379,12 @@ impl<'de> serde::Deserialize<'de> for MsgSubmitTxResponse {
                 formatter.write_str("struct regen.intertx.v1.MsgSubmitTxResponse")
             }
 
-            fn visit_map<V>(self, mut map: V) -> std::result::Result<MsgSubmitTxResponse, V::Error>
+            fn visit_map<V>(self, mut map_: V) -> std::result::Result<MsgSubmitTxResponse, V::Error>
                 where
                     V: serde::de::MapAccess<'de>,
             {
-                while map.next_key::<GeneratedField>()?.is_some() {
-                    let _ = map.next_value::<serde::de::IgnoredAny>()?;
+                while map_.next_key::<GeneratedField>()?.is_some() {
+                    let _ = map_.next_value::<serde::de::IgnoredAny>()?;
                 }
                 Ok(MsgSubmitTxResponse {
                 })
@@ -471,25 +471,25 @@ impl<'de> serde::Deserialize<'de> for QueryInterchainAccountRequest {
                 formatter.write_str("struct regen.intertx.v1.QueryInterchainAccountRequest")
             }
 
-            fn visit_map<V>(self, mut map: V) -> std::result::Result<QueryInterchainAccountRequest, V::Error>
+            fn visit_map<V>(self, mut map_: V) -> std::result::Result<QueryInterchainAccountRequest, V::Error>
                 where
                     V: serde::de::MapAccess<'de>,
             {
                 let mut owner__ = None;
                 let mut connection_id__ = None;
-                while let Some(k) = map.next_key()? {
+                while let Some(k) = map_.next_key()? {
                     match k {
                         GeneratedField::Owner => {
                             if owner__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("owner"));
                             }
-                            owner__ = Some(map.next_value()?);
+                            owner__ = Some(map_.next_value()?);
                         }
                         GeneratedField::ConnectionId => {
                             if connection_id__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("connectionId"));
                             }
-                            connection_id__ = Some(map.next_value()?);
+                            connection_id__ = Some(map_.next_value()?);
                         }
                     }
                 }
@@ -571,18 +571,18 @@ impl<'de> serde::Deserialize<'de> for QueryInterchainAccountResponse {
                 formatter.write_str("struct regen.intertx.v1.QueryInterchainAccountResponse")
             }
 
-            fn visit_map<V>(self, mut map: V) -> std::result::Result<QueryInterchainAccountResponse, V::Error>
+            fn visit_map<V>(self, mut map_: V) -> std::result::Result<QueryInterchainAccountResponse, V::Error>
                 where
                     V: serde::de::MapAccess<'de>,
             {
                 let mut interchain_account_address__ = None;
-                while let Some(k) = map.next_key()? {
+                while let Some(k) = map_.next_key()? {
                     match k {
                         GeneratedField::InterchainAccountAddress => {
                             if interchain_account_address__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("interchainAccountAddress"));
                             }
-                            interchain_account_address__ = Some(map.next_value()?);
+                            interchain_account_address__ = Some(map_.next_value()?);
                         }
                     }
                 }
