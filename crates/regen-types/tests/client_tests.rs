@@ -25,7 +25,7 @@ async fn test_data_client_query_anchor_by_iri() {
 
     let response = client.data().query().anchor_by_iri(request).await;
     // This might fail if the IRI doesn't exist, but tests the connection
-    println!("Anchor by IRI response: {:?}", response);
+    println!("Anchor by IRI response: {response:?}");
 }
 
 #[tokio::test]
@@ -136,6 +136,6 @@ async fn test_multiple_clients_concurrent() {
     let (data_result, ecocredit_result) = tokio::join!(data_future, ecocredit_future);
 
     // Both should at least connect successfully
-    println!("Data result: {:?}", data_result);
-    println!("Ecocredit result: {:?}", ecocredit_result);
+    println!("Data result: {data_result:?}");
+    println!("Ecocredit result: {ecocredit_result:?}");
 }
