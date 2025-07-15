@@ -23,7 +23,7 @@ pub enum RegenError {
 
     // Network errors
     #[error("gRPC error: {0}")]
-    Grpc(#[from] tonic::Status),
+    Grpc(#[from] Box<tonic::Status>),
 
     #[error("Transport error: {0}")]
     Transport(#[from] tonic::transport::Error),

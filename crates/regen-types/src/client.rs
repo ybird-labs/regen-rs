@@ -28,12 +28,18 @@ pub struct ClientBuilder {
     signer: Option<Signer>,
 }
 
-impl ClientBuilder {
-    pub fn new() -> Self {
+impl Default for ClientBuilder {
+    fn default() -> Self {
         Self {
             config: ClientConfig::default(),
             signer: None,
         }
+    }
+}
+
+impl ClientBuilder {
+    pub fn new() -> Self {
+        Self::default()
     }
 
     pub fn config(mut self, config: ClientConfig) -> Self {
@@ -85,8 +91,8 @@ pub struct ClientConfigBuilder {
     gas_limit: Option<u64>,
 }
 
-impl ClientConfigBuilder {
-    pub fn new() -> Self {
+impl Default for ClientConfigBuilder {
+    fn default() -> Self {
         Self {
             grpc_endpoint: None,
             chain_id: None,
@@ -95,6 +101,12 @@ impl ClientConfigBuilder {
             gas_price: None,
             gas_limit: None,
         }
+    }
+}
+
+impl ClientConfigBuilder {
+    pub fn new() -> Self {
+        Self::default()
     }
 
     pub fn grpc_endpoint(mut self, grpc_endpoint: &str) -> Self {
