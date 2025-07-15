@@ -1,9 +1,8 @@
 use std::time::Duration;
-use tonic::transport::{Channel};
+use tonic::transport::Channel;
 
 use crate::error::{RegenError, Result};
 use crate::signer::Signer;
-
 
 pub struct Client {
     pub config: ClientConfig,
@@ -17,24 +16,18 @@ impl Client {
             .map_err(|e| RegenError::Config(e.to_string()))?
             .connect()
             .await?;
-        Ok(Self { config, channel, signer })
+        Ok(Self {
+            config,
+            channel,
+            signer,
+        })
     }
 }
 
-
-
+#[derive(Default)]
 pub struct ClientBuilder {
     config: ClientConfig,
     signer: Option<Signer>,
-}
-
-impl Default for ClientBuilder {
-    fn default() -> Self {
-        Self {
-            config: ClientConfig::default(),
-            signer: None,
-        }
-    }
 }
 
 impl ClientBuilder {
@@ -81,7 +74,7 @@ impl Default for ClientConfig {
     }
 }
 
-
+#[derive(Default)]
 pub struct ClientConfigBuilder {
     grpc_endpoint: Option<String>,
     chain_id: Option<String>,
@@ -89,19 +82,6 @@ pub struct ClientConfigBuilder {
     connect_timeout: Option<Duration>,
     gas_price: Option<f64>,
     gas_limit: Option<u64>,
-}
-
-impl Default for ClientConfigBuilder {
-    fn default() -> Self {
-        Self {
-            grpc_endpoint: None,
-            chain_id: None,
-            timeout: None,
-            connect_timeout: None,
-            gas_price: None,
-            gas_limit: None,
-        }
-    }
 }
 
 impl ClientConfigBuilder {
@@ -122,7 +102,7 @@ impl ClientConfigBuilder {
     pub fn timeout(mut self, timeout: Duration) -> Self {
         self.timeout = Some(timeout);
         self
-    }   
+    }
 
     pub fn connect_timeout(mut self, connect_timeout: Duration) -> Self {
         self.connect_timeout = Some(connect_timeout);
@@ -148,11 +128,11 @@ impl ClientConfigBuilder {
             grpc_endpoint: self.grpc_endpoint.unwrap_or(default_config.grpc_endpoint),
             chain_id: self.chain_id.unwrap_or(default_config.chain_id),
             timeout: self.timeout.unwrap_or(default_config.timeout),
-            connect_timeout: self.connect_timeout.unwrap_or(default_config.connect_timeout),
+            connect_timeout: self
+                .connect_timeout
+                .unwrap_or(default_config.connect_timeout),
             gas_price: self.gas_price.or(default_config.gas_price),
             gas_limit: self.gas_limit.unwrap_or(default_config.gas_limit),
         }
     }
 }
-    
-    

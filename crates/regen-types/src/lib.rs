@@ -1,6 +1,6 @@
+pub mod client;
 pub mod error;
 pub mod signer;
-pub mod client;
 
 // Generated protobuf modules
 #[path = "gen/mod.rs"]
