@@ -12,3 +12,7 @@
 ## Overview
 
 This repository contains Rust-based tools and types for working with the Regen Network ecosystem.
+
+## Development
+
+This project uses Nix for development. See [CONTRIBUTING.md](CONTRIBUTING.md) for detailed setup instructions and available commands.
