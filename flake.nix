@@ -130,6 +130,26 @@
         };
 
         apps = {
+          build = {
+            type = "app";
+            program = "${pkgs.writeScript "build" ''
+              #!/bin/sh
+              echo "🔨 Building project in dev mode..."
+              ${rust}/bin/cargo build --all
+              echo "✅ Dev build completed!"
+            ''}";
+          };
+
+          build-release = {
+            type = "app";
+            program = "${pkgs.writeScript "build-release" ''
+              #!/bin/sh
+              echo "🔨 Building project in release mode..."
+              ${rust}/bin/cargo build --release --all
+              echo "✅ Release build completed!"
+            ''}";
+          };
+
           test = {
             type = "app";
             program = "${pkgs.writeScript "test" ''
@@ -224,6 +244,17 @@
               echo "🎉 All checks passed!"
             ''}";
           };
+        };
+
+        checks = {
+          fmt = pkgs.runCommand "cargo-fmt-check" { 
+            src = ./.;
+            buildInputs = [ rust ];
+          } ''
+            cd $src
+            ${rust}/bin/cargo fmt --check
+            touch $out
+          '';
         };
       }
     );
