@@ -3,6 +3,8 @@ use tonic::transport::Channel;
 
 use crate::error::{RegenError, Result};
 use crate::signer::Signer;
+use crate::regen::data_client::DataClient;
+use crate::regen::eco_credit_client::EcoCreditClient;
 
 pub struct Client {
     pub config: ClientConfig,
@@ -22,6 +24,17 @@ impl Client {
             signer,
         })
     }
+
+    pub fn data(&self) -> DataClient {
+        DataClient::new(self.channel.clone())
+    }
+
+    pub fn eco_credit(&self) -> EcoCreditClient {
+        EcoCreditClient::new(self.channel.clone())
+    }
+
+
+
 }
 
 #[derive(Default)]
