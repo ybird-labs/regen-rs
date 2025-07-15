@@ -1,4 +1,5 @@
 # Rust
+.cargo-home/
 target/
 Cargo.lock
 **/*.rs.bk

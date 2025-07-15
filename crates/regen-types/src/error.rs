@@ -1,4 +1,3 @@
-
 use thiserror::Error;
 
 /// Main error type for the Regen client library
@@ -70,7 +69,6 @@ pub enum RegenError {
 
     #[error("Invalid configuration: {0}")]
     InvalidSignerConfiguration(String),
-
 }
 
 /// Convenience type alias for Results using RegenError
