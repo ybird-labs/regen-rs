@@ -96,7 +96,9 @@ async fn test_multiple_clients_concurrent() {
             grpc_endpoint: TEST_GRPC_ENDPOINT.to_string(),
             ..Default::default()
         };
-        let client = Client::new(config, None).await.expect("Failed to create client");
+        let client = Client::new(config, None)
+            .await
+            .expect("Failed to create client");
         let request = QueryAnchorByIriRequest {
             iri: "regen:13toVfvC2YxrrfSXWB5h2BGHiXZURsKxWUz72uDRDSPMCrYPguGUXSC.rdf".to_string(),
         };
@@ -108,12 +110,18 @@ async fn test_multiple_clients_concurrent() {
             grpc_endpoint: TEST_GRPC_ENDPOINT.to_string(),
             ..Default::default()
         };
-        let client = Client::new(config, None).await.expect("Failed to create client");
-        client.eco_credit().query().classes(QueryClassesRequest { pagination: None }).await
+        let client = Client::new(config, None)
+            .await
+            .expect("Failed to create client");
+        client
+            .eco_credit()
+            .query()
+            .classes(QueryClassesRequest { pagination: None })
+            .await
     };
-    
+
     let (data_result, ecocredit_result) = tokio::join!(data_future, ecocredit_future);
-    
+
     // Both should at least connect successfully
     println!("Data result: {:?}", data_result);
     println!("Ecocredit result: {:?}", ecocredit_result);
