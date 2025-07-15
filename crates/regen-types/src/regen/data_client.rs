@@ -1,6 +1,6 @@
-use tonic::transport::Channel;
-use crate::regen::data::v2::query_client::QueryClient;
 use crate::regen::data::v2::msg_client::MsgClient;
+use crate::regen::data::v2::query_client::QueryClient;
+use tonic::transport::Channel;
 
 pub struct DataClient {
     channel: Channel,

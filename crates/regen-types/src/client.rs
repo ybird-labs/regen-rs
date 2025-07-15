@@ -2,9 +2,9 @@ use std::time::Duration;
 use tonic::transport::Channel;
 
 use crate::error::{RegenError, Result};
-use crate::signer::Signer;
 use crate::regen::data_client::DataClient;
 use crate::regen::eco_credit_client::EcoCreditClient;
+use crate::signer::Signer;
 
 pub struct Client {
     pub config: ClientConfig,
@@ -32,9 +32,6 @@ impl Client {
     pub fn eco_credit(&self) -> EcoCreditClient {
         EcoCreditClient::new(self.channel.clone())
     }
-
-
-
 }
 
 #[derive(Default)]

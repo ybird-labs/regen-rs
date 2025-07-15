@@ -1,6 +1,6 @@
-use tonic::transport::Channel;
-use crate::regen::ecocredit::v1::query_client::QueryClient;
 use crate::regen::ecocredit::v1::msg_client::MsgClient;
+use crate::regen::ecocredit::v1::query_client::QueryClient;
+use tonic::transport::Channel;
 
 pub struct EcoCreditClient {
     channel: Channel,

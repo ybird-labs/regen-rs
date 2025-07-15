@@ -12,5 +12,3 @@ pub mod ecocredit {
         include!("../gen/regen.ecocredit.v1.rs");
     }
 }
-
-
