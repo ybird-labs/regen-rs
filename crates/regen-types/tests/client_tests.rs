@@ -1,3 +1,4 @@
+use cosmos_sdk_proto::cosmos::bank::v1beta1::QueryTotalSupplyRequest;
 use regen_types::client::{Client, ClientConfig};
 use regen_types::regen::data::v2::QueryAnchorByIriRequest;
 use regen_types::regen::ecocredit::v1::{QueryClassRequest, QueryClassesRequest};
@@ -138,4 +139,24 @@ async fn test_multiple_clients_concurrent() {
     // Both should at least connect successfully
     println!("Data result: {data_result:?}");
     println!("Ecocredit result: {ecocredit_result:?}");
+}
+
+#[tokio::test]
+#[ignore]
+async fn test_bank_client_query_total_supply() {
+    let config = ClientConfig {
+        grpc_endpoint: TEST_GRPC_ENDPOINT.to_string(),
+        timeout: Duration::from_secs(10),
+        connect_timeout: Duration::from_secs(5),
+        ..Default::default()
+    };
+    let client = Client::new(config, None)
+        .await
+        .expect("Failed to create client");
+
+    // Test querying total supply of all tokens
+    let request = QueryTotalSupplyRequest { pagination: None };
+
+    let response = client.bank().query().total_supply(request).await;
+    println!("Total supply response: {response:?}");
 }

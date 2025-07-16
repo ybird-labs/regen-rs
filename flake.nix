@@ -67,10 +67,7 @@
 
             # Use the proto-downloader from its own flake
             PROTO_DOWNLOADER_PATH="crates/regen-types/tools/proto-downloader"
-            OUTPUT_DIR="crates/regen-types/proto/regen"
-
-            # Create the output directory
-            mkdir -p "$OUTPUT_DIR"
+            OUTPUT_DIR="crates/regen-types/proto"
 
             # Run proto-downloader using nix
             cd "$PROTO_DOWNLOADER_PATH" && nix run . -- \
@@ -86,11 +83,15 @@
           generate-regen-types = pkgs.writeShellScriptBin "generate-regen-types" ''
             echo "🔧 Generating Rust types from Regen Network protobuf definitions..."
 
-            # Generate Rust code using buf (dependencies from buf.build)
-            echo "Running buf generate with buf.build dependencies..."
-            (cd crates/regen-types && ${pkgs.buf}/bin/buf generate buf.build/regen/regen-ledger) || \
-            (echo "Running from current directory..." && ${pkgs.buf}/bin/buf generate buf.build/regen/regen-ledger)
+            # Use our custom proto-compiler tool (like rs-ibc-proto approach)
+            echo "Using proto-compiler tool to generate tonic 0.13 compatible types..."
+            cd crates/regen-types/tools/proto-compiler
+            ${rust}/bin/cargo run -- \
+              --input ../../proto \
+              --output ../../src/generated \
+              --with-client
 
+            echo "✅ Regen types generated successfully!"
           '';
         };
 

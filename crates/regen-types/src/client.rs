@@ -1,6 +1,7 @@
 use std::time::Duration;
 use tonic::transport::Channel;
 
+use crate::cosmos::bank_client::BankClient;
 use crate::error::{RegenError, Result};
 use crate::regen::data_client::DataClient;
 use crate::regen::eco_credit_client::EcoCreditClient;
@@ -25,12 +26,19 @@ impl Client {
         })
     }
 
+    // regen clients
     pub fn data(&self) -> DataClient {
         DataClient::new(self.channel.clone())
     }
 
     pub fn eco_credit(&self) -> EcoCreditClient {
         EcoCreditClient::new(self.channel.clone())
+    }
+
+    // cosmos clients
+
+    pub fn bank(&self) -> BankClient {
+        BankClient::new(self.channel.clone())
     }
 }
 

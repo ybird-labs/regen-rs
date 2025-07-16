@@ -1,1 +1,1 @@
-mod bank_client;
+pub mod bank_client;
