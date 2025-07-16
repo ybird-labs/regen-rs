@@ -220,41 +220,44 @@
             ''}";
           };
 
-           full-check = {
+          full-check = {
             type = "app";
             program = "${pkgs.writeScript "full-check" ''
               #!/bin/sh
               set -e
-              
-              
+
+
               echo "🚀 Running full project checks..."
-              
+
               echo "Step 1/4: Checking format..."
               ${rust}/bin/cargo fmt --check
-              
+
               echo "Step 2/4: Running clippy..."
               ${rust}/bin/cargo clippy --all-targets --all-features -- -D warnings
-              
+
               echo "Step 3/4: Running ignored tests..."
               ${pkgs.cargo-nextest}/bin/cargo-nextest nextest run --all -- --include-ignored
-              
+
               echo "Step 4/4: Security audit..."
               ${pkgs.cargo-audit}/bin/cargo-audit audit
-              
+
               echo "🎉 All checks passed!"
             ''}";
           };
         };
 
         checks = {
-          fmt = pkgs.runCommand "cargo-fmt-check" { 
-            src = ./.;
-            buildInputs = [ rust ];
-          } ''
-            cd $src
-            ${rust}/bin/cargo fmt --check
-            touch $out
-          '';
+          fmt =
+            pkgs.runCommand "cargo-fmt-check"
+              {
+                src = ./.;
+                buildInputs = [ rust ];
+              }
+              ''
+                cd $src
+                ${rust}/bin/cargo fmt --check
+                touch $out
+              '';
         };
       }
     );
