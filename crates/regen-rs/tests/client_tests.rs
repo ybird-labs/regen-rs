@@ -1,7 +1,7 @@
 use cosmos_sdk_proto::cosmos::bank::v1beta1::QueryTotalSupplyRequest;
-use regen_types::client::{Client, ClientConfig};
-use regen_types::regen::data::v2::QueryAnchorByIriRequest;
-use regen_types::regen::ecocredit::v1::{QueryClassRequest, QueryClassesRequest};
+use regen_rs::client::{Client, ClientConfig};
+use regen_rs::regen::data::v2::QueryAnchorByIriRequest;
+use regen_rs::regen::ecocredit::v1::{QueryClassRequest, QueryClassesRequest};
 use std::time::Duration;
 
 const TEST_GRPC_ENDPOINT: &str = "http://public-rpc.regen.vitwit.com:9090";

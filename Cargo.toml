@@ -1,9 +1,9 @@
 [workspace]
 members = [
-    "crates/regen-types",
+    "crates/regen-rs",
 ]
 exclude = [
-    "crates/regen-types/tools/proto-downloader",
+    "crates/regen-rs/tools/proto-downloader",
 ]
 resolver = "3"
 

@@ -66,8 +66,8 @@
             echo "Using regen-ledger version: ${regenVersions.ledger}"
 
             # Use the proto-downloader from its own flake
-            PROTO_DOWNLOADER_PATH="crates/regen-types/tools/proto-downloader"
-            OUTPUT_DIR="crates/regen-types/proto"
+            PROTO_DOWNLOADER_PATH="crates/regen-rs/tools/proto-downloader"
+            OUTPUT_DIR="crates/regen-rs/proto"
 
             # Run proto-downloader using nix
             cd "$PROTO_DOWNLOADER_PATH" && nix run . -- \
@@ -85,7 +85,7 @@
 
             # Use our custom proto-compiler tool (like rs-ibc-proto approach)
             echo "Using proto-compiler tool to generate tonic 0.13 compatible types..."
-            cd crates/regen-types/tools/proto-compiler
+            cd crates/regen-rs/tools/proto-compiler
             ${rust}/bin/cargo run -- \
               --input ../../proto \
               --output ../../src/generated \
