@@ -39,7 +39,6 @@ impl GithubRepo {
 }
 
 fn extract_protos(source_dir: &Path, dest_dir: &Path) -> Result<()> {
-
     // check if output directory exists
     if !dest_dir.exists() {
         fs::create_dir_all(dest_dir)?;
@@ -52,7 +51,14 @@ fn extract_protos(source_dir: &Path, dest_dir: &Path) -> Result<()> {
         // Only process .proto files
         if path.extension().map_or(false, |ext| ext == "proto") {
             // Get the relative path from source to this file
-            let relative_path = path.strip_prefix(source_dir)?;
+            let mut relative_path = path.strip_prefix(source_dir)?;
+            
+            // Ensure we only have one 'regen' directory by stripping any duplicate prefixes
+            if let Ok(stripped) = relative_path.strip_prefix("regen") {
+                if let Ok(further_stripped) = stripped.strip_prefix("regen") {
+                    relative_path = further_stripped;
+                }
+            }
             
             // Create the destination path maintaining the structure
             let dest_file_path = dest_dir.join(relative_path);
