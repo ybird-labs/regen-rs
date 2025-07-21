@@ -1,7 +1,19 @@
 use std::time::Duration;
+use bip32::secp256k1::sha2::digest::typenum::Min;
 use tonic::transport::Channel;
 
 use crate::cosmos::bank_client::BankClient;
+use crate::cosmos::auth_client::AuthClient;
+use crate::cosmos::crisis_client::CrisisClient;
+use crate::cosmos::distribution_client::DistributionClient;
+use crate::cosmos::evidence_client::EvidenceClient;
+use crate::cosmos::feegrant_client::FeegrantClient;
+use crate::cosmos::gov_client::GovClient;
+use crate::cosmos::mint_client::MintClient;
+use crate::cosmos::slashing_client::SlashingClient;
+use crate::cosmos::staking_client::StakingClient;
+use crate::cosmos::upgrade_client::UpgradeClient;
+use crate::cosmos::vesting_client::VestingClient;
 use crate::error::{RegenError, Result};
 use crate::regen::data_client::DataClient;
 use crate::regen::eco_credit_client::EcoCreditClient;
@@ -39,6 +51,54 @@ impl Client {
 
     pub fn bank(&self) -> BankClient {
         BankClient::new(self.channel.clone())
+    }
+
+    pub fn auth(&self) -> AuthClient {
+        AuthClient::new(self.channel.clone())
+    }
+
+    pub fn authz(&self) -> AuthClient {
+        AuthClient::new(self.channel.clone())
+    }
+
+    pub fn gov(&self) -> GovClient {
+        GovClient::new(self.channel.clone())
+    }
+
+    pub fn crisis(&self) -> CrisisClient {
+        CrisisClient::new(self.channel.clone())
+    }
+
+    pub fn evidence(&self) -> EvidenceClient {
+        EvidenceClient::new(self.channel.clone())
+    }
+
+    pub fn distribution(&self) -> DistributionClient {
+        DistributionClient::new(self.channel.clone())
+    }
+
+    pub fn feegrant(&self) -> FeegrantClient {
+        FeegrantClient::new(self.channel.clone())
+    }
+
+    pub fn mint(&self) -> MintClient {
+        MintClient::new(self.channel.clone())
+    }
+
+    pub fn slashing(&self) -> SlashingClient {
+        SlashingClient::new(self.channel.clone())
+    }
+
+    pub fn staking(&self) -> StakingClient {
+        StakingClient::new(self.channel.clone())
+    }
+
+    pub fn upgrade(&self) -> UpgradeClient {
+        UpgradeClient::new(self.channel.clone())
+    }
+
+    pub fn vesting(&self) -> VestingClient {
+        VestingClient::new(self.channel.clone())
     }
 }
 
