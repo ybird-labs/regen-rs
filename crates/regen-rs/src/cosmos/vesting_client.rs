@@ -2,7 +2,6 @@ use tonic::transport::Channel;
 
 use cosmos_sdk_proto::cosmos::vesting::v1beta1::msg_client::MsgClient;
 
-
 pub struct VestingClient {
     channel: Channel,
 }

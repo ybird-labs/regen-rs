@@ -1,10 +1,9 @@
 use std::time::Duration;
-use bip32::secp256k1::sha2::digest::typenum::Min;
 use tonic::transport::Channel;
 
-use crate::cosmos::bank_client::BankClient;
 use crate::cosmos::auth_client::AuthClient;
 use crate::cosmos::authz_client::AuthZClient;
+use crate::cosmos::bank_client::BankClient;
 use crate::cosmos::crisis_client::CrisisClient;
 use crate::cosmos::distribution_client::DistributionClient;
 use crate::cosmos::evidence_client::EvidenceClient;

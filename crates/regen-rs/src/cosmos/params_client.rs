@@ -1,6 +1,5 @@
 use tonic::transport::Channel;
 
-
 use cosmos_sdk_proto::cosmos::params::v1beta1::query_client::QueryClient;
 
 pub struct ParamsClient {
@@ -15,5 +14,4 @@ impl ParamsClient {
     pub fn query(&self) -> QueryClient<tonic::transport::Channel> {
         QueryClient::new(self.channel.clone())
     }
-
 }
