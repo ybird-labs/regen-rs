@@ -1,1 +1,14 @@
+pub mod auth_client;
+pub mod authz_client;
 pub mod bank_client;
+pub mod crisis_client;
+pub mod distribution_client;
+pub mod evidence_client;
+pub mod feegrant_client;
+pub mod gov_client;
+pub mod mint_client;
+pub mod params_client;
+pub mod slashing_client;
+pub mod staking_client;
+pub mod upgrade_client;
+pub mod vesting_client;
