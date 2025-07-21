@@ -4,6 +4,7 @@ use tonic::transport::Channel;
 
 use crate::cosmos::bank_client::BankClient;
 use crate::cosmos::auth_client::AuthClient;
+use crate::cosmos::authz_client::AuthZClient;
 use crate::cosmos::crisis_client::CrisisClient;
 use crate::cosmos::distribution_client::DistributionClient;
 use crate::cosmos::evidence_client::EvidenceClient;
@@ -57,8 +58,8 @@ impl Client {
         AuthClient::new(self.channel.clone())
     }
 
-    pub fn authz(&self) -> AuthClient {
-        AuthClient::new(self.channel.clone())
+    pub fn authz(&self) -> AuthZClient {
+        AuthZClient::new(self.channel.clone())
     }
 
     pub fn gov(&self) -> GovClient {
