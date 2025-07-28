@@ -220,13 +220,13 @@ async fn stream_loop(
     Ok(())
 }
 
-
 impl Stream for EventSubscriber {
     type Item = Event;
 
-    fn poll_next(mut self: std::pin::Pin<&mut Self>, cx: &mut std::task::Context<'_>) -> std::task::Poll<Option<Self::Item>> {
+    fn poll_next(
+        mut self: std::pin::Pin<&mut Self>,
+        cx: &mut std::task::Context<'_>,
+    ) -> std::task::Poll<Option<Self::Item>> {
         self.event_rx.poll_recv(cx)
     }
-
-
 }
