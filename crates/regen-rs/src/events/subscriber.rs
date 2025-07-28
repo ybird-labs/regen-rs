@@ -41,7 +41,7 @@ pub struct EventSubscriber {
 }
 
 impl EventSubscriber {
-    pub async fn new(ws_url: String) -> Result<Self, RegenError> {
+    pub async fn new(ws_url: &str) -> Result<Self, RegenError> {
         let request = ws_url
             .into_client_request()
             .map_err(RegenError::WebSocket)?;
@@ -49,7 +49,7 @@ impl EventSubscriber {
         let (stream, _) = tokio_tungstenite::connect_async(request).await?;
 
         Ok(Self {
-            ws_url,
+            ws_url: ws_url.to_string(),
             stream,
             next_id: AtomicU32::new(0),
             subscriptions: RwLock::new(HashMap::new()),
@@ -97,7 +97,8 @@ impl EventSubscriber {
         event_tx: mpsc::Sender<Event>,
     ) -> Result<(), RegenError> {
         let request = self
-            .ws_url.clone()
+            .ws_url
+            .clone()
             .into_client_request()
             .map_err(RegenError::WebSocket)?;
 
@@ -154,7 +155,7 @@ async fn sink_loop(
 async fn stream_loop(
     mut stream: SplitStream<WebSocketStream<MaybeTlsStream<TcpStream>>>,
     event_tx: mpsc::Sender<Event>,
-) {
+) -> Result<(), RegenError> {
     info!("WebSocket stream loop started");
 
     while let Some(message) = stream.next().await {
@@ -171,7 +172,9 @@ async fn stream_loop(
 
                         if event_tx.send(event).await.is_err() {
                             warn!("Event receiver dropped, closing stream loop");
-                            break;
+                            return Err(RegenError::Internal(
+                                "Event receiver channel dropped".to_string(),
+                            ));
                         }
                     }
                     Err(e) => {
@@ -198,10 +201,12 @@ async fn stream_loop(
             }
             Err(e) => {
                 error!("WebSocket connection error: {}", e);
-                break;
+                info!("WebSocket stream loop ended due to error");
+                return Err(RegenError::WebSocket(e));
             }
         }
     }
 
     info!("WebSocket stream loop ended");
+    Ok(())
 }
