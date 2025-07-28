@@ -39,7 +39,17 @@ pub struct EventSubscriber {
     subscriptions: RwLock<HashMap<SubscriptionId, Subscription>>,
     command_tx: mpsc::Sender<Command>,
     event_rx: mpsc::Receiver<Event>,
-    _supervisor_handle: JoinHandle<Result<(), RegenError>>,
+    supervisor_handle: JoinHandle<Result<(), RegenError>>,
+}
+
+impl Drop for EventSubscriber {
+    fn drop(&mut self) {
+        // Safety net: ensure cleanup even if graceful shutdown fails
+        if !self.supervisor_handle.is_finished() {
+            warn!("EventSubscriber dropped with running task, aborting for safety");
+            self.supervisor_handle.abort();
+        }
+    }
 }
 
 impl EventSubscriber {
@@ -57,7 +67,7 @@ impl EventSubscriber {
             subscriptions: RwLock::new(HashMap::new()),
             command_tx,
             event_rx,
-            _supervisor_handle: supervisor_handle,
+            supervisor_handle,
         })
     }
 
@@ -101,12 +111,18 @@ async fn conection_supervisor(
     mut command_rx: mpsc::Receiver<Command>,
     event_tx: mpsc::Sender<Event>,
 ) -> Result<(), RegenError> {
-    loop {
+    while !command_rx.is_closed() {
         let result = connect_and_run(ws_url.clone(), &mut command_rx, event_tx.clone()).await;
+
         if let Err(e) = result {
             error!("Connection failed: {e}");
+            // Exponential backoff before retry
+            tokio::time::sleep(std::time::Duration::from_millis(1000)).await;
         }
     }
+
+    info!("Command channel closed, supervisor shutting down gracefully");
+    Ok(())
 }
 
 async fn connect_and_run(
