@@ -77,9 +77,7 @@ impl EventSubscriber {
         self.command_tx
             .send(Command::Subscribe(subscription))
             .await
-            .map_err(|e| {
-                RegenError::Internal(format!("Failed to send subscribe command: {}", e))
-            })?;
+            .map_err(|e| RegenError::Internal(format!("Failed to send subscribe command: {e}")))?;
 
         Ok(())
     }
@@ -99,7 +97,7 @@ async fn conection_supervisor(
     loop {
         let result = connect_and_run(ws_url.clone(), &mut command_rx, event_tx.clone()).await;
         if let Err(e) = result {
-            error!("Connection failed: {}", e);
+            error!("Connection failed: {e}");
         }
     }
 }
@@ -111,9 +109,11 @@ async fn connect_and_run(
 ) -> Result<(), RegenError> {
     let request = ws_url
         .into_client_request()
-        .map_err(RegenError::WebSocket)?;
+        .map_err(|e| RegenError::WebSocket(Box::new(e)))?;
 
-    let (stream, _) = tokio_tungstenite::connect_async(request).await?;
+    let (stream, _) = tokio_tungstenite::connect_async(request)
+        .await
+        .map_err(|e| RegenError::WebSocket(Box::new(e)))?;
     let (sink, stream) = stream.split();
 
     tokio::select! {
@@ -156,7 +156,9 @@ async fn sink_loop(
             Command::Close => break,
         };
 
-        sink.send(message).await.map_err(RegenError::WebSocket)?;
+        sink.send(message)
+            .await
+            .map_err(|e| RegenError::WebSocket(Box::new(e)))?;
     }
     Ok(())
 }
@@ -196,7 +198,7 @@ async fn stream_loop(
                 }
             }
             Ok(Message::Close(close_frame)) => {
-                info!("WebSocket connection closed: {:?}", close_frame);
+                info!("WebSocket connection closed: {close_frame:?}");
                 break;
             }
             Ok(Message::Ping(_)) => {
@@ -206,12 +208,12 @@ async fn stream_loop(
                 trace!("Received pong");
             }
             Ok(msg) => {
-                debug!("Received other message type: {:?}", msg);
+                debug!("Received other message type: {msg:?}");
             }
             Err(e) => {
-                error!("WebSocket connection error: {}", e);
+                error!("WebSocket connection error: {e}");
                 info!("WebSocket stream loop ended due to error");
-                return Err(RegenError::WebSocket(e));
+                return Err(RegenError::WebSocket(Box::new(e)));
             }
         }
     }

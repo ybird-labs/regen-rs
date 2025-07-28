@@ -28,7 +28,7 @@ pub enum RegenError {
     Transport(#[from] tonic::transport::Error),
 
     #[error("WebSocket error: {0}")]
-    WebSocket(#[from] tokio_tungstenite::tungstenite::Error),
+    WebSocket(#[from] Box<tokio_tungstenite::tungstenite::Error>),
 
     // Cosmos SDK errors
     #[error("Invalid chain ID: '{0}'")]
