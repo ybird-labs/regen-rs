@@ -6,15 +6,15 @@ use std::{
 use tokio::sync::{RwLock, mpsc};
 
 use futures::stream::{SplitSink, SplitStream};
-use futures::{SinkExt, StreamExt, future::ok};
+use futures::{SinkExt, StreamExt};
 use serde_json::json;
-use tokio::net::TcpStream;
+use tokio::{net::TcpStream, task::JoinHandle};
 use tokio_tungstenite::{
     MaybeTlsStream, WebSocketStream,
     tungstenite::{Message, client::IntoClientRequest},
 };
 
-use cosmos_sdk_proto::{cosmos::upgrade::v1beta1::ModuleVersion, tendermint::abci::Event};
+use cosmos_sdk_proto::tendermint::abci::Event;
 
 use crate::RegenError;
 
@@ -28,31 +28,36 @@ pub enum Command {
     Close,
 }
 
+#[derive(Debug, Clone)]
 pub struct Subscription {
     pub id: SubscriptionId,
     pub query: String,
 }
 
 pub struct EventSubscriber {
-    ws_url: String,
-    stream: WebSocketStream<MaybeTlsStream<TcpStream>>,
     next_id: AtomicU32,
     subscriptions: RwLock<HashMap<SubscriptionId, Subscription>>,
+    command_tx: mpsc::Sender<Command>,
+    event_rx: mpsc::Receiver<Event>,
+    _supervisor_handle: JoinHandle<Result<(), RegenError>>,
 }
 
 impl EventSubscriber {
     pub async fn new(ws_url: &str) -> Result<Self, RegenError> {
-        let request = ws_url
-            .into_client_request()
-            .map_err(RegenError::WebSocket)?;
+        let (command_tx, command_rx) = mpsc::channel(100);
+        let (event_tx, event_rx) = mpsc::channel(100);
 
-        let (stream, _) = tokio_tungstenite::connect_async(request).await?;
+        let ws_url = ws_url.to_string();
+
+        let supervisor_handle =
+            tokio::spawn(conection_supervisor(ws_url, command_rx, event_tx.clone()));
 
         Ok(Self {
-            ws_url: ws_url.to_string(),
-            stream,
             next_id: AtomicU32::new(0),
             subscriptions: RwLock::new(HashMap::new()),
+            command_tx,
+            event_rx,
+            _supervisor_handle: supervisor_handle,
         })
     }
 
@@ -67,7 +72,14 @@ impl EventSubscriber {
         self.subscriptions
             .write()
             .await
-            .insert(subscription.id, subscription);
+            .insert(subscription.id, subscription.clone());
+
+        self.command_tx
+            .send(Command::Subscribe(subscription))
+            .await
+            .map_err(|e| {
+                RegenError::Internal(format!("Failed to send subscribe command: {}", e))
+            })?;
 
         Ok(())
     }
@@ -77,67 +89,67 @@ impl EventSubscriber {
 
         Ok(())
     }
+}
 
-    pub async fn connect(
-        &mut self,
-        command_rx: mpsc::Receiver<Command>,
-        event_tx: mpsc::Sender<Event>,
-    ) -> Result<(), RegenError> {
-
-        
-        let request = self
-            .ws_url
-            .clone()
-            .into_client_request()
-            .map_err(RegenError::WebSocket)?;
-
-
-        let (stream, _) = tokio_tungstenite::connect_async(request).await?;
-        let (sink, stream) = stream.split();
-
-        let mut sink_handle = tokio::spawn(async move {
-            sink_loop(sink, command_rx).await
-        });
-
-        let mut stream_handle = tokio::spawn(async move {
-            stream_loop(stream, event_tx).await
-        });
-
-        tokio::select! {
-            sink_result = &mut sink_handle => {
-                stream_handle.abort(); 
-                sink_result.map_err(|e| RegenError::Internal(format!("Sink task failed: {}", e)))?
-            }
-            stream_result = &mut stream_handle => {
-                sink_handle.abort();   
-                stream_result.map_err(|e| RegenError::Internal(format!("Stream task failed: {}", e)))?
-            }
+async fn conection_supervisor(
+    ws_url: String,
+    mut command_rx: mpsc::Receiver<Command>,
+    event_tx: mpsc::Sender<Event>,
+) -> Result<(), RegenError> {
+    loop {
+        let result = connect_and_run(ws_url.clone(), &mut command_rx, event_tx.clone()).await;
+        if let Err(e) = result {
+            error!("Connection failed: {}", e);
         }
     }
 }
 
+async fn connect_and_run(
+    ws_url: String,
+    command_rx: &mut mpsc::Receiver<Command>,
+    event_tx: mpsc::Sender<Event>,
+) -> Result<(), RegenError> {
+    let request = ws_url
+        .into_client_request()
+        .map_err(RegenError::WebSocket)?;
+
+    let (stream, _) = tokio_tungstenite::connect_async(request).await?;
+    let (sink, stream) = stream.split();
+
+    tokio::select! {
+        _ = sink_loop(sink, command_rx) => {
+            error!("Sink task failed");
+        }
+        _ = stream_loop(stream, event_tx) => {
+            error!("Stream task failed");
+        }
+    }
+
+    Ok(())
+}
+
 async fn sink_loop(
     mut sink: SplitSink<WebSocketStream<MaybeTlsStream<TcpStream>>, Message>,
-    mut command_rx: mpsc::Receiver<Command>,
+    command_rx: &mut mpsc::Receiver<Command>,
 ) -> Result<(), RegenError> {
     while let Some(command) = command_rx.recv().await {
         let message = match command {
             Command::Subscribe(subscription) => {
                 let subscribe_msg = json!({
-                    "jsonrpc": "2.0",
-                    "method": "subscribe",
-                    "id": subscription.id,
-                    "params": {
-                        "query": subscription.query
-                    }
-                });
+                "jsonrpc": "2.0",
+                "method": "subscribe",
+                        "id": subscription.id,
+                "params": {
+                            "query": subscription.query
+                        }
+                    });
                 Message::Text(subscribe_msg.to_string().into())
             }
             Command::Unsubscribe(id) => {
                 let unsubscribe_msg = json!({
-                    "jsonrpc": "2.0",
-                    "method": "unsubscribe",
-                    "id": id
+                            "jsonrpc": "2.0",
+                            "method": "unsubscribe",
+                            "id": id
                 });
                 Message::Text(unsubscribe_msg.to_string().into())
             }
