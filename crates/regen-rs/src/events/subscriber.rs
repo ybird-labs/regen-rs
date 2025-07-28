@@ -69,19 +69,6 @@ impl EventSubscriber {
             .await
             .insert(subscription.id, subscription);
 
-        // let subscribe_msg = json!({
-        //     "jsonrpc": "2.0",
-        //     "method": "subscribe",
-        //     "id": id,
-        //     "params": {
-        //         "query": query
-        //     }
-        // });
-
-        // self.stream
-        //     .send(Message::Text(subscribe_msg.to_string().into()))
-        //     .await?;
-
         Ok(())
     }
 
@@ -96,26 +83,36 @@ impl EventSubscriber {
         command_rx: mpsc::Receiver<Command>,
         event_tx: mpsc::Sender<Event>,
     ) -> Result<(), RegenError> {
+
+        
         let request = self
             .ws_url
             .clone()
             .into_client_request()
             .map_err(RegenError::WebSocket)?;
 
+
         let (stream, _) = tokio_tungstenite::connect_async(request).await?;
         let (sink, stream) = stream.split();
 
-        let sink_handle = tokio::spawn(async move {
-            sink_loop(sink, command_rx).await;
+        let mut sink_handle = tokio::spawn(async move {
+            sink_loop(sink, command_rx).await
         });
 
-        let stream_handle = tokio::spawn(async move {
-            stream_loop(stream, event_tx).await;
+        let mut stream_handle = tokio::spawn(async move {
+            stream_loop(stream, event_tx).await
         });
 
-        tokio::join!(sink_handle, stream_handle);
-
-        Ok(())
+        tokio::select! {
+            sink_result = &mut sink_handle => {
+                stream_handle.abort(); 
+                sink_result.map_err(|e| RegenError::Internal(format!("Sink task failed: {}", e)))?
+            }
+            stream_result = &mut stream_handle => {
+                sink_handle.abort();   
+                stream_result.map_err(|e| RegenError::Internal(format!("Stream task failed: {}", e)))?
+            }
+        }
     }
 }
 
