@@ -85,6 +85,13 @@ impl EventSubscriber {
     pub async fn unsubscribe(&mut self, id: SubscriptionId) -> Result<(), RegenError> {
         self.subscriptions.write().await.remove(&id);
 
+        self.command_tx
+            .send(Command::Unsubscribe(id))
+            .await
+            .map_err(|e| {
+                RegenError::Internal(format!("Failed to send unsubscribe command: {e}"))
+            })?;
+
         Ok(())
     }
 }
