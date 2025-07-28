@@ -5,7 +5,7 @@ use std::{
 
 use tokio::sync::{RwLock, mpsc};
 
-use futures::stream::{SplitSink, SplitStream};
+use futures::stream::{SplitSink, SplitStream, Stream};
 use futures::{SinkExt, StreamExt};
 use serde_json::json;
 use tokio::{net::TcpStream, task::JoinHandle};
@@ -218,4 +218,15 @@ async fn stream_loop(
 
     info!("WebSocket stream loop ended");
     Ok(())
+}
+
+
+impl Stream for EventSubscriber {
+    type Item = Event;
+
+    fn poll_next(mut self: std::pin::Pin<&mut Self>, cx: &mut std::task::Context<'_>) -> std::task::Poll<Option<Self::Item>> {
+        self.event_rx.poll_recv(cx)
+    }
+
+
 }
