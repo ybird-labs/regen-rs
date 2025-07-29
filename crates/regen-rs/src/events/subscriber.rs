@@ -34,7 +34,7 @@ pub struct Subscription {
     pub query: String,
 }
 
-pub struct EventSubscriber {
+struct EventSubscriberState {
     next_id: AtomicU32,
     subscriptions: RwLock<HashMap<SubscriptionId, Subscription>>,
     command_tx: mpsc::Sender<Command>,
@@ -42,25 +42,13 @@ pub struct EventSubscriber {
     supervisor_handle: JoinHandle<Result<(), RegenError>>,
 }
 
-impl Drop for EventSubscriber {
-    fn drop(&mut self) {
-        // Safety net: ensure cleanup even if graceful shutdown fails
-        if !self.supervisor_handle.is_finished() {
-            warn!("EventSubscriber dropped with running task, aborting for safety");
-            self.supervisor_handle.abort();
-        }
-    }
-}
-
-impl EventSubscriber {
-    pub async fn new(ws_url: &str) -> Result<Self, RegenError> {
+impl EventSubscriberState {
+    async fn new(ws_url: String) -> Result<Self, RegenError> {
         let (command_tx, command_rx) = mpsc::channel(100);
         let (event_tx, event_rx) = mpsc::channel(100);
 
-        let ws_url = ws_url.to_string();
-
         let supervisor_handle =
-            tokio::spawn(conection_supervisor(ws_url, command_rx, event_tx.clone()));
+            tokio::spawn(connection_supervisor(ws_url, command_rx, event_tx.clone()));
 
         Ok(Self {
             next_id: AtomicU32::new(0),
@@ -70,21 +58,49 @@ impl EventSubscriber {
             supervisor_handle,
         })
     }
+}
+
+pub struct EventSubscriber {
+    ws_url: String,
+    state: EventSubscriberState,
+}
+
+impl Drop for EventSubscriber {
+    fn drop(&mut self) {
+        // Safety net: ensure cleanup even if graceful shutdown fails
+        if !self.state.supervisor_handle.is_finished() {
+            warn!("EventSubscriber dropped with running task, aborting for safety");
+            self.state.supervisor_handle.abort();
+        }
+    }
+}
+
+impl EventSubscriber {
+    pub async fn new(ws_url: &str) -> Result<Self, RegenError> {
+        let state = EventSubscriberState::new(ws_url.to_string()).await?;
+
+        Ok(Self {
+            ws_url: ws_url.to_string(),
+            state,
+        })
+    }
 
     pub async fn subscribe(&mut self, query: &str) -> Result<(), RegenError> {
-        let id = self.next_id.fetch_add(1, Ordering::Relaxed);
+        let id = self.state.next_id.fetch_add(1, Ordering::Relaxed);
 
         let subscription = Subscription {
             id,
             query: query.to_string(),
         };
 
-        self.subscriptions
+        self.state
+            .subscriptions
             .write()
             .await
             .insert(subscription.id, subscription.clone());
 
-        self.command_tx
+        self.state
+            .command_tx
             .send(Command::Subscribe(subscription))
             .await
             .map_err(|e| RegenError::Internal(format!("Failed to send subscribe command: {e}")))?;
@@ -93,9 +109,10 @@ impl EventSubscriber {
     }
 
     pub async fn unsubscribe(&mut self, id: SubscriptionId) -> Result<(), RegenError> {
-        self.subscriptions.write().await.remove(&id);
+        self.state.subscriptions.write().await.remove(&id);
 
-        self.command_tx
+        self.state
+            .command_tx
             .send(Command::Unsubscribe(id))
             .await
             .map_err(|e| {
@@ -104,9 +121,48 @@ impl EventSubscriber {
 
         Ok(())
     }
+
+    pub async fn shutdown(&mut self) -> Result<(), RegenError> {
+        self.state
+            .command_tx
+            .send(Command::Close)
+            .await
+            .map_err(|e| RegenError::Internal(format!("Failed to send close command: {e}")))?;
+        Ok(())
+    }
+
+    pub async fn next_event(&mut self) -> Option<Event> {
+        self.state.event_rx.recv().await
+    }
+
+    pub fn is_active(&self) -> bool {
+        !self.state.supervisor_handle.is_finished()
+    }
+
+    async fn reset_connection_and_state(&mut self) -> Result<(), RegenError> {
+        let state = EventSubscriberState::new(self.ws_url.clone()).await?;
+        self.state = state;
+        Ok(())
+    }
+
+    /// Reconnects to the event stream.
+    ///
+    /// This will shutdown the current connection and create a new one.
+    /// It will also reset the state of the event subscriber.
+    ///
+    /// This is useful when the connection is lost or when the event stream is not responding.
+    ///
+    pub async fn reconnect(&mut self) -> Result<(), RegenError> {
+        if self.is_active() {
+            self.shutdown().await?;
+        }
+        self.reset_connection_and_state().await?;
+
+        Ok(())
+    }
 }
 
-async fn conection_supervisor(
+async fn connection_supervisor(
     ws_url: String,
     mut command_rx: mpsc::Receiver<Command>,
     event_tx: mpsc::Sender<Event>,
@@ -118,6 +174,8 @@ async fn conection_supervisor(
             error!("Connection failed: {e}");
             // Exponential backoff before retry
             tokio::time::sleep(std::time::Duration::from_millis(1000)).await;
+        } else {
+            break;
         }
     }
 
@@ -140,11 +198,17 @@ async fn connect_and_run(
     let (sink, stream) = stream.split();
 
     tokio::select! {
-        _ = sink_loop(sink, command_rx) => {
-            error!("Sink task failed");
+        result = sink_loop(sink, command_rx) => {
+            if let Err(e) = result {
+                error!("Sink task failed: {e}");
+                return Err(e);
+            }
         }
-        _ = stream_loop(stream, event_tx) => {
-            error!("Stream task failed");
+        result = stream_loop(stream, event_tx) => {
+            if let Err(e) = result {
+                error!("Stream task failed: {e}");
+                return Err(e);
+            }
         }
     }
 
@@ -252,6 +316,6 @@ impl Stream for EventSubscriber {
         mut self: std::pin::Pin<&mut Self>,
         cx: &mut std::task::Context<'_>,
     ) -> std::task::Poll<Option<Self::Item>> {
-        self.event_rx.poll_recv(cx)
+        self.state.event_rx.poll_recv(cx)
     }
 }
