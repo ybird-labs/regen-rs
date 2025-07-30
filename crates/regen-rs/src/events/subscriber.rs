@@ -122,6 +122,12 @@ impl EventSubscriber {
         Ok(())
     }
 
+    /// Shuts down the event subscriber.
+    ///
+    /// This will send a close command to the event stream and wait for the connection to be closed.
+    ///
+    /// This is useful when the event subscriber is no longer needed or when the connection is lost.
+    ///
     pub async fn shutdown(&mut self) -> Result<(), RegenError> {
         self.state
             .command_tx
