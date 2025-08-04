@@ -39,9 +39,15 @@ bip32 = "0.5"
 bip39 = "2.1"                            
 rand = "0.9"
 
+# Event system dependencies
+tokio-tungstenite = { workspace = true }
+futures = { workspace = true }
+serde_json = { workspace = true }
+tokio = { workspace = true, features = ["sync", "macros", "rt-multi-thread", "time"] }
+log = { workspace = true }
+
 [features]
 default = []
 client = []
 
 [dev-dependencies]
-tokio = { version = "1.46", features = ["rt", "macros", "time"] }
