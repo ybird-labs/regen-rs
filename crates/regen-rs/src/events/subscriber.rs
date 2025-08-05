@@ -22,7 +22,6 @@ use log::{debug, error, info, trace, warn};
 
 pub type SubscriptionId = u32;
 
-#[derive(Debug)]
 pub enum Command {
     Subscribe(Subscription),
     Unsubscribe(SubscriptionId),
